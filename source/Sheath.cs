@@ -42,9 +42,6 @@ public class SheathableStats
 public class SheathBehavior : ToolBag
 {
     private static readonly string[] SlingStoneWildcards = ["stone-*", "*:stone-*"];
-    private static readonly string[] MetalVariantSources = ["metal", "material"];
-    private static readonly string[] LeatherVariantSources = ["leather", "color"];
-    private static readonly string[] WoodVariantSources = ["wood"];
 
     public SheathBehavior(CollectibleObject collObj) : base(collObj)
     {
@@ -75,6 +72,7 @@ public class SheathBehavior : ToolBag
         List<ItemSlotBagContent?> slots = base.GetOrCreateSlots(bagstack, parentinv, bagIndex, world);
         ApplySlingPouchStoneSetting(slots);
         RefreshStoredToolSlotVariants(bagstack, slots);
+        RefreshStoredStorageSlotVariants(bagstack, slots);
 
         return slots;
     }
@@ -115,10 +113,47 @@ public class SheathBehavior : ToolBag
             string woodVariantCode = mainHand ? Stats.RightWeaponWoodVariant : Stats.LeftWeaponWoodVariant;
 
             SetVariant(variants, bagstack, variantCode, stats.InSheathVariantCode);
-            TrySetVariantFromStoredStack(variants, bagstack, metalVariantCode, stats.MetalVariantCode, slot.Itemstack, MetalVariantSources);
-            TrySetVariantFromStoredStack(variants, bagstack, leatherVariantCode, stats.LeatherVariantCode, slot.Itemstack, LeatherVariantSources);
-            TrySetVariantFromStoredStack(variants, bagstack, woodVariantCode, stats.WoodVariantCode, slot.Itemstack, WoodVariantSources);
+            TrySetVariantFromStoredStack(variants, bagstack, metalVariantCode, stats.MetalVariantCode, slot.Itemstack, StoredVariantResolver.MetalVariantSources);
+            TrySetVariantFromStoredStack(variants, bagstack, leatherVariantCode, stats.LeatherVariantCode, slot.Itemstack, StoredVariantResolver.LeatherVariantSources);
+            TrySetVariantFromStoredStack(variants, bagstack, woodVariantCode, stats.WoodVariantCode, slot.Itemstack, StoredVariantResolver.WoodVariantSources);
             CopyStoredShieldTextureVariants(variants, bagstack, slot.Itemstack, mainHand);
+        }
+    }
+
+    private void RefreshStoredStorageSlotVariants(ItemStack bagstack, IEnumerable<ItemSlotBagContent?> slots)
+    {
+        ItemSlotBagContentWithWildcardMatch[] bagSlots = slots
+            .OfType<ItemSlotBagContentWithWildcardMatch>()
+            .Where(slot => !slot.Config.HandleHotkey)
+            .Where(slot => slot.Config.SetVariants && slot.SourceBag?.Item?.Id == collObj.Id)
+            .ToArray();
+
+        foreach (string variantCode in bagSlots.Select(slot => slot.Config.SlotVariant).Distinct())
+        {
+            ItemSlotBagContentWithWildcardMatch quiverSlot = bagSlots.First(slot => slot.Config.SlotVariant == variantCode);
+            ItemSlotBagContentWithWildcardMatch? quiverNotEmptySlot = bagSlots.FirstOrDefault(slot => !slot.Empty && slot.Config.SlotVariant == variantCode);
+
+            Variants variants = Variants.FromStack(bagstack);
+            string stateVariantCode = quiverSlot.Config.SlotStateVariant;
+
+            SetVariant(variants, bagstack, stateVariantCode, quiverNotEmptySlot == null ? quiverSlot.Config.EmptyStateCode : quiverSlot.Config.FullStateCode);
+
+            string metalVariantCode = quiverSlot.Config.SlotMetalVariant;
+            string leatherVariantCode = quiverSlot.Config.SlotLeatherVariant;
+            string woodVariantCode = quiverSlot.Config.SlotWoodVariant;
+
+            ItemStack? storedStack = quiverNotEmptySlot?.Itemstack;
+            SheathableStats stats = storedStack?.Collectible?.Attributes?.AsObject<SheathableStats>() ?? new();
+
+            if (storedStack?.Collectible?.Attributes != null || variants.Get(variantCode) == null)
+            {
+                SetVariant(variants, bagstack, variantCode, stats.InSheathVariantCode);
+            }
+
+            TrySetVariantFromStoredStack(variants, bagstack, leatherVariantCode, stats.LeatherVariantCode, storedStack, StoredVariantResolver.LeatherVariantSources);
+            TrySetVariantFromStoredStack(variants, bagstack, metalVariantCode, stats.MetalVariantCode, storedStack, StoredVariantResolver.MetalVariantSources);
+            TrySetVariantFromStoredStack(variants, bagstack, woodVariantCode, stats.WoodVariantCode, storedStack, StoredVariantResolver.WoodVariantSources);
+            CopyStoredShieldTextureVariants(variants, bagstack, storedStack, mainHand: false);
         }
     }
 
@@ -230,9 +265,9 @@ public class SheathBehavior : ToolBag
                 sheathSlot.MarkDirty();
             }
 
-            TrySetVariantFromStoredStack(variants, sheathSlot, metalVariantCode, stats.MetalVariantCode, slotAtIndex.Itemstack, MetalVariantSources);
-            TrySetVariantFromStoredStack(variants, sheathSlot, leatherVariantCode, stats.LeatherVariantCode, slotAtIndex.Itemstack, LeatherVariantSources);
-            TrySetVariantFromStoredStack(variants, sheathSlot, woodVariantCode, stats.WoodVariantCode, slotAtIndex.Itemstack, WoodVariantSources);
+            TrySetVariantFromStoredStack(variants, sheathSlot, metalVariantCode, stats.MetalVariantCode, slotAtIndex.Itemstack, StoredVariantResolver.MetalVariantSources);
+            TrySetVariantFromStoredStack(variants, sheathSlot, leatherVariantCode, stats.LeatherVariantCode, slotAtIndex.Itemstack, StoredVariantResolver.LeatherVariantSources);
+            TrySetVariantFromStoredStack(variants, sheathSlot, woodVariantCode, stats.WoodVariantCode, slotAtIndex.Itemstack, StoredVariantResolver.WoodVariantSources);
             CopyStoredShieldTextureVariants(variants, sheathSlot, slotAtIndex.Itemstack, mainHand);
         }
     }
@@ -295,9 +330,9 @@ public class SheathBehavior : ToolBag
 
             ItemStack? storedStack = quiverNotEmptySlot?.Itemstack;
 
-            TrySetVariantFromStoredStack(variants, sheathSlot, leatherVariantCode, stats.LeatherVariantCode, storedStack, LeatherVariantSources);
-            TrySetVariantFromStoredStack(variants, sheathSlot, metalVariantCode, stats.MetalVariantCode, storedStack, MetalVariantSources);
-            TrySetVariantFromStoredStack(variants, sheathSlot, woodVariantCode, stats.WoodVariantCode, storedStack, WoodVariantSources);
+            TrySetVariantFromStoredStack(variants, sheathSlot, leatherVariantCode, stats.LeatherVariantCode, storedStack, StoredVariantResolver.LeatherVariantSources);
+            TrySetVariantFromStoredStack(variants, sheathSlot, metalVariantCode, stats.MetalVariantCode, storedStack, StoredVariantResolver.MetalVariantSources);
+            TrySetVariantFromStoredStack(variants, sheathSlot, woodVariantCode, stats.WoodVariantCode, storedStack, StoredVariantResolver.WoodVariantSources);
             CopyStoredShieldTextureVariants(variants, sheathSlot, storedStack, mainHand: false);
         }
     }
@@ -345,47 +380,23 @@ public class SheathBehavior : ToolBag
 
     private void TrySetVariantFromStoredStack(Variants variants, ItemSlot sheathSlot, string targetVariantCode, string defaultVariantValue, ItemStack? storedStack, params string[] sourceVariantCodes)
     {
-        if (!IsStoredVisualVariantCode(targetVariantCode)) return;
+        if (StoredVariantResolver.IsProtectedContainerVariantCode(targetVariantCode)) return;
 
-        string variantValue = GetStoredStackVariant(storedStack, targetVariantCode, sourceVariantCodes) ?? defaultVariantValue;
+        string variantValue = StoredVariantResolver.GetStoredMaterialVariant(storedStack, targetVariantCode, sourceVariantCodes) ?? defaultVariantValue;
         SetVariant(variants, sheathSlot, targetVariantCode, variantValue);
     }
 
     private void TrySetVariantFromStoredStack(Variants variants, ItemStack sheathStack, string targetVariantCode, string defaultVariantValue, ItemStack? storedStack, params string[] sourceVariantCodes)
     {
-        if (!IsStoredVisualVariantCode(targetVariantCode)) return;
+        if (StoredVariantResolver.IsProtectedContainerVariantCode(targetVariantCode)) return;
 
-        string variantValue = GetStoredStackVariant(storedStack, targetVariantCode, sourceVariantCodes) ?? defaultVariantValue;
+        string variantValue = StoredVariantResolver.GetStoredMaterialVariant(storedStack, targetVariantCode, sourceVariantCodes) ?? defaultVariantValue;
         SetVariant(variants, sheathStack, targetVariantCode, variantValue);
-    }
-
-    private static bool IsStoredVisualVariantCode(string variantCode)
-    {
-        return variantCode.StartsWith("right_", StringComparison.Ordinal)
-            || variantCode.StartsWith("left_", StringComparison.Ordinal)
-            || variantCode.StartsWith("bag_slot_", StringComparison.Ordinal);
     }
 
     private static string? GetStoredStackVariant(ItemStack? storedStack, string targetVariantCode, params string[] sourceVariantCodes)
     {
-        if (storedStack == null) return null;
-
-        Variants variants = Variants.FromStack(storedStack);
-        foreach (string key in new[] { targetVariantCode }.Concat(sourceVariantCodes))
-        {
-            string? value = variants.Get(key);
-            if (!string.IsNullOrEmpty(value)) return value;
-
-            value = storedStack.Attributes.GetString(key);
-            if (!string.IsNullOrEmpty(value)) return value;
-
-            if (storedStack.Collectible?.Variant?.TryGetValue(key, out value) == true && !string.IsNullOrEmpty(value))
-            {
-                return value;
-            }
-        }
-
-        return null;
+        return StoredVariantResolver.GetStoredTextureVariant(storedStack, targetVariantCode, sourceVariantCodes);
     }
 
     private void CopyStoredShieldTextureVariants(Variants variants, ItemSlot sheathSlot, ItemStack? storedStack, bool mainHand)

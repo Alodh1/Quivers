@@ -42,7 +42,10 @@ public class QuiverBehavior : GearEquipableBag
             }
         }
 
-        return base.GetOrCreateSlots(bagstack, parentinv, bagIndex, world);
+        List<ItemSlotBagContent?> slots = base.GetOrCreateSlots(bagstack, parentinv, bagIndex, world);
+        RefreshStoredSlotVariants(bagstack, slots);
+
+        return slots;
     }
 
     protected readonly List<long> ProcessedPlayers = [];
@@ -126,6 +129,45 @@ public class QuiverBehavior : GearEquipableBag
         return true;
     }
 
+    protected virtual void RefreshStoredSlotVariants(ItemStack bagstack, IEnumerable<ItemSlotBagContent?> slots)
+    {
+        ItemSlotBagContentWithWildcardMatch[] bagSlots = slots
+            .OfType<ItemSlotBagContentWithWildcardMatch>()
+            .Where(slot => slot.Config.SetVariants)
+            .Where(slot => slot.SourceBag?.Item?.Id == collObj.Id)
+            .ToArray();
+
+        foreach (string variantCode in bagSlots.Select(slot => slot.Config.SlotVariant).Distinct())
+        {
+            ItemSlotBagContentWithWildcardMatch quiverSlot = bagSlots.First(slot => slot.Config.SlotVariant == variantCode);
+            ItemSlotBagContentWithWildcardMatch? quiverNotEmptySlot = bagSlots.FirstOrDefault(slot => !slot.Empty && slot.Config.SlotVariant == variantCode);
+
+            Variants variants = Variants.FromStack(bagstack);
+            string stateVariantCode = quiverSlot.Config.SlotStateVariant;
+
+            SetVariant(variants, bagstack, stateVariantCode, quiverNotEmptySlot == null ? quiverSlot.Config.EmptyStateCode : quiverSlot.Config.FullStateCode);
+
+            if (quiverNotEmptySlot == null)
+            {
+                continue;
+            }
+
+            ItemStack? storedStack = quiverNotEmptySlot.Itemstack;
+            SheathableStats stats = storedStack?.Collectible?.Attributes?.AsObject<SheathableStats>() ?? new();
+
+            SetVariant(variants, bagstack, variantCode, stats.InSheathVariantCode);
+
+            if (!quiverSlot.Config.SetMaterialVariants || storedStack == null)
+            {
+                continue;
+            }
+
+            TrySetVariantFromStoredStack(variants, bagstack, quiverSlot.Config.SlotMetalVariant, stats.MetalVariantCode, storedStack, StoredVariantResolver.MetalVariantSources);
+            TrySetVariantFromStoredStack(variants, bagstack, quiverSlot.Config.SlotLeatherVariant, stats.LeatherVariantCode, storedStack, StoredVariantResolver.LeatherVariantSources);
+            TrySetVariantFromStoredStack(variants, bagstack, quiverSlot.Config.SlotWoodVariant, stats.WoodVariantCode, storedStack, StoredVariantResolver.WoodVariantSources);
+        }
+    }
+
     protected virtual void OnSlotModified(InventoryBasePlayer backpackInventory, EntityPlayer player, int slotIndex, int bagIndex)
     {
         InventoryBase? gearInventory = GetGearInventory(player);
@@ -193,65 +235,45 @@ public class QuiverBehavior : GearEquipableBag
 
             if (quiverSlot.Config.SetMaterialVariants && quiverNotEmptySlot.Itemstack != null)
             {
-                Variants inQuiverVariants = Variants.FromStack(quiverNotEmptySlot.Itemstack);
-
-                if (inQuiverVariants.Get(metalVariantCode) != null)
-                {
-                    if (variants.Get(metalVariantCode) != inQuiverVariants.Get(metalVariantCode))
-                    {
-                        variants.Set(metalVariantCode, inQuiverVariants.Get(metalVariantCode));
-                        variants.ToStack(sheathSlot.Itemstack);
-                        sheathSlot.MarkDirty();
-                    }
-                }
-                else
-                {
-                    if (variants.Get(metalVariantCode) != stats.MetalVariantCode)
-                    {
-                        variants.Set(metalVariantCode, stats.MetalVariantCode);
-                        variants.ToStack(sheathSlot.Itemstack);
-                        sheathSlot.MarkDirty();
-                    }
-                }
-
-                if (inQuiverVariants.Get(leatherVariantCode) != null)
-                {
-                    if (variants.Get(leatherVariantCode) != inQuiverVariants.Get(leatherVariantCode))
-                    {
-                        variants.Set(leatherVariantCode, inQuiverVariants.Get(leatherVariantCode));
-                        variants.ToStack(sheathSlot.Itemstack);
-                        sheathSlot.MarkDirty();
-                    }
-                }
-                else
-                {
-                    if (variants.Get(leatherVariantCode) != stats.LeatherVariantCode)
-                    {
-                        variants.Set(leatherVariantCode, stats.LeatherVariantCode);
-                        variants.ToStack(sheathSlot.Itemstack);
-                        sheathSlot.MarkDirty();
-                    }
-                }
-
-                if (inQuiverVariants.Get(woodVariantCode) != null)
-                {
-                    if (variants.Get(woodVariantCode) != inQuiverVariants.Get(woodVariantCode))
-                    {
-                        variants.Set(woodVariantCode, inQuiverVariants.Get(woodVariantCode));
-                        variants.ToStack(sheathSlot.Itemstack);
-                        sheathSlot.MarkDirty();
-                    }
-                }
-                else
-                {
-                    if (variants.Get(woodVariantCode) != stats.WoodVariantCode)
-                    {
-                        variants.Set(woodVariantCode, stats.WoodVariantCode);
-                        variants.ToStack(sheathSlot.Itemstack);
-                        sheathSlot.MarkDirty();
-                    }
-                }
+                TrySetVariantFromStoredStack(variants, sheathSlot, metalVariantCode, stats.MetalVariantCode, quiverNotEmptySlot.Itemstack, StoredVariantResolver.MetalVariantSources);
+                TrySetVariantFromStoredStack(variants, sheathSlot, leatherVariantCode, stats.LeatherVariantCode, quiverNotEmptySlot.Itemstack, StoredVariantResolver.LeatherVariantSources);
+                TrySetVariantFromStoredStack(variants, sheathSlot, woodVariantCode, stats.WoodVariantCode, quiverNotEmptySlot.Itemstack, StoredVariantResolver.WoodVariantSources);
             }
+        }
+    }
+
+    protected virtual void TrySetVariantFromStoredStack(Variants variants, ItemSlot sheathSlot, string targetVariantCode, string defaultVariantValue, ItemStack? storedStack, params string[] sourceVariantCodes)
+    {
+        if (StoredVariantResolver.IsProtectedContainerVariantCode(targetVariantCode)) return;
+
+        string variantValue = StoredVariantResolver.GetStoredMaterialVariant(storedStack, targetVariantCode, sourceVariantCodes) ?? defaultVariantValue;
+        SetVariant(variants, sheathSlot, targetVariantCode, variantValue);
+    }
+
+    protected virtual void TrySetVariantFromStoredStack(Variants variants, ItemStack sheathStack, string targetVariantCode, string defaultVariantValue, ItemStack? storedStack, params string[] sourceVariantCodes)
+    {
+        if (StoredVariantResolver.IsProtectedContainerVariantCode(targetVariantCode)) return;
+
+        string variantValue = StoredVariantResolver.GetStoredMaterialVariant(storedStack, targetVariantCode, sourceVariantCodes) ?? defaultVariantValue;
+        SetVariant(variants, sheathStack, targetVariantCode, variantValue);
+    }
+
+    protected virtual void SetVariant(Variants variants, ItemSlot slot, string variantCode, string variantValue)
+    {
+        if (variants.Get(variantCode) != variantValue)
+        {
+            variants.Set(variantCode, variantValue);
+            variants.ToStack(slot.Itemstack);
+            slot.MarkDirty();
+        }
+    }
+
+    protected virtual void SetVariant(Variants variants, ItemStack stack, string variantCode, string variantValue)
+    {
+        if (variants.Get(variantCode) != variantValue)
+        {
+            variants.Set(variantCode, variantValue);
+            variants.ToStack(stack);
         }
     }
 }
