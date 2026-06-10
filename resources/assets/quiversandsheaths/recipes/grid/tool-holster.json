@@ -1,7 +1,7 @@
 [
   {
     "enabled": true,
-    "ingredientPattern": "LNL,LLL,LSL",
+    "ingredientPattern": "LNL,LSL",
     "recipeGroup": 1,
     "ingredients": {
       "N": {
@@ -20,7 +20,7 @@
       }
     },
     "width": 3,
-    "height": 3,
+    "height": 2,
     "name": "tool-holster",
     "output": {
       "type": "item",
@@ -29,7 +29,7 @@
   },
   {
     "enabled": true,
-    "ingredientPattern": "LNL,LLL,LSL",
+    "ingredientPattern": "LNL,LSL",
     "recipeGroup": 2,
     "ingredients": {
       "N": {
@@ -75,7 +75,7 @@
       ]
     },
     "width": 3,
-    "height": 3,
+    "height": 2,
     "name": "tool-holster",
     "output": {
       "type": "item",
