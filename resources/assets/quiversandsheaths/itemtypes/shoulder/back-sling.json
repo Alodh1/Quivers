@@ -81,11 +81,36 @@
         "applyStoredItemTranslation": false,
         "applyStoredItemRotation": false,
         "applyStoredItemScale": true,
+        "transformByStoredItem": {
+          "armory:axe-long-*": {
+            "applyStoredItemTranslation": false,
+            "applyStoredItemRotation": false,
+            "applyStoredItemScale": true,
+            "transform": {
+              "translation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "rotation": {
+                "x": 180,
+                "y": 0,
+                "z": 0
+              },
+              "origin": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "scale": 1
+            }
+          }
+        },
         "transform": {
           "translation": {
             "x": 0.8,
             "y": 4.2,
-            "z": 0.6
+            "z": -0.6
           },
           "rotation": {
             "x": 0,

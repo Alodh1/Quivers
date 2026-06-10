@@ -34,10 +34,25 @@ public sealed class BackSlingStoredWeaponRenderConfig
     public bool ApplyStoredItemTranslation { get; set; } = false;
     public bool ApplyStoredItemRotation { get; set; } = false;
     public bool ApplyStoredItemScale { get; set; } = true;
+    public Dictionary<string, BackSlingStoredWeaponItemTransform> TransformByStoredItem { get; set; } = [];
     public ModelTransform Transform { get; set; } = new()
     {
-        Translation = new Vec3f(0.8f, 4.2f, 0.6f),
+        Translation = new Vec3f(0.8f, 4.2f, -0.6f),
         Rotation = new Vec3f(0f, -86f, -55f),
+        Origin = new Vec3f(0f, 0f, 0f),
+        Scale = 1f
+    };
+}
+
+public sealed class BackSlingStoredWeaponItemTransform
+{
+    public bool? ApplyStoredItemTranslation { get; set; }
+    public bool? ApplyStoredItemRotation { get; set; }
+    public bool? ApplyStoredItemScale { get; set; }
+    public ModelTransform Transform { get; set; } = new()
+    {
+        Translation = new Vec3f(0f, 0f, 0f),
+        Rotation = new Vec3f(0f, 0f, 0f),
         Origin = new Vec3f(0f, 0f, 0f),
         Scale = 1f
     };
@@ -156,8 +171,14 @@ public sealed class BackSlingStoredWeaponRenderer : IRenderer, IDisposable
             return;
         }
 
+        BackSlingStoredWeaponItemTransform? itemTransform = GetItemTransform(config, storedStack);
         ApplyModelTransform(modelMatrix, config.Transform);
-        ApplyStoredItemTransform(modelMatrix, renderInfo.Transform, config);
+        if (itemTransform != null)
+        {
+            ApplyModelTransform(modelMatrix, itemTransform.Transform);
+        }
+
+        ApplyStoredItemTransform(modelMatrix, renderInfo.Transform, config, itemTransform);
 
         BlockPos lightPos = player.Pos.AsBlockPos;
         Vec4f light = _api.World.BlockAccessor.GetLightRGBs(lightPos.X, lightPos.Y, lightPos.Z);
@@ -165,6 +186,51 @@ public sealed class BackSlingStoredWeaponRenderer : IRenderer, IDisposable
         if (TryRenderAnimatable(player, storedStack, renderInfo, modelMatrix, light, target, dt)) return;
 
         RenderStaticStack(storedStack, renderInfo, modelMatrix, light);
+    }
+
+    private static BackSlingStoredWeaponItemTransform? GetItemTransform(BackSlingStoredWeaponRenderConfig config, ItemStack storedStack)
+    {
+        if (config.TransformByStoredItem == null || config.TransformByStoredItem.Count == 0) return null;
+
+        string code = storedStack.Collectible?.Code?.ToString() ?? string.Empty;
+        BackSlingStoredWeaponItemTransform? bestTransform = null;
+        int bestSpecificity = -1;
+
+        foreach ((string pattern, BackSlingStoredWeaponItemTransform transform) in config.TransformByStoredItem)
+        {
+            if (!MatchesWildcard(pattern, code)) continue;
+
+            int specificity = pattern.Count(character => character != '*');
+            if (specificity <= bestSpecificity) continue;
+
+            bestTransform = transform;
+            bestSpecificity = specificity;
+        }
+
+        return bestTransform;
+    }
+
+    private static bool MatchesWildcard(string pattern, string value)
+    {
+        if (string.IsNullOrWhiteSpace(pattern)) return false;
+        if (pattern == "*") return true;
+
+        string[] parts = pattern.Split('*');
+        int index = 0;
+
+        for (int partIndex = 0; partIndex < parts.Length; partIndex++)
+        {
+            string part = parts[partIndex];
+            if (part.Length == 0) continue;
+
+            int found = value.IndexOf(part, index, StringComparison.OrdinalIgnoreCase);
+            if (found < 0) return false;
+            if (partIndex == 0 && !pattern.StartsWith('*') && found != 0) return false;
+
+            index = found + part.Length;
+        }
+
+        return pattern.EndsWith('*') || index == value.Length;
     }
 
     private bool TryBuildBackSlingModelMatrix(EntityPlayer player, BackSlingStoredWeaponRenderConfig config, out Matrixf modelMatrix)
@@ -243,18 +309,25 @@ public sealed class BackSlingStoredWeaponRenderer : IRenderer, IDisposable
             .Translate(-transform.Origin.X / 16f, -transform.Origin.Y / 16f, -transform.Origin.Z / 16f);
     }
 
-    private static void ApplyStoredItemTransform(Matrixf matrix, ModelTransform transform, BackSlingStoredWeaponRenderConfig config)
+    private static void ApplyStoredItemTransform(
+        Matrixf matrix,
+        ModelTransform transform,
+        BackSlingStoredWeaponRenderConfig config,
+        BackSlingStoredWeaponItemTransform? itemTransform)
     {
+        bool applyTranslation = itemTransform?.ApplyStoredItemTranslation ?? config.ApplyStoredItemTranslation;
+        bool applyRotation = itemTransform?.ApplyStoredItemRotation ?? config.ApplyStoredItemRotation;
+        bool applyScale = itemTransform?.ApplyStoredItemScale ?? config.ApplyStoredItemScale;
         FastVec3f scale = transform.ScaleXYZ;
 
-        if (config.ApplyStoredItemTranslation)
+        if (applyTranslation)
         {
             matrix.Translate(transform.Translation.X / 16f, transform.Translation.Y / 16f, transform.Translation.Z / 16f);
         }
 
         matrix.Translate(transform.Origin.X / 16f, transform.Origin.Y / 16f, transform.Origin.Z / 16f);
 
-        if (config.ApplyStoredItemRotation)
+        if (applyRotation)
         {
             matrix
                 .RotateX(transform.Rotation.X * GameMath.DEG2RAD)
@@ -262,7 +335,7 @@ public sealed class BackSlingStoredWeaponRenderer : IRenderer, IDisposable
                 .RotateZ(transform.Rotation.Z * GameMath.DEG2RAD);
         }
 
-        if (config.ApplyStoredItemScale)
+        if (applyScale)
         {
             matrix.Scale(scale.X, scale.Y, scale.Z);
         }
