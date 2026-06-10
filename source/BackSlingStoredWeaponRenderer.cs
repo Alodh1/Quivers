@@ -37,7 +37,7 @@ public sealed class BackSlingStoredWeaponRenderConfig
     public Dictionary<string, BackSlingStoredWeaponItemTransform> TransformByStoredItem { get; set; } = [];
     public ModelTransform Transform { get; set; } = new()
     {
-        Translation = new Vec3f(12f, 4.2f, 1.55f),
+        Translation = new Vec3f(12f, 4.2f, 1.05f),
         Rotation = new Vec3f(0f, -86f, 125f),
         Origin = new Vec3f(0f, 0f, 0f),
         Scale = 1f
@@ -82,6 +82,7 @@ public sealed class BackSlingStoredWeaponRenderer : IRenderer, IDisposable
         foreach (Entity entity in _api.World.LoadedEntities.Values)
         {
             if (entity is not EntityPlayer player || !player.Alive) continue;
+            if (IsLocalFirstPerson(player)) continue;
 
             ItemSlot? slingSlot = FindBackSlingSlot(player);
             ItemStack? slingStack = slingSlot?.Itemstack;
@@ -236,7 +237,14 @@ public sealed class BackSlingStoredWeaponRenderer : IRenderer, IDisposable
     private bool TryBuildBackSlingModelMatrix(EntityPlayer player, BackSlingStoredWeaponRenderConfig config, out Matrixf modelMatrix)
     {
         modelMatrix = new Matrixf();
-        BuildPlayerModelMatrix(modelMatrix, player);
+        if (player.Properties?.Client?.Renderer is EntityShapeRenderer renderer)
+        {
+            modelMatrix.Set(renderer.ModelMat);
+        }
+        else
+        {
+            BuildPlayerModelMatrix(modelMatrix, player);
+        }
 
         if (player.AnimManager?.Animator is not AnimatorBase animator ||
             !TryFindPose(animator.RootPoses, config.AttachmentPart, out ElementPose? torsoPose) ||
@@ -247,6 +255,12 @@ public sealed class BackSlingStoredWeaponRenderer : IRenderer, IDisposable
 
         modelMatrix.Mul(torsoPose.AnimModelMatrix);
         return true;
+    }
+
+    private bool IsLocalFirstPerson(EntityPlayer player)
+    {
+        IClientPlayer? localPlayer = _api.World.Player;
+        return localPlayer?.Entity?.EntityId == player.EntityId && localPlayer.CameraMode == EnumCameraMode.FirstPerson;
     }
 
     private static void BuildPlayerModelMatrix(Matrixf matrix, EntityPlayer playerEntity)
