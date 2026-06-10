@@ -1,0 +1,91 @@
+[
+  {
+    "enabled": true,
+    "ingredientPattern": "LNL,LLL,LSL",
+    "recipeGroup": 1,
+    "ingredients": {
+      "N": {
+        "type": "item",
+        "code": "part-buckle-iron"
+      },
+      "L": {
+        "type": "item",
+        "code": "game:leather-normal-plain"
+      },
+      "S": {
+        "type": "item",
+        "code": "game:sewingkit",
+        "isTool": true,
+        "toolDurabilityCost": 0
+      }
+    },
+    "width": 3,
+    "height": 3,
+    "name": "tool-holster",
+    "output": {
+      "type": "item",
+      "code": "beltbag-right-holster-tools"
+    }
+  },
+  {
+    "enabled": true,
+    "ingredientPattern": "LNL,LLL,LSL",
+    "recipeGroup": 2,
+    "ingredients": {
+      "N": {
+        "type": "item",
+        "code": "part-buckle-{metal}"
+      },
+      "L": {
+        "type": "item",
+        "code": "game:leather-normal-{leather}"
+      },
+      "S": {
+        "type": "item",
+        "code": "game:sewingkit",
+        "isTool": true,
+        "toolDurabilityCost": 0
+      }
+    },
+    "allowedVariants": {
+      "leather": [
+        "plain",
+        "orange",
+        "black",
+        "red",
+        "blue",
+        "purple",
+        "pink",
+        "white",
+        "yellow",
+        "gray",
+        "green"
+      ],
+      "metal": [
+        "brass",
+        "copper",
+        "tinbronze",
+        "bismuthbronze",
+        "blackbronze",
+        "gold",
+        "silver",
+        "iron",
+        "meteoriciron",
+        "steel"
+      ]
+    },
+    "width": 3,
+    "height": 3,
+    "name": "tool-holster",
+    "output": {
+      "type": "item",
+      "code": "beltbag-right-holster-tools",
+      "attributes": {
+        "types": {
+          "leather": "{leather}",
+          "metal": "{metal}"
+        }
+      }
+    }
+  }
+]

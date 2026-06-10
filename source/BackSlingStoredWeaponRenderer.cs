@@ -60,8 +60,6 @@ public sealed class BackSlingStoredWeaponItemTransform
 
 public sealed class BackSlingStoredWeaponRenderer : IRenderer, IDisposable
 {
-    private const string BackSlingCode = "shoulderbag-back-sling-polearms";
-
     private readonly ICoreClientAPI _api;
     private readonly DummySlot _dummySlot = new();
     private readonly HashSet<string> _warnedRenderFailures = [];
@@ -84,17 +82,18 @@ public sealed class BackSlingStoredWeaponRenderer : IRenderer, IDisposable
             if (entity is not EntityPlayer player || !player.Alive) continue;
             if (IsLocalFirstPerson(player)) continue;
 
-            ItemSlot? slingSlot = FindBackSlingSlot(player);
-            ItemStack? slingStack = slingSlot?.Itemstack;
-            if (!IsBackSling(slingStack)) continue;
+            foreach (ItemSlot attachmentSlot in FindRenderableAttachmentSlots(player))
+            {
+                ItemStack? attachmentStack = attachmentSlot.Itemstack;
+                BackSlingRenderConfigBehavior? renderConfig = attachmentStack?.Collectible?.GetBehavior<BackSlingRenderConfigBehavior>();
+                if (attachmentStack == null || renderConfig == null) continue;
 
-            BackSlingStoredWeaponRenderConfig config = slingStack!.Collectible
-                .GetBehavior<BackSlingRenderConfigBehavior>()?.Config ?? new();
+                BackSlingStoredWeaponRenderConfig config = renderConfig.Config;
+                ItemStack? storedStack = GetStoredStack(attachmentStack, config);
+                if (storedStack == null) continue;
 
-            ItemStack? storedStack = GetStoredStack(slingStack, config);
-            if (storedStack == null) continue;
-
-            RenderStoredStack(player, slingStack, storedStack, config, deltaTime);
+                RenderStoredStack(player, storedStack, config, deltaTime);
+            }
         }
     }
 
@@ -103,25 +102,19 @@ public sealed class BackSlingStoredWeaponRenderer : IRenderer, IDisposable
         _disposed = true;
     }
 
-    private ItemSlot? FindBackSlingSlot(EntityPlayer player)
+    private IEnumerable<ItemSlot> FindRenderableAttachmentSlots(EntityPlayer player)
     {
         InventoryBase? gearInventory = player.GetBehavior<EntityBehaviorPlayerInventory>()?.Inventory;
-        if (gearInventory == null) return null;
+        if (gearInventory == null) yield break;
 
         for (int index = 0; index < gearInventory.Count; index++)
         {
             ItemSlot slot = gearInventory[index];
-            if (slot is not GearSlot gearSlot || gearSlot.SlotType != "backgear") continue;
-            if (IsBackSling(slot.Itemstack)) return slot;
+            if (slot is not GearSlot) continue;
+            if (slot.Itemstack?.Collectible?.GetBehavior<BackSlingRenderConfigBehavior>() == null) continue;
+
+            yield return slot;
         }
-
-        return null;
-    }
-
-    private static bool IsBackSling(ItemStack? stack)
-    {
-        AssetLocation? code = stack?.Collectible?.Code;
-        return code?.Domain == "quiversandsheaths" && code.Path == BackSlingCode;
     }
 
     private ItemStack? GetStoredStack(ItemStack slingStack, BackSlingStoredWeaponRenderConfig config)
@@ -159,7 +152,7 @@ public sealed class BackSlingStoredWeaponRenderer : IRenderer, IDisposable
         return true;
     }
 
-    private void RenderStoredStack(EntityPlayer player, ItemStack slingStack, ItemStack storedStack, BackSlingStoredWeaponRenderConfig config, float dt)
+    private void RenderStoredStack(EntityPlayer player, ItemStack storedStack, BackSlingStoredWeaponRenderConfig config, float dt)
     {
         if (!TryBuildBackSlingModelMatrix(player, config, out Matrixf modelMatrix)) return;
 
@@ -432,6 +425,6 @@ public sealed class BackSlingStoredWeaponRenderer : IRenderer, IDisposable
         string key = $"{code}:{reason}";
         if (!_warnedRenderFailures.Add(key)) return;
 
-        _api.Logger.Warning("[QuiversAndSheaths] Could not render back sling stored weapon {0}: {1}", code, reason);
+        _api.Logger.Warning("[QuiversAndSheaths] Could not render stored attachment item {0}: {1}", code, reason);
     }
 }

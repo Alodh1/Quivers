@@ -76,5 +76,7 @@
 	"setting-comment-allow_stones_in_sling_pouch": "Permet de stocker des pierres brutes (stone-*) dans les emplacements de munitions de la pochette à fronde.",
 
 	"combatoverhaul:stat-firearmsProficiency": "Maîtrise des armes à feu",
-	"combatoverhaul:stat-meleeProficiency": "Maîtrise du corps à corps"
+	"combatoverhaul:stat-meleeProficiency": "Maîtrise du corps à corps",
+	"item-beltbag-*-holster-tools": "Etui a outils",
+	"itemdesc-beltbag-*-holster-tools": "Peut stocker des marteaux, des haches, des pioches et des pioches de prospection. Appuyez sur 'R' ou 'F' pour sortir un outil de l'etui ou le ranger.<br/><br/>Un des emplacements sert de stockage temporaire en cas d'inventaire plein."
 }

@@ -1,0 +1,1085 @@
+{
+  "textureWidth": 16,
+  "textureHeight": 16,
+  "textureSizes": {},
+  "textures": {
+    "leather": "game:block/leather/plain",
+    "metal": "game:block/metal/plate/brass"
+  },
+  "elements": [
+    {
+      "name": "SlingOrigin",
+      "stepParentName": "LowerTorso",
+      "from": [
+        0.48,
+        2.8,
+        0.2
+      ],
+      "to": [
+        0.48,
+        2.8,
+        0.2
+      ],
+      "rotationOrigin": [
+        1.6,
+        2.8,
+        0.12
+      ],
+      "rotationX": 3.0,
+      "faces": {
+        "north": {
+          "texture": "#leather",
+          "uv": [
+            0.0,
+            0.0,
+            0.5,
+            0.5
+          ]
+        },
+        "east": {
+          "texture": "#leather",
+          "uv": [
+            0.0,
+            0.0,
+            0.5,
+            0.5
+          ]
+        },
+        "south": {
+          "texture": "#leather",
+          "uv": [
+            0.0,
+            0.0,
+            0.5,
+            0.5
+          ]
+        },
+        "west": {
+          "texture": "#leather",
+          "uv": [
+            0.0,
+            0.0,
+            0.5,
+            0.5
+          ]
+        },
+        "up": {
+          "texture": "#leather",
+          "uv": [
+            0.0,
+            0.0,
+            0.5,
+            0.5
+          ]
+        },
+        "down": {
+          "texture": "#leather",
+          "uv": [
+            0.0,
+            0.0,
+            0.5,
+            0.5
+          ]
+        }
+      },
+      "children": [
+        {
+          "name": "Hook3",
+          "from": [
+            0.448,
+            -0.64,
+            -0.64
+          ],
+          "to": [
+            1.728,
+            0.32,
+            -0.32
+          ],
+          "rotationOrigin": [
+            0.448,
+            -0.64,
+            -0.64
+          ],
+          "rotationX": 1.0,
+          "faces": {
+            "north": {
+              "texture": "#metal",
+              "uv": [
+                0.0,
+                0.0,
+                1.2,
+                0.8
+              ]
+            },
+            "east": {
+              "texture": "#metal",
+              "uv": [
+                0.0,
+                0.0,
+                0.4,
+                0.8
+              ]
+            },
+            "south": {
+              "texture": "#metal",
+              "uv": [
+                0.0,
+                0.0,
+                1.2,
+                0.8
+              ]
+            },
+            "west": {
+              "texture": "#metal",
+              "uv": [
+                0.0,
+                0.0,
+                0.4,
+                0.8
+              ]
+            },
+            "up": {
+              "texture": "#metal",
+              "uv": [
+                0.0,
+                0.0,
+                1.2,
+                0.4
+              ]
+            },
+            "down": {
+              "texture": "#metal",
+              "uv": [
+                0.0,
+                0.0,
+                1.2,
+                0.4
+              ]
+            }
+          },
+          "children": [
+            {
+              "name": "Hook",
+              "from": [
+                0.9596,
+                0.0,
+                0.0005
+              ],
+              "to": [
+                1.5996,
+                0.32,
+                0.3205
+              ],
+              "rotationOrigin": [
+                0.9597,
+                0.0,
+                0.0003
+              ],
+              "rotationX": 5.0,
+              "rotationY": 45.0,
+              "faces": {
+                "north": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.64,
+                    0.32
+                  ]
+                },
+                "east": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.32,
+                    0.32
+                  ]
+                },
+                "south": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.64,
+                    0.32
+                  ]
+                },
+                "west": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.32,
+                    0.32
+                  ]
+                },
+                "up": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.64,
+                    0.32
+                  ]
+                },
+                "down": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.64,
+                    0.32
+                  ]
+                }
+              },
+              "children": [
+                {
+                  "name": "Hook4",
+                  "from": [
+                    0.64,
+                    0.0064,
+                    0.0
+                  ],
+                  "to": [
+                    1.28,
+                    0.3264,
+                    0.32
+                  ],
+                  "rotationOrigin": [
+                    0.6401,
+                    0.0,
+                    0.32
+                  ],
+                  "rotationY": 45.0,
+                  "faces": {
+                    "north": {
+                      "texture": "#metal",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.64,
+                        0.32
+                      ]
+                    },
+                    "east": {
+                      "texture": "#metal",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.32,
+                        0.32
+                      ]
+                    },
+                    "south": {
+                      "texture": "#metal",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.64,
+                        0.32
+                      ]
+                    },
+                    "west": {
+                      "texture": "#metal",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.32,
+                        0.32
+                      ]
+                    },
+                    "up": {
+                      "texture": "#metal",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.64,
+                        0.32
+                      ]
+                    },
+                    "down": {
+                      "texture": "#metal",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.64,
+                        0.32
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "name": "Hook7",
+                      "from": [
+                        0.64,
+                        -0.0064,
+                        0.0
+                      ],
+                      "to": [
+                        1.28,
+                        0.3136,
+                        0.32
+                      ],
+                      "rotationOrigin": [
+                        0.6401,
+                        0.0,
+                        0.32
+                      ],
+                      "rotationY": 45.0,
+                      "faces": {
+                        "north": {
+                          "texture": "#metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            0.64,
+                            0.32
+                          ]
+                        },
+                        "east": {
+                          "texture": "#metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            0.32,
+                            0.32
+                          ]
+                        },
+                        "south": {
+                          "texture": "#metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            0.64,
+                            0.32
+                          ]
+                        },
+                        "west": {
+                          "texture": "#metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            0.32,
+                            0.32
+                          ]
+                        },
+                        "up": {
+                          "texture": "#metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            0.64,
+                            0.32
+                          ]
+                        },
+                        "down": {
+                          "texture": "#metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            0.64,
+                            0.32
+                          ]
+                        }
+                      },
+                      "children": [
+                        {
+                          "name": "Hook8",
+                          "from": [
+                            0.72,
+                            0.0064,
+                            0.16
+                          ],
+                          "to": [
+                            1.36,
+                            0.3264,
+                            0.48
+                          ],
+                          "rotationOrigin": [
+                            0.7201,
+                            0.0,
+                            0.16
+                          ],
+                          "rotationX": -45.0,
+                          "rotationY": -90.0,
+                          "faces": {
+                            "north": {
+                              "texture": "#metal",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                0.4,
+                                0.4
+                              ]
+                            },
+                            "east": {
+                              "texture": "#metal",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                0.4,
+                                0.4
+                              ]
+                            },
+                            "south": {
+                              "texture": "#metal",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                0.4,
+                                0.4
+                              ]
+                            },
+                            "west": {
+                              "texture": "#metal",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                0.4,
+                                0.4
+                              ]
+                            },
+                            "up": {
+                              "texture": "#metal",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                0.4,
+                                0.4
+                              ]
+                            },
+                            "down": {
+                              "texture": "#metal",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                0.4,
+                                0.4
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Hook2",
+              "from": [
+                0.32,
+                0.0,
+                -0.32
+              ],
+              "to": [
+                0.96,
+                0.32,
+                0.0
+              ],
+              "rotationOrigin": [
+                0.3198,
+                0.0,
+                0.0
+              ],
+              "rotationX": 5.0,
+              "rotationY": 135.0,
+              "rotationZ": -0.0023,
+              "faces": {
+                "north": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.64,
+                    0.32
+                  ]
+                },
+                "east": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.32,
+                    0.32
+                  ]
+                },
+                "south": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.64,
+                    0.32
+                  ]
+                },
+                "west": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.32,
+                    0.32
+                  ]
+                },
+                "up": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.64,
+                    0.32
+                  ]
+                },
+                "down": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.64,
+                    0.32
+                  ]
+                }
+              },
+              "children": [
+                {
+                  "name": "Hook5",
+                  "from": [
+                    0.64,
+                    0.0064,
+                    0.0
+                  ],
+                  "to": [
+                    1.28,
+                    0.3264,
+                    0.32
+                  ],
+                  "rotationOrigin": [
+                    0.6398,
+                    0.0,
+                    0.0
+                  ],
+                  "rotationY": -45.0,
+                  "faces": {
+                    "north": {
+                      "texture": "#metal",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.64,
+                        0.32
+                      ]
+                    },
+                    "east": {
+                      "texture": "#metal",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.32,
+                        0.32
+                      ]
+                    },
+                    "south": {
+                      "texture": "#metal",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.64,
+                        0.32
+                      ]
+                    },
+                    "west": {
+                      "texture": "#metal",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.32,
+                        0.32
+                      ]
+                    },
+                    "up": {
+                      "texture": "#metal",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.64,
+                        0.32
+                      ]
+                    },
+                    "down": {
+                      "texture": "#metal",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.64,
+                        0.32
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "name": "Hook6",
+                      "from": [
+                        0.64,
+                        -0.0064,
+                        0.0
+                      ],
+                      "to": [
+                        1.28,
+                        0.3136,
+                        0.32
+                      ],
+                      "rotationOrigin": [
+                        0.6398,
+                        0.0,
+                        0.0
+                      ],
+                      "rotationY": -45.0,
+                      "faces": {
+                        "north": {
+                          "texture": "#metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            0.64,
+                            0.32
+                          ]
+                        },
+                        "east": {
+                          "texture": "#metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            0.32,
+                            0.32
+                          ]
+                        },
+                        "south": {
+                          "texture": "#metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            0.64,
+                            0.32
+                          ]
+                        },
+                        "west": {
+                          "texture": "#metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            0.32,
+                            0.32
+                          ]
+                        },
+                        "up": {
+                          "texture": "#metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            0.64,
+                            0.32
+                          ]
+                        },
+                        "down": {
+                          "texture": "#metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            0.64,
+                            0.32
+                          ]
+                        }
+                      },
+                      "children": [
+                        {
+                          "name": "Hook9",
+                          "from": [
+                            0.72,
+                            0.0064,
+                            -0.16
+                          ],
+                          "to": [
+                            1.36,
+                            0.3264,
+                            0.16
+                          ],
+                          "rotationOrigin": [
+                            0.7198,
+                            0.0,
+                            0.16
+                          ],
+                          "rotationX": 45.0,
+                          "rotationY": 90.0,
+                          "faces": {
+                            "north": {
+                              "texture": "#metal",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                0.4,
+                                0.4
+                              ]
+                            },
+                            "east": {
+                              "texture": "#metal",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                0.4,
+                                0.4
+                              ]
+                            },
+                            "south": {
+                              "texture": "#metal",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                0.4,
+                                0.4
+                              ]
+                            },
+                            "west": {
+                              "texture": "#metal",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                0.4,
+                                0.4
+                              ]
+                            },
+                            "up": {
+                              "texture": "#metal",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                0.4,
+                                0.4
+                              ]
+                            },
+                            "down": {
+                              "texture": "#metal",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                0.4,
+                                0.4
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Rivet",
+              "from": [
+                0.6398,
+                0.256,
+                0.2564
+              ],
+              "to": [
+                0.9598,
+                0.576,
+                0.5764
+              ],
+              "rotationOrigin": [
+                0.6398,
+                0.256,
+                0.2564
+              ],
+              "rotationX": -90.0,
+              "rotationY": 45.0,
+              "rotationZ": 90.0,
+              "faces": {
+                "north": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.32,
+                    0.32
+                  ]
+                },
+                "east": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.32,
+                    0.32
+                  ]
+                },
+                "south": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.32,
+                    0.32
+                  ]
+                },
+                "west": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.32,
+                    0.32
+                  ]
+                },
+                "up": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.32,
+                    0.32
+                  ]
+                },
+                "down": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.32,
+                    0.32
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Fitting",
+              "from": [
+                0.08,
+                -1.104,
+                0.016
+              ],
+              "to": [
+                1.2,
+                0.496,
+                0.336
+              ],
+              "rotationOrigin": [
+                0.0798,
+                -1.104,
+                0.0164
+              ],
+              "faces": {
+                "north": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.8,
+                    1.6
+                  ]
+                },
+                "east": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.4,
+                    1.6
+                  ]
+                },
+                "south": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.8,
+                    1.6
+                  ]
+                },
+                "west": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.4,
+                    1.6
+                  ]
+                },
+                "up": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.8,
+                    0.4
+                  ]
+                },
+                "down": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.8,
+                    0.4
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Rivet2",
+              "from": [
+                0.6398,
+                -0.784,
+                0.2564
+              ],
+              "to": [
+                0.9598,
+                -0.464,
+                0.5764
+              ],
+              "rotationOrigin": [
+                0.6398,
+                -0.784,
+                0.2564
+              ],
+              "rotationX": -90.0,
+              "rotationY": 45.0,
+              "rotationZ": 90.0,
+              "faces": {
+                "north": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.4,
+                    0.4
+                  ]
+                },
+                "east": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.4,
+                    0.4
+                  ]
+                },
+                "south": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.4,
+                    0.4
+                  ]
+                },
+                "west": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.4,
+                    0.4
+                  ]
+                },
+                "up": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.4,
+                    0.4
+                  ]
+                },
+                "down": {
+                  "texture": "#metal",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.4,
+                    0.4
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Cube2",
+          "from": [
+            0.0,
+            -1.9,
+            -0.6
+          ],
+          "to": [
+            2.2,
+            0.6,
+            -0.1
+          ],
+          "rotationOrigin": [
+            0.0,
+            -1.9,
+            -0.6
+          ],
+          "faces": {
+            "north": {
+              "texture": "#leather",
+              "uv": [
+                0.0,
+                0.0,
+                2.0,
+                2.5
+              ]
+            },
+            "east": {
+              "texture": "#leather",
+              "uv": [
+                0.0,
+                0.0,
+                0.5,
+                2.5
+              ]
+            },
+            "south": {
+              "texture": "#leather",
+              "uv": [
+                0.0,
+                0.0,
+                2.0,
+                2.5
+              ]
+            },
+            "west": {
+              "texture": "#leather",
+              "uv": [
+                0.0,
+                0.0,
+                0.5,
+                2.5
+              ]
+            },
+            "up": {
+              "texture": "#leather",
+              "uv": [
+                0.0,
+                0.0,
+                2.0,
+                0.5
+              ]
+            },
+            "down": {
+              "texture": "#leather",
+              "uv": [
+                0.0,
+                0.0,
+                2.0,
+                0.5
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

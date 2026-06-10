@@ -72,5 +72,7 @@
   "item-beltbag-*-sheath-dualdaggers": "Dual dagger sheath",
   "itemdesc-beltbag-*-sheath-dualdaggers": "Can store two daggers, or one dagger with one sword. Press 'R' or 'F' to draw both weapons into main hand and offhand, or put them back.<br/><br/>One of the slots is for temporary storage in case of inventory being full.",
   "setting-allow_stones_in_sling_pouch": "Allow stones in sling pouch",
-  "setting-comment-allow_stones_in_sling_pouch": "Allows loose stones (stone-*) to be stored in sling pouch ammunition slots."
+  "setting-comment-allow_stones_in_sling_pouch": "Allows loose stones (stone-*) to be stored in sling pouch ammunition slots.",
+  "item-beltbag-*-holster-tools": "Tool holster",
+  "itemdesc-beltbag-*-holster-tools": "Can store hammers, axes, pickaxes, and prospecting picks. Press 'R' or 'F' to draw a tool from the holster or put it back.<br/><br/>One of the slots is for temporary storage in case of inventory being full."
 }
