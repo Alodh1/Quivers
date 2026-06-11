@@ -21,6 +21,7 @@ public class SheathStats
     public string LeftHandStateVariant { get; set; } = "left_slot_state";
     public string EmptyStateCode { get; set; } = "empty";
     public string FullStateCode { get; set; } = "full";
+    public Dictionary<string, string> StateOverrideByStoredItem { get; set; } = [];
     public string RightWeaponMetalVariant { get; set; } = "right_metal";
     public string RightWeaponLeatherVariant { get; set; } = "right_leather";
     public string RightWeaponWoodVariant { get; set; } = "right_wood";
@@ -99,7 +100,7 @@ public class SheathBehavior : ToolBag
                 continue;
             }
 
-            SetVariant(variants, bagstack, stateVariantCode, Stats.FullStateCode);
+            SetVariant(variants, bagstack, stateVariantCode, GetStateCodeForStoredItem(slot.Itemstack));
 
             if (slot.Itemstack?.Collectible?.Attributes == null)
             {
@@ -240,9 +241,10 @@ public class SheathBehavior : ToolBag
         {
             string variantCode = mainHand ? Stats.RightHandStateVariant : Stats.LeftHandStateVariant;
             Variants variants = Variants.FromStack(sheathSlot.Itemstack);
-            if (variants.Get(variantCode) != Stats.FullStateCode)
+            string stateCode = GetStateCodeForStoredItem(slotAtIndex.Itemstack);
+            if (variants.Get(variantCode) != stateCode)
             {
-                variants.Set(variantCode, Stats.FullStateCode);
+                variants.Set(variantCode, stateCode);
                 variants.ToStack(sheathSlot.Itemstack);
                 sheathSlot.MarkDirty();
             }
@@ -347,6 +349,46 @@ public class SheathBehavior : ToolBag
         {
             SetVariant(variants, slot, variantCode, defaultVariantValue);
         }
+    }
+
+    private string GetStateCodeForStoredItem(ItemStack? storedStack)
+    {
+        string code = storedStack?.Collectible?.Code?.ToString() ?? string.Empty;
+        if (!string.IsNullOrWhiteSpace(code))
+        {
+            foreach ((string pattern, string stateCode) in Stats.StateOverrideByStoredItem)
+            {
+                if (!string.IsNullOrWhiteSpace(stateCode) && MatchesWildcard(pattern, code))
+                {
+                    return stateCode;
+                }
+            }
+        }
+
+        return Stats.FullStateCode;
+    }
+
+    private static bool MatchesWildcard(string pattern, string value)
+    {
+        if (string.IsNullOrWhiteSpace(pattern)) return false;
+        if (pattern == "*") return true;
+
+        string[] parts = pattern.Split('*');
+        int index = 0;
+
+        for (int partIndex = 0; partIndex < parts.Length; partIndex++)
+        {
+            string part = parts[partIndex];
+            if (part.Length == 0) continue;
+
+            int found = value.IndexOf(part, index, StringComparison.OrdinalIgnoreCase);
+            if (found < 0) return false;
+            if (partIndex == 0 && !pattern.StartsWith('*') && found != 0) return false;
+
+            index = found + part.Length;
+        }
+
+        return pattern.EndsWith('*') || index == value.Length;
     }
 
     protected virtual void SetVariant(Variants variants, ItemSlot slot, string variantCode, string variantValue)

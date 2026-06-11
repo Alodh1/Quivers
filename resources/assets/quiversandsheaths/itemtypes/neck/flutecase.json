@@ -21,7 +21,10 @@
         },
         "takeOutColor": "#999999",
         "hotkey": { "hotkeyCode": "quiversandsheaths-swap-tool", "hotkeyName": "(CO) Swap tool", "hotkeyKey": "R" },
-        "takeOutSlotIcon": "quiversandsheaths:takeout"
+        "takeOutSlotIcon": "quiversandsheaths:takeout",
+        "stateOverrideByStoredItem": {
+          "*:chisel-*": "empty"
+        }
       }
     },
     {
@@ -34,6 +37,16 @@
         "applyStoredItemTranslation": false,
         "applyStoredItemRotation": false,
         "applyStoredItemScale": true,
+        "transformByStoredItem": {
+          "*:chisel-*": {
+            "transform": {
+              "translation": { "x": -5, "y": 8, "z": -12.5 },
+              "rotation": { "x": 0, "y": 0, "z": 0 },
+              "origin": { "x": 0, "y": 0, "z": 0 },
+              "scale": 1
+            }
+          }
+        },
         "transform": {
           "translation": { "x": 4, "y": 2, "z": -3 },
           "rotation": { "x": -90, "y": 90, "z": 180 },
