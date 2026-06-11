@@ -13,8 +13,8 @@
       "properties": {
         "toolSlot": {
           "slotColor": "#61c8ff",
-          "canHoldWildcards": ["game:instrument-flute1", "jaunt:instrument-flute"],
-          "canHoldItemTags": ["flute"],
+          "canHoldWildcards": ["game:instrument-flute1", "jaunt:instrument-flute", "game:chisel-*", "*:chisel-*"],
+          "canHoldItemTags": ["flute", "chisel", "tool-chisel"],
           "slotsIcon": "quiversandsheaths:flute",
           "SlotBackpackCategory": "weapon-tool",
           "HandleHotkey": true
@@ -22,6 +22,24 @@
         "takeOutColor": "#999999",
         "hotkey": { "hotkeyCode": "quiversandsheaths-swap-tool", "hotkeyName": "(CO) Swap tool", "hotkeyKey": "R" },
         "takeOutSlotIcon": "quiversandsheaths:takeout"
+      }
+    },
+    {
+      "name": "QuiversAndSheaths:BackSlingRenderConfig",
+      "properties": {
+        "slotIndex": 0,
+        "attachmentPart": "UpperTorso",
+        "renderTarget": "HandTp",
+        "renderStoredItemWildcards": ["*:chisel-*"],
+        "applyStoredItemTranslation": false,
+        "applyStoredItemRotation": false,
+        "applyStoredItemScale": true,
+        "transform": {
+          "translation": { "x": 4, "y": 2, "z": -3 },
+          "rotation": { "x": -90, "y": 90, "z": 180 },
+          "origin": { "x": 0, "y": 0, "z": 0 },
+          "scale": 0.75
+        }
       }
     },
     {

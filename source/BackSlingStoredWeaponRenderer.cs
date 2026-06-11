@@ -31,6 +31,7 @@ public sealed class BackSlingStoredWeaponRenderConfig
     public int SlotIndex { get; set; } = 0;
     public string AttachmentPart { get; set; } = "UpperTorso";
     public string RenderTarget { get; set; } = "HandTp";
+    public string[] RenderStoredItemWildcards { get; set; } = [];
     public bool ApplyStoredItemTranslation { get; set; } = false;
     public bool ApplyStoredItemRotation { get; set; } = false;
     public bool ApplyStoredItemScale { get; set; } = true;
@@ -91,6 +92,7 @@ public sealed class BackSlingStoredWeaponRenderer : IRenderer, IDisposable
                 BackSlingStoredWeaponRenderConfig config = renderConfig.Config;
                 ItemStack? storedStack = GetStoredStack(attachmentStack, config);
                 if (storedStack == null) continue;
+                if (!ShouldRenderStoredStack(storedStack, config)) continue;
 
                 RenderStoredStack(player, storedStack, config, deltaTime);
             }
@@ -138,6 +140,14 @@ public sealed class BackSlingStoredWeaponRenderer : IRenderer, IDisposable
         }
 
         return null;
+    }
+
+    private static bool ShouldRenderStoredStack(ItemStack storedStack, BackSlingStoredWeaponRenderConfig config)
+    {
+        if (config.RenderStoredItemWildcards == null || config.RenderStoredItemWildcards.Length == 0) return true;
+
+        string code = storedStack.Collectible?.Code?.ToString() ?? string.Empty;
+        return config.RenderStoredItemWildcards.Any(pattern => MatchesWildcard(pattern, code));
     }
 
     private bool TryResolveStoredStack(ItemStack? stack, out ItemStack? resolved)
