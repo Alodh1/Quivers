@@ -22,5 +22,13 @@
     "op": "add",
     "path": "/attributes/InSheathVariantCodeByType",
     "value": { "*-crude": "crude", "*-simple": "simple", "*-long": "long", "*-recurve": "recurve", "*": "recurve" }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "feverstonewilds" }],
+    "file": "feverstonewilds:itemtypes/tool/bow/bow",
+    "op": "addMerge",
+    "path": "/tags",
+    "value": ["bow"]
   }
 ]
