@@ -48,11 +48,23 @@
             "armory:poleaxe-*",
             "armory:pike-*",
             "armory:quarterstaff-*",
+            "armory:club-*-steel",
+            "mitsuyoninja:yari-*",
+            "mitsuyoninja:naginata-*",
+            "mitsuyoninja:tetsubou-*",
+            "mitsuyoninja:tetsubo-*",
+            "*:spear",
+            "*:spear-*",
+            "spear",
+            "spear-*",
             "game:spear-*"
           ],
           "canHoldItemTagsCondition": [
             [
               "polearm"
+            ],
+            [
+              "spear"
             ],
             [
               "battle-axe",
@@ -80,17 +92,17 @@
         "renderTarget": "HandTp",
         "applyStoredItemTranslation": false,
         "applyStoredItemRotation": false,
-        "applyStoredItemScale": true,
+        "applyStoredItemScale": false,
         "transformByStoredItem": {
           "armory:halberd-*": {
             "applyStoredItemTranslation": false,
             "applyStoredItemRotation": false,
-            "applyStoredItemScale": true,
+            "applyStoredItemScale": false,
             "transform": {
               "translation": {
-                "x": 0,
-                "y": 0.25,
-                "z": 0
+                "x": 2.431,
+                "y": 0.013,
+                "z": -1.943
               },
               "rotation": {
                 "x": 0,
@@ -108,12 +120,12 @@
           "armory:axe-long-*": {
             "applyStoredItemTranslation": false,
             "applyStoredItemRotation": false,
-            "applyStoredItemScale": true,
+            "applyStoredItemScale": false,
             "transform": {
               "translation": {
-                "x": 1.5,
-                "y": 0.1,
-                "z": 0
+                "x": -0.844,
+                "y": 0.211,
+                "z": -1.378
               },
               "rotation": {
                 "x": 0,
@@ -125,18 +137,18 @@
                 "y": 0,
                 "z": 0
               },
-              "scale": 1
+              "scale": 0.841
             }
           },
           "armory:poleaxe-*": {
             "applyStoredItemTranslation": false,
             "applyStoredItemRotation": false,
-            "applyStoredItemScale": true,
+            "applyStoredItemScale": false,
             "transform": {
               "translation": {
                 "x": 0.75,
                 "y": 0.15,
-                "z": 0.05
+                "z": -0.444
               },
               "rotation": {
                 "x": 0,
@@ -148,18 +160,18 @@
                 "y": 0,
                 "z": 0
               },
-              "scale": 0.95
+              "scale": 0.738
             }
           },
           "armory:pike-*": {
             "applyStoredItemTranslation": false,
             "applyStoredItemRotation": false,
-            "applyStoredItemScale": true,
+            "applyStoredItemScale": false,
             "transform": {
               "translation": {
-                "x": 0.25,
-                "y": 0.35,
-                "z": -0.05
+                "x": 0.162,
+                "y": 0.065,
+                "z": -2.646
               },
               "rotation": {
                 "x": 0,
@@ -171,18 +183,18 @@
                 "y": 0,
                 "z": 0
               },
-              "scale": 0.95
+              "scale": 0.976
             }
           },
           "armory:quarterstaff-*": {
             "applyStoredItemTranslation": false,
             "applyStoredItemRotation": false,
-            "applyStoredItemScale": true,
+            "applyStoredItemScale": false,
             "transform": {
               "translation": {
                 "x": 2,
-                "y": 0.2,
-                "z": 0.1
+                "y": 0.1,
+                "z": -0.287
               },
               "rotation": {
                 "x": 0,
@@ -194,18 +206,225 @@
                 "y": 0,
                 "z": 0
               },
-              "scale": 0.95
+              "scale": 0.723
+            }
+          },
+          "armory:club-*-steel": {
+            "applyStoredItemTranslation": false,
+            "applyStoredItemRotation": false,
+            "applyStoredItemScale": false,
+            "transform": {
+              "translation": {
+                "x": -32.371,
+                "y": 0.222,
+                "z": -1.59
+              },
+              "rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "origin": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "scale": 0.865
+            }
+          },
+          "mitsuyoninja:yari-*": {
+            "applyStoredItemTranslation": false,
+            "applyStoredItemRotation": false,
+            "applyStoredItemScale": false,
+            "transform": {
+              "translation": {
+                "x": 7.113,
+                "y": 1.886,
+                "z": -3.461
+              },
+              "rotation": {
+                "x": -22.269,
+                "y": 0.415,
+                "z": 88.988
+              },
+              "origin": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "scale": 0.624
+            }
+          },
+          "mitsuyoninja:naginata-*": {
+            "applyStoredItemTranslation": false,
+            "applyStoredItemRotation": false,
+            "applyStoredItemScale": false,
+            "transform": {
+              "translation": {
+                "x": 11.417,
+                "y": -5.825,
+                "z": -2.851
+              },
+              "rotation": {
+                "x": -26.871,
+                "y": -5.658,
+                "z": 90.489
+              },
+              "origin": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "scale": 1.058
+            }
+          },
+          "mitsuyoninja:tetsubou-*": {
+            "applyStoredItemTranslation": false,
+            "applyStoredItemRotation": false,
+            "applyStoredItemScale": false,
+            "transform": {
+              "translation": {
+                "x": 5.729,
+                "y": 1.169,
+                "z": -3.83
+              },
+              "rotation": {
+                "x": -24.849,
+                "y": -7.712,
+                "z": -84.894
+              },
+              "origin": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "scale": 0.664
+            }
+          },
+          "mitsuyoninja:tetsubo-*": {
+            "applyStoredItemTranslation": false,
+            "applyStoredItemRotation": false,
+            "applyStoredItemScale": false,
+            "transform": {
+              "translation": {
+                "x": 5.729,
+                "y": 1.169,
+                "z": -3.83
+              },
+              "rotation": {
+                "x": -24.849,
+                "y": -7.712,
+                "z": -84.894
+              },
+              "origin": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "scale": 0.664
+            }
+          },
+          "*:spear": {
+            "applyStoredItemTranslation": false,
+            "applyStoredItemRotation": false,
+            "applyStoredItemScale": false,
+            "transform": {
+              "translation": {
+                "x": -0.22,
+                "y": 0.31,
+                "z": -0.964
+              },
+              "rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "origin": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "scale": 0.802
+            }
+          },
+          "*:spear-*": {
+            "applyStoredItemTranslation": false,
+            "applyStoredItemRotation": false,
+            "applyStoredItemScale": false,
+            "transform": {
+              "translation": {
+                "x": -0.22,
+                "y": 0.31,
+                "z": -0.964
+              },
+              "rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "origin": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "scale": 0.802
+            }
+          },
+          "spear": {
+            "applyStoredItemTranslation": false,
+            "applyStoredItemRotation": false,
+            "applyStoredItemScale": false,
+            "transform": {
+              "translation": {
+                "x": -0.22,
+                "y": 0.31,
+                "z": -0.964
+              },
+              "rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "origin": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "scale": 0.802
+            }
+          },
+          "spear-*": {
+            "applyStoredItemTranslation": false,
+            "applyStoredItemRotation": false,
+            "applyStoredItemScale": false,
+            "transform": {
+              "translation": {
+                "x": -0.22,
+                "y": 0.31,
+                "z": -0.964
+              },
+              "rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "origin": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "scale": 0.802
             }
           },
           "game:spear-*": {
             "applyStoredItemTranslation": false,
             "applyStoredItemRotation": false,
-            "applyStoredItemScale": true,
+            "applyStoredItemScale": false,
             "transform": {
               "translation": {
-                "x": 0.5,
-                "y": 0.35,
-                "z": -0.05
+                "x": -0.22,
+                "y": 0.31,
+                "z": -0.964
               },
               "rotation": {
                 "x": 0,
@@ -217,27 +436,27 @@
                 "y": 0,
                 "z": 0
               },
-              "scale": 0.95
+              "scale": 0.802
             }
           }
         },
         "transform": {
           "translation": {
-            "x": 12,
-            "y": 4.2,
-            "z": 1.05
+            "x": 1.956,
+            "y": 3.525,
+            "z": 0.976
           },
           "rotation": {
-            "x": 0,
-            "y": -86,
-            "z": 125
+            "x": 152.509,
+            "y": 95.032,
+            "z": -89.161
           },
           "origin": {
             "x": 0,
             "y": 0,
             "z": 0
           },
-          "scale": 1
+          "scale": 0.834
         }
       }
     },
@@ -361,6 +580,13 @@
     "handbook": {
       "groupBy": [
         "shoulderbag-{category}-{subtype}-{type}"
+      ],
+      "ignoreCreativeInvStacks": true,
+      "extraSections": [
+        {
+          "Title": "quiversandsheaths:handbook-craftingappearance-title",
+          "Text": "quiversandsheaths:handbook-craftingappearance-text"
+        }
       ]
     }
   },

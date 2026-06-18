@@ -43,7 +43,8 @@
           "slotColor": "#61c8ff",
           "canHoldWildcards": [
             "armory:dagger-*",
-            "*:dagger-*"
+            "*:dagger-*",
+            "mitsuyoninja:shuriken-*"
           ],
           "canHoldItemTags": [
             "dagger"
@@ -56,7 +57,8 @@
           {
             "canHoldWildcards": [
               "armory:dagger-*",
-              "*:dagger-*"
+              "*:dagger-*",
+              "mitsuyoninja:shuriken-*"
             ],
             "canHoldItemTags": [
               "dagger"
@@ -73,7 +75,8 @@
           {
             "canHoldWildcards": [
               "armory:dagger-*",
-              "*:dagger-*"
+              "*:dagger-*",
+              "mitsuyoninja:shuriken-*"
             ],
             "canHoldItemTags": [
               "dagger"
@@ -86,32 +89,364 @@
             "SetVariants": true,
             "SlotVariant": "dagger_slot_2",
             "SlotStateVariant": "dagger_slot_state_2"
-          },
-          {
-            "canHoldWildcards": [
-              "armory:dagger-*",
-              "*:dagger-*"
-            ],
-            "canHoldItemTags": [
-              "dagger"
-            ],
-            "slotColor": "#969350",
-            "slotsNumber": 1,
-            "slotsIcon": "quiversandsheaths:knife",
-            "SlotBackpackCategory": "ammunition",
-            "DisplayInToolDialog": true,
-            "SetVariants": true,
-            "SlotVariant": "dagger_slot_3",
-            "SlotStateVariant": "dagger_slot_state_3"
           }
         ],
+        "takeOutSlotsNumber": 0,
+        "refillMainHandWhenEmpty": true,
+        "enforceConfiguredSlotCount": true,
         "takeOutColor": "#999999",
         "hotkey": {
-          "hotkeyCode": "combatoverhaul-swap-weapon-right-melee",
-          "hotkeyName": "Swap melee weapon (main hand)",
+          "hotkeyCode": "quiversandsheaths-swap-bandolier",
+          "hotkeyName": "(CO) Swap bandolier item",
           "hotkeyKey": "R"
         },
         "takeOutSlotIcon": "quiversandsheaths:takeout"
+      }
+    },
+    {
+      "name": "QuiversAndSheaths:BackSlingRenderConfig",
+      "properties": {
+        "configs": [
+          {
+            "slotIndex": 0,
+            "attachmentPart": "UpperTorso",
+            "renderTarget": "HandTp",
+            "applyStoredItemTranslation": false,
+            "applyStoredItemRotation": false,
+            "applyStoredItemScale": true,
+            "fallbackToFirstFilledSlot": false,
+            "transformByStoredItem": {
+              "mitsuyoninja:shuriken-*": {
+                "applyStoredItemTranslation": false,
+                "applyStoredItemRotation": false,
+                "applyStoredItemScale": false,
+                "transform": {
+                  "translation": {
+                    "x": 9.523,
+                    "y": 3.875,
+                    "z": 5.896
+                  },
+                  "rotation": {
+                    "x": 79.054,
+                    "y": -7.311,
+                    "z": -169.279
+                  },
+                  "origin": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "scale": 0.445
+                }
+              }
+            },
+            "maxRenderedStackItemsByStoredItem": {
+              "mitsuyoninja:shuriken-*": 3
+            },
+            "stackItemTransformsByStoredItem": {
+              "mitsuyoninja:shuriken-*": [
+                {
+                  "translation": {
+                    "x": -0.22,
+                    "y": -0.12,
+                    "z": 0
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": -7
+                  },
+                  "origin": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "scale": 1
+                },
+                {
+                  "translation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0.035
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "origin": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "scale": 1
+                },
+                {
+                  "translation": {
+                    "x": 0.22,
+                    "y": 0.12,
+                    "z": 0.07
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 7
+                  },
+                  "origin": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "scale": 1
+                }
+              ]
+            },
+            "transform": {
+              "translation": {
+                "x": -3.7,
+                "y": 6.1,
+                "z": 4.8
+              },
+              "rotation": {
+                "x": 0,
+                "y": 90,
+                "z": 315
+              },
+              "origin": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "scale": 0.65
+            }
+          },
+          {
+            "slotIndex": 1,
+            "attachmentPart": "UpperTorso",
+            "renderTarget": "HandTp",
+            "applyStoredItemTranslation": false,
+            "applyStoredItemRotation": false,
+            "applyStoredItemScale": true,
+            "fallbackToFirstFilledSlot": false,
+            "transformByStoredItem": {
+              "mitsuyoninja:shuriken-*": {
+                "applyStoredItemTranslation": false,
+                "applyStoredItemRotation": false,
+                "applyStoredItemScale": false,
+                "transform": {
+                  "translation": {
+                    "x": 9.523,
+                    "y": 3.875,
+                    "z": 5.896
+                  },
+                  "rotation": {
+                    "x": 79.054,
+                    "y": -7.311,
+                    "z": -169.279
+                  },
+                  "origin": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "scale": 0.445
+                }
+              }
+            },
+            "maxRenderedStackItemsByStoredItem": {
+              "mitsuyoninja:shuriken-*": 3
+            },
+            "stackItemTransformsByStoredItem": {
+              "mitsuyoninja:shuriken-*": [
+                {
+                  "translation": {
+                    "x": -0.22,
+                    "y": -0.12,
+                    "z": 0
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": -7
+                  },
+                  "origin": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "scale": 1
+                },
+                {
+                  "translation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0.035
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "origin": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "scale": 1
+                },
+                {
+                  "translation": {
+                    "x": 0.22,
+                    "y": 0.12,
+                    "z": 0.07
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 7
+                  },
+                  "origin": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "scale": 1
+                }
+              ]
+            },
+            "transform": {
+              "translation": {
+                "x": -3.7,
+                "y": 4.5,
+                "z": 6.3
+              },
+              "rotation": {
+                "x": 0,
+                "y": 90,
+                "z": 315
+              },
+              "origin": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "scale": 0.65
+            }
+          },
+          {
+            "slotIndex": 2,
+            "attachmentPart": "UpperTorso",
+            "renderTarget": "HandTp",
+            "applyStoredItemTranslation": false,
+            "applyStoredItemRotation": false,
+            "applyStoredItemScale": true,
+            "fallbackToFirstFilledSlot": false,
+            "transformByStoredItem": {
+              "mitsuyoninja:shuriken-*": {
+                "applyStoredItemTranslation": false,
+                "applyStoredItemRotation": false,
+                "applyStoredItemScale": false,
+                "transform": {
+                  "translation": {
+                    "x": 9.523,
+                    "y": 3.875,
+                    "z": 5.896
+                  },
+                  "rotation": {
+                    "x": 79.054,
+                    "y": -7.311,
+                    "z": -169.279
+                  },
+                  "origin": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "scale": 0.445
+                }
+              }
+            },
+            "maxRenderedStackItemsByStoredItem": {
+              "mitsuyoninja:shuriken-*": 3
+            },
+            "stackItemTransformsByStoredItem": {
+              "mitsuyoninja:shuriken-*": [
+                {
+                  "translation": {
+                    "x": -0.22,
+                    "y": -0.12,
+                    "z": 0
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": -7
+                  },
+                  "origin": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "scale": 1
+                },
+                {
+                  "translation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0.035
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "origin": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "scale": 1
+                },
+                {
+                  "translation": {
+                    "x": 0.22,
+                    "y": 0.12,
+                    "z": 0.07
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 7
+                  },
+                  "origin": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "scale": 1
+                }
+              ]
+            },
+            "transform": {
+              "translation": {
+                "x": -3.7,
+                "y": 2.9,
+                "z": 7.7
+              },
+              "rotation": {
+                "x": 0,
+                "y": 90,
+                "z": 315
+              },
+              "origin": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "scale": 0.65
+            }
+          }
+        ]
       }
     },
     {
@@ -119,20 +454,6 @@
       "properties": {
         "addOverlayPrefix": false,
         "shape": {
-          "dagger_slot_state_1-*::dagger_slot_state_2-*::dagger_slot_state_3-*": {
-            "base": "quiversandsheaths:frontbag/empty/bandolier_daggers",
-            "overlays": [
-              {
-                "base": "quiversandsheaths:frontbag/daggers/{dagger_slot_state_1}/default_1"
-              },
-              {
-                "base": "quiversandsheaths:frontbag/daggers/{dagger_slot_state_2}/default_2"
-              },
-              {
-                "base": "quiversandsheaths:frontbag/daggers/{dagger_slot_state_3}/default_3"
-              }
-            ]
-          },
           "*": {
             "base": "quiversandsheaths:frontbag/empty/bandolier_daggers"
           }
@@ -207,6 +528,13 @@
     "handbook": {
       "groupBy": [
         "frontbag-{category}-{subtype}-{type}"
+      ],
+      "ignoreCreativeInvStacks": true,
+      "extraSections": [
+        {
+          "Title": "quiversandsheaths:handbook-craftingappearance-title",
+          "Text": "quiversandsheaths:handbook-craftingappearance-text"
+        }
       ]
     }
   },
@@ -228,6 +556,1106 @@
         {
           "type": "item",
           "code": "frontbag-{category}-{subtype}-{type}"
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "plain",
+              "metal": "brass"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "orange",
+              "metal": "brass"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "black",
+              "metal": "brass"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "red",
+              "metal": "brass"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "blue",
+              "metal": "brass"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "purple",
+              "metal": "brass"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "pink",
+              "metal": "brass"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "white",
+              "metal": "brass"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "yellow",
+              "metal": "brass"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "gray",
+              "metal": "brass"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "green",
+              "metal": "brass"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "plain",
+              "metal": "copper"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "orange",
+              "metal": "copper"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "black",
+              "metal": "copper"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "red",
+              "metal": "copper"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "blue",
+              "metal": "copper"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "purple",
+              "metal": "copper"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "pink",
+              "metal": "copper"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "white",
+              "metal": "copper"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "yellow",
+              "metal": "copper"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "gray",
+              "metal": "copper"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "green",
+              "metal": "copper"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "plain",
+              "metal": "tinbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "orange",
+              "metal": "tinbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "black",
+              "metal": "tinbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "red",
+              "metal": "tinbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "blue",
+              "metal": "tinbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "purple",
+              "metal": "tinbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "pink",
+              "metal": "tinbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "white",
+              "metal": "tinbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "yellow",
+              "metal": "tinbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "gray",
+              "metal": "tinbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "green",
+              "metal": "tinbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "plain",
+              "metal": "bismuthbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "orange",
+              "metal": "bismuthbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "black",
+              "metal": "bismuthbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "red",
+              "metal": "bismuthbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "blue",
+              "metal": "bismuthbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "purple",
+              "metal": "bismuthbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "pink",
+              "metal": "bismuthbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "white",
+              "metal": "bismuthbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "yellow",
+              "metal": "bismuthbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "gray",
+              "metal": "bismuthbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "green",
+              "metal": "bismuthbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "plain",
+              "metal": "blackbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "orange",
+              "metal": "blackbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "black",
+              "metal": "blackbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "red",
+              "metal": "blackbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "blue",
+              "metal": "blackbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "purple",
+              "metal": "blackbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "pink",
+              "metal": "blackbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "white",
+              "metal": "blackbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "yellow",
+              "metal": "blackbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "gray",
+              "metal": "blackbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "green",
+              "metal": "blackbronze"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "plain",
+              "metal": "gold"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "orange",
+              "metal": "gold"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "black",
+              "metal": "gold"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "red",
+              "metal": "gold"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "blue",
+              "metal": "gold"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "purple",
+              "metal": "gold"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "pink",
+              "metal": "gold"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "white",
+              "metal": "gold"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "yellow",
+              "metal": "gold"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "gray",
+              "metal": "gold"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "green",
+              "metal": "gold"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "plain",
+              "metal": "silver"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "orange",
+              "metal": "silver"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "black",
+              "metal": "silver"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "red",
+              "metal": "silver"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "blue",
+              "metal": "silver"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "purple",
+              "metal": "silver"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "pink",
+              "metal": "silver"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "white",
+              "metal": "silver"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "yellow",
+              "metal": "silver"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "gray",
+              "metal": "silver"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "green",
+              "metal": "silver"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "plain",
+              "metal": "iron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "orange",
+              "metal": "iron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "black",
+              "metal": "iron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "red",
+              "metal": "iron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "blue",
+              "metal": "iron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "purple",
+              "metal": "iron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "pink",
+              "metal": "iron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "white",
+              "metal": "iron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "yellow",
+              "metal": "iron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "gray",
+              "metal": "iron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "green",
+              "metal": "iron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "plain",
+              "metal": "meteoriciron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "orange",
+              "metal": "meteoriciron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "black",
+              "metal": "meteoriciron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "red",
+              "metal": "meteoriciron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "blue",
+              "metal": "meteoriciron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "purple",
+              "metal": "meteoriciron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "pink",
+              "metal": "meteoriciron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "white",
+              "metal": "meteoriciron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "yellow",
+              "metal": "meteoriciron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "gray",
+              "metal": "meteoriciron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "green",
+              "metal": "meteoriciron"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "plain",
+              "metal": "steel"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "orange",
+              "metal": "steel"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "black",
+              "metal": "steel"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "red",
+              "metal": "steel"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "blue",
+              "metal": "steel"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "purple",
+              "metal": "steel"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "pink",
+              "metal": "steel"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "white",
+              "metal": "steel"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "yellow",
+              "metal": "steel"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "gray",
+              "metal": "steel"
+            }
+          }
+        },
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}",
+          "attributes": {
+            "types": {
+              "leather": "green",
+              "metal": "steel"
+            }
+          }
         }
       ]
     }

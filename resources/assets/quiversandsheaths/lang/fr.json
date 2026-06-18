@@ -5,6 +5,7 @@
 	"game:slotcategory-weapon": "Armes",
 	"game:slotcategory-tool": "Outils",
 	"game:slotcategory-ammunition": "Munitions",
+	"game:slotcategory-flasks": "Fioles et bouteilles",
 	"game:slotcategory-takeout": "Stockage temporaire",
 	"game:slotcategory-misc": "Divers",
 
@@ -30,6 +31,7 @@
 	"item-frontbag-*-sheath-pistols": "Harnais à pistolets",
 	"item-frontbag-*-bandolier-firearms": "Baudrier",
 	"item-frontbag-*-bandolier-daggers": "Baudrier à dagues",
+	"item-frontbag-*-bandolier-potions": "Baudrier a fioles",
 	"item-part-buckle-*": "Boucle",
 
 	"itemdesc-belt-*": "Permet d'équiper des sacs de ceinture, fourreaux et carquois.",
@@ -47,12 +49,13 @@
 	"itemdesc-beltbag-*-sheath-dualdaggers": "Peut stocker deux dagues, ou une dague et une épée. Appuyez sur 'R' ou 'F' pour dégainer les deux armes dans la main principale et secondaire, ou les rengainer.<br/><br/>Un des emplacements sert de stockage temporaire en cas d'inventaire plein.",
 	"itemdesc-shoulderbag-*-sling-firearms": "Peut stocker des armes à feu et des arbalètes. Appuyez sur 'R' ou 'F' pour dégainer ou ranger l'arme.<br/>Cet objet ne fonctionne pas comme une vraie bandoulière mais plutôt comme un fourreau — ce n'est pas pour autant qu'il nécessite un système entièrement différent.<br/><br/>Un des emplacements sert de stockage temporaire en cas d'inventaire plein.",
 	"itemdesc-shoulderbag-*-sling-shields": "Le bouclier vanilla dans la recette n'est pas visible, faites attention.<br/><br/>Peut stocker des boucliers. Appuyez sur 'R' ou 'F' pour sortir le bouclier dans la main secondaire ou le ranger.<br/>Cet objet ne fonctionne pas comme une vraie bandoulière mais plutôt comme un fourreau — ce n'est pas pour autant qu'il nécessite un système entièrement différent.<br/><br/>Un des emplacements sert de stockage temporaire en cas d'inventaire plein.",
-	"itemdesc-shoulderbag-*-sling-polearms": "Peut stocker des armes d'hast, des lances et des haches longues. Appuyez sur 'R' ou 'F' pour sortir une arme de la bandoulière dorsale ou la ranger.<br/><br/>Un des emplacements sert de stockage temporaire en cas d'inventaire plein.",
+	"itemdesc-shoulderbag-*-sling-polearms": "Peut stocker des armes d'hast, des lances, des marteaux d'armes et des haches longues. Appuyez sur 'R' ou 'F' pour sortir une arme de la bandoulière dorsale ou la ranger.<br/><br/>Un des emplacements sert de stockage temporaire en cas d'inventaire plein.",
 	"itemdesc-shoulderbag-*-sheath-bows": "Peut contenir un arc et des flèches. Appuyez sur 'R' ou 'F' pour dégainer l'arc de l'étui.<br/><br/>Un des emplacements sert de stockage temporaire en cas d'inventaire plein.",
 	"itemdesc-shoulderbag-*-sheath-backscabbard": "Peut stocker des épées longues et des épées à deux mains. Appuyez sur 'R' ou 'F' pour dégainer ou rengainer l'arme du fourreau dorsal.<br/><br/>Un des emplacements sert de stockage temporaire en cas d'inventaire plein.",
 	"itemdesc-frontbag-*-sheath-pistols": "Peut porter jusqu'à 3 pistolets. Lors du tir, le personnage sort automatiquement un nouveau pistolet du harnais après avoir déchargé celui en main.",
 	"itemdesc-frontbag-*-bandolier-firearms": "Peut contenir des munitions et équipements pour armes à feu.",
-	"itemdesc-frontbag-*-bandolier-daggers": "Peut contenir jusqu'à 6 dagues. Appuyez sur 'R' ou 'F' pour sortir une dague du baudrier.<br/><br/>Un des emplacements sert de stockage temporaire en cas d'inventaire plein.",
+	"itemdesc-frontbag-*-bandolier-daggers": "Peut contenir jusqu'à 3 dagues. Appuyez sur 'R' pour sortir une dague du baudrier.",
+	"itemdesc-frontbag-*-bandolier-potions": "Peut contenir jusqu'a 4 fioles d'Alchemy et bouteilles de Culinary Artillery. Appuyez sur 'R' pour sortir un objet du baudrier.",
 
 	"setting-hide_colored_variants": "Masquer les variantes colorées",
 	"setting-title-hotkeys": "Raccourcis clavier",
@@ -60,9 +63,11 @@
 	"setting-sheath_sling_hotkey": "Pochette à fronde",
 	"setting-sheath_javelin_hotkey": "Carquois à javelots",
 	"setting-sheath_sword_hotkey": "Fourreau",
+	"setting-tool_holster_hotkey": "Etui a outils",
 	"setting-sheath_back_scabbard_hotkey": "Fourreau dorsal",
 	"setting-sheath_pistol_hotkey": "Étui à pistolet",
 	"setting-sheath_pistol_offhand_hotkey": "Étui à pistolet (main secondaire)",
+	"setting-bandolier_hotkey": "Baudriers",
 	"setting-title-capacities": "Nombre d'emplacements",
 	"setting-pouch_fierarms_slots": "Pochette à armes à feu",
 	"setting-pouch_sling_slots": "Pochette à fronde",
@@ -78,5 +83,5 @@
 	"combatoverhaul:stat-firearmsProficiency": "Maîtrise des armes à feu",
 	"combatoverhaul:stat-meleeProficiency": "Maîtrise du corps à corps",
 	"item-beltbag-*-holster-tools": "Etui a outils",
-	"itemdesc-beltbag-*-holster-tools": "Peut stocker des marteaux, des haches, des pioches et des pioches de prospection. Appuyez sur 'R' ou 'F' pour sortir un outil de l'etui ou le ranger.<br/><br/>Un des emplacements sert de stockage temporaire en cas d'inventaire plein."
+	"itemdesc-beltbag-*-holster-tools": "Peut stocker des marteaux, des haches, des pioches et des pioches de prospection. Appuyez sur le raccourci de l'etui a outils pour sortir un outil de l'etui ou le ranger.<br/><br/>Un des emplacements sert de stockage temporaire en cas d'inventaire plein."
 }

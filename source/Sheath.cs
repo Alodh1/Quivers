@@ -1,6 +1,7 @@
 using AttributeRenderingLibrary;
 using CombatOverhaul;
 using CombatOverhaul.Armor;
+using CombatOverhaul.RangedSystems;
 using CombatOverhaul.Utils;
 using System.Diagnostics;
 using Vintagestory.API.Common;
@@ -30,6 +31,7 @@ public class SheathStats
     public string LeftWeaponWoodVariant { get; set; } = "left_wood";
     public bool DualDaggerSheath { get; set; } = false;
     public bool RefillMainHandWhenEmpty { get; set; } = false;
+    public bool EnforceConfiguredSlotCount { get; set; } = false;
 }
 
 public class SheathableStats
@@ -43,6 +45,17 @@ public class SheathableStats
 public class SheathBehavior : ToolBag
 {
     private static readonly string[] SlingStoneWildcards = ["stone-*", "*:stone-*"];
+    private const string PotionBandolierCodePath = "frontbag-front-bandolier-potions";
+    private const string DaggerBandolierCodePath = "frontbag-front-bandolier-daggers";
+    private const string PotionBandolierBackpackCategory = "flasks";
+    private const int PotionBandolierMaxStackSize = 1;
+    private const int DaggerBandolierMaxStackSize = 3;
+    private static readonly HashSet<string> LeatherMappedWoodSheathVariants = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "tachi",
+        "katana"
+    };
+    private const string DefaultLeatherWoodVariant = "oak";
 
     public SheathBehavior(CollectibleObject collObj) : base(collObj)
     {
@@ -63,15 +76,28 @@ public class SheathBehavior : ToolBag
         {
             EntityPlayer player = playerInventory.Player.Entity;
 
+            PlayerInventories[player.EntityId] = playerInventory;
+
             if (!ProcessedPlayers.Contains(player.EntityId))
             {
                 playerInventory.SlotModified += slotIndex => OnSlotModified(playerInventory, player, slotIndex);
                 ProcessedPlayers.Add(player.EntityId);
             }
+
+            if (Stats.RefillMainHandWhenEmpty)
+            {
+                RegisterMainHandRefillHandlers((ICoreServerAPI)world.Api);
+            }
         }
 
         List<ItemSlotBagContent?> slots = base.GetOrCreateSlots(bagstack, parentinv, bagIndex, world);
+        if (Stats.EnforceConfiguredSlotCount)
+        {
+            slots = EnforceConfiguredSlotCount(bagstack, parentinv, world, slots);
+        }
         ApplySlingPouchStoneSetting(slots);
+        ApplyPotionBandolierStackLimit(slots, parentinv, world);
+        ApplyDaggerBandolierStackLimit(slots, parentinv, world);
         RefreshStoredToolSlotVariants(bagstack, slots);
         RefreshStoredStorageSlotVariants(bagstack, slots);
 
@@ -79,7 +105,243 @@ public class SheathBehavior : ToolBag
     }
 
     protected readonly List<long> ProcessedPlayers = [];
+    protected readonly Dictionary<long, InventoryBasePlayer> PlayerInventories = [];
+    protected readonly Dictionary<long, long> PendingMainHandDaggerThrowUntilMs = [];
+    protected readonly Dictionary<long, long> RefillMainHandAfterThrowUntilMs = [];
+    protected const int DaggerThrowPendingWindowMs = 5000;
+    protected const int DaggerThrowRefillWindowMs = 1000;
+    protected bool RefillTickListenerRegistered = false;
+    protected bool RangedWeaponStatusListenerRegistered = false;
+    protected ICoreServerAPI? ServerApi;
     protected SheathStats Stats = new();
+
+    protected virtual void RegisterMainHandRefillHandlers(ICoreServerAPI api)
+    {
+        ServerApi = api;
+
+        if (!RefillTickListenerRegistered)
+        {
+            api.Event.RegisterGameTickListener(CheckMainHandRefill, 100);
+            RefillTickListenerRegistered = true;
+        }
+
+        if (!RangedWeaponStatusListenerRegistered)
+        {
+            CombatOverhaulSystem system = api.ModLoader.GetModSystem<CombatOverhaulSystem>();
+            if (system.ServerRangedWeaponSystem != null)
+            {
+                system.ServerRangedWeaponSystem.RangedWeaponStatusChanged += OnRangedWeaponStatusChanged;
+                RangedWeaponStatusListenerRegistered = true;
+            }
+        }
+    }
+
+    protected virtual void OnRangedWeaponStatusChanged(Entity attacker, ItemSlot weaponSlot, RangedWeaponStatus status)
+    {
+        if (!Stats.RefillMainHandWhenEmpty) return;
+        if (attacker is not EntityPlayer player) return;
+        if (weaponSlot != player.RightHandItemSlot) return;
+
+        long entityId = player.EntityId;
+        long now = GetServerElapsedMilliseconds();
+
+        if (status == RangedWeaponStatus.TriggeredShot)
+        {
+            PendingMainHandDaggerThrowUntilMs.Remove(entityId);
+            RefillMainHandAfterThrowUntilMs.Remove(entityId);
+
+            if (!IsDaggerStack(weaponSlot.Itemstack)) return;
+            if (!PlayerInventories.TryGetValue(entityId, out InventoryBasePlayer? backpackInventory)) return;
+            if (!HasRefillSourceForHand(backpackInventory, weaponSlot)) return;
+
+            PendingMainHandDaggerThrowUntilMs[entityId] = now + DaggerThrowPendingWindowMs;
+            return;
+        }
+
+        if (status != RangedWeaponStatus.SpawnedProjectile) return;
+
+        if (!PendingMainHandDaggerThrowUntilMs.TryGetValue(entityId, out long pendingUntilMs)) return;
+
+        PendingMainHandDaggerThrowUntilMs.Remove(entityId);
+        if (pendingUntilMs < now) return;
+
+        RefillMainHandAfterThrowUntilMs[entityId] = now + DaggerThrowRefillWindowMs;
+    }
+
+    protected virtual void CheckMainHandRefill(float dt)
+    {
+        if (!Stats.RefillMainHandWhenEmpty) return;
+
+        long now = GetServerElapsedMilliseconds();
+
+        foreach ((long entityId, InventoryBasePlayer backpackInventory) in PlayerInventories.ToArray())
+        {
+            EntityPlayer? player = backpackInventory.Player?.Entity;
+            if (player == null)
+            {
+                PlayerInventories.Remove(entityId);
+                PendingMainHandDaggerThrowUntilMs.Remove(entityId);
+                RefillMainHandAfterThrowUntilMs.Remove(entityId);
+                continue;
+            }
+
+            ItemSlot? handSlot = player.RightHandItemSlot;
+            if (handSlot == null) continue;
+
+            if (PendingMainHandDaggerThrowUntilMs.TryGetValue(entityId, out long pendingUntilMs) && pendingUntilMs < now)
+            {
+                PendingMainHandDaggerThrowUntilMs.Remove(entityId);
+            }
+
+            if (!RefillMainHandAfterThrowUntilMs.TryGetValue(entityId, out long refillUntilMs)) continue;
+
+            if (refillUntilMs < now)
+            {
+                RefillMainHandAfterThrowUntilMs.Remove(entityId);
+                continue;
+            }
+
+            if (!handSlot.Empty)
+            {
+                RefillMainHandAfterThrowUntilMs.Remove(entityId);
+                continue;
+            }
+
+            RefillMainHandAfterThrowUntilMs.Remove(entityId);
+            TryRefillMainHandFromSheath(backpackInventory, handSlot);
+        }
+    }
+
+    protected virtual bool HasRefillSourceForHand(InventoryBasePlayer backpackInventory, ItemSlot handSlot)
+    {
+        if (handSlot.Empty) return false;
+
+        return backpackInventory
+            .OfType<ItemSlotBagContentWithWildcardMatch>()
+            .Where(slot => slot.SourceBag?.Item?.Id == collObj.Id)
+            .Where(slot => !slot.Config.HandleHotkey)
+            .Where(slot => slot.Config.SetVariants)
+            .Where(slot => !slot.Empty)
+            .Any(slot => slot.CanHold(handSlot));
+    }
+
+    protected virtual long GetServerElapsedMilliseconds()
+    {
+        return ServerApi?.World.ElapsedMilliseconds ?? 0;
+    }
+
+    private static bool IsDaggerStack(ItemStack? stack)
+    {
+        if (stack == null) return false;
+
+        if (AttributeTrue(stack.ItemAttributes, "combatoverhaul:isDagger", "isDagger")) return true;
+        if (AttributeTrue(stack.Collectible?.Attributes, "combatoverhaul:isDagger", "isDagger")) return true;
+        if (HasItemTag(stack.Item, "dagger")) return true;
+
+        AssetLocation? code = stack.Collectible?.Code;
+        return code?.Path.Contains("dagger", StringComparison.OrdinalIgnoreCase) == true
+            || code?.Domain.Contains("dagger", StringComparison.OrdinalIgnoreCase) == true;
+    }
+
+    private static bool AttributeTrue(JsonObject? attributes, string qualifiedName, string shortName)
+    {
+        return attributes?[qualifiedName].AsBool(false) == true
+            || attributes?[shortName].AsBool(false) == true
+            || attributes?["combatoverhaul"]?[shortName].AsBool(false) == true;
+    }
+
+    private static bool HasItemTag(Item? item, string tag)
+    {
+        object? tagsObject = item?.Tags;
+        if (tagsObject is not System.Collections.IEnumerable tags) return false;
+
+        foreach (object? tagObject in tags)
+        {
+            if (tagObject?.ToString()?.Equals(tag, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    protected virtual bool TryRefillMainHandFromSheath(InventoryBasePlayer backpackInventory, ItemSlot handSlot)
+    {
+        if (!handSlot.Empty) return false;
+
+        ItemSlotBagContentWithWildcardMatch? sourceSlot = backpackInventory
+            .OfType<ItemSlotBagContentWithWildcardMatch>()
+            .Where(slot => slot.SourceBag?.Item?.Id == collObj.Id)
+            .Where(slot => !slot.Config.HandleHotkey)
+            .Where(slot => slot.Config.SetVariants)
+            .Where(slot => !slot.Empty)
+            .OrderBy(slot => slot.SlotIndex)
+            .FirstOrDefault();
+
+        if (sourceSlot == null) return false;
+
+        ItemStack movedStack = sourceSlot.TakeOut(1);
+        if (movedStack.StackSize <= 0) return false;
+
+        handSlot.Itemstack = movedStack;
+        sourceSlot.MarkDirty();
+        handSlot.MarkDirty();
+        return true;
+    }
+
+    private List<ItemSlotBagContent?> EnforceConfiguredSlotCount(
+        ItemStack bagstack,
+        InventoryBase parentinv,
+        IWorldAccessor world,
+        List<ItemSlotBagContent?> slots)
+    {
+        ItemSlotBagContent[] surplusSlots = slots
+            .OfType<ItemSlotBagContent>()
+            .Where(slot => slot.SlotIndex >= SlotsNumber)
+            .OrderBy(slot => slot.SlotIndex)
+            .ToArray();
+
+        if (surplusSlots.Length == 0) return slots;
+
+        ITreeAttribute? slotsTree = bagstack.Attributes.GetTreeAttribute("backpack")?.GetTreeAttribute("slots");
+
+        foreach (ItemSlotBagContent slot in surplusSlots)
+        {
+            if (!slot.Empty && world.Api.Side == EnumAppSide.Server)
+            {
+                ItemStack? stack = slot.TakeOutWhole();
+                if (stack != null && stack.StackSize > 0)
+                {
+                    ReturnSurplusStack(parentinv, world, stack);
+                }
+                slot.MarkDirty();
+            }
+
+            slotsTree?.RemoveAttribute($"slot-{slot.SlotIndex}");
+        }
+
+        return slots
+            .Where(slot => slot == null || slot.SlotIndex < SlotsNumber)
+            .ToList();
+    }
+
+    private static void ReturnSurplusStack(InventoryBase parentinv, IWorldAccessor world, ItemStack stack)
+    {
+        if (parentinv is InventoryBasePlayer playerInventory)
+        {
+            if (playerInventory.Player?.InventoryManager?.TryGiveItemstack(stack) == true)
+            {
+                return;
+            }
+
+            EntityPlayer? player = playerInventory.Player?.Entity;
+            if (player != null)
+            {
+                world.SpawnItemEntity(stack, player.Pos.XYZ);
+            }
+        }
+    }
 
     private void RefreshStoredToolSlotVariants(ItemStack bagstack, IEnumerable<ItemSlotBagContent?> slots)
     {
@@ -116,7 +378,7 @@ public class SheathBehavior : ToolBag
             SetVariant(variants, bagstack, variantCode, stats.InSheathVariantCode);
             TrySetVariantFromStoredStack(variants, bagstack, metalVariantCode, stats.MetalVariantCode, slot.Itemstack, StoredVariantResolver.MetalVariantSources);
             TrySetVariantFromStoredStack(variants, bagstack, leatherVariantCode, stats.LeatherVariantCode, slot.Itemstack, StoredVariantResolver.LeatherVariantSources);
-            TrySetVariantFromStoredStack(variants, bagstack, woodVariantCode, stats.WoodVariantCode, slot.Itemstack, StoredVariantResolver.WoodVariantSources);
+            TrySetWoodVariantFromStoredStack(variants, bagstack, woodVariantCode, stats.WoodVariantCode, slot.Itemstack, stats.InSheathVariantCode);
             CopyStoredShieldTextureVariants(variants, bagstack, slot.Itemstack, mainHand);
         }
     }
@@ -153,7 +415,7 @@ public class SheathBehavior : ToolBag
 
             TrySetVariantFromStoredStack(variants, bagstack, leatherVariantCode, stats.LeatherVariantCode, storedStack, StoredVariantResolver.LeatherVariantSources);
             TrySetVariantFromStoredStack(variants, bagstack, metalVariantCode, stats.MetalVariantCode, storedStack, StoredVariantResolver.MetalVariantSources);
-            TrySetVariantFromStoredStack(variants, bagstack, woodVariantCode, stats.WoodVariantCode, storedStack, StoredVariantResolver.WoodVariantSources);
+            TrySetWoodVariantFromStoredStack(variants, bagstack, woodVariantCode, stats.WoodVariantCode, storedStack, stats.InSheathVariantCode);
             CopyStoredShieldTextureVariants(variants, bagstack, storedStack, mainHand: false);
         }
     }
@@ -176,6 +438,51 @@ public class SheathBehavior : ToolBag
             slot.Config.CanHoldWildcards = allowStones
                 ? withoutStones.Concat(SlingStoneWildcards).Distinct().ToArray()
                 : withoutStones;
+        }
+    }
+
+    private void ApplyPotionBandolierStackLimit(List<ItemSlotBagContent?> slots, InventoryBase parentinv, IWorldAccessor world)
+    {
+        if (collObj.Code?.Path != PotionBandolierCodePath) return;
+
+        foreach (ItemSlotBagContentWithWildcardMatch slot in slots.OfType<ItemSlotBagContentWithWildcardMatch>())
+        {
+            if (slot.SourceBag?.Item?.Id != collObj.Id) continue;
+            if (slot.Config.BackpackCategoryCode != PotionBandolierBackpackCategory) continue;
+
+            slot.MaxSlotStackSize = PotionBandolierMaxStackSize;
+
+            if (world.Api.Side != EnumAppSide.Server) continue;
+            if (slot.Itemstack == null || slot.Itemstack.StackSize <= PotionBandolierMaxStackSize) continue;
+
+            ItemStack surplus = slot.Itemstack.Clone();
+            surplus.StackSize = slot.Itemstack.StackSize - PotionBandolierMaxStackSize;
+            slot.Itemstack.StackSize = PotionBandolierMaxStackSize;
+
+            ReturnSurplusStack(parentinv, world, surplus);
+            slot.MarkDirty();
+        }
+    }
+
+    private void ApplyDaggerBandolierStackLimit(List<ItemSlotBagContent?> slots, InventoryBase parentinv, IWorldAccessor world)
+    {
+        if (collObj.Code?.Path != DaggerBandolierCodePath) return;
+
+        foreach (ItemSlotBagContentWithWildcardMatch slot in slots.OfType<ItemSlotBagContentWithWildcardMatch>())
+        {
+            if (slot.SourceBag?.Item?.Id != collObj.Id) continue;
+
+            slot.MaxSlotStackSize = DaggerBandolierMaxStackSize;
+
+            if (world.Api.Side != EnumAppSide.Server) continue;
+            if (slot.Itemstack == null || slot.Itemstack.StackSize <= DaggerBandolierMaxStackSize) continue;
+
+            ItemStack surplus = slot.Itemstack.Clone();
+            surplus.StackSize = slot.Itemstack.StackSize - DaggerBandolierMaxStackSize;
+            slot.Itemstack.StackSize = DaggerBandolierMaxStackSize;
+
+            ReturnSurplusStack(parentinv, world, surplus);
+            slot.MarkDirty();
         }
     }
 
@@ -269,7 +576,7 @@ public class SheathBehavior : ToolBag
 
             TrySetVariantFromStoredStack(variants, sheathSlot, metalVariantCode, stats.MetalVariantCode, slotAtIndex.Itemstack, StoredVariantResolver.MetalVariantSources);
             TrySetVariantFromStoredStack(variants, sheathSlot, leatherVariantCode, stats.LeatherVariantCode, slotAtIndex.Itemstack, StoredVariantResolver.LeatherVariantSources);
-            TrySetVariantFromStoredStack(variants, sheathSlot, woodVariantCode, stats.WoodVariantCode, slotAtIndex.Itemstack, StoredVariantResolver.WoodVariantSources);
+            TrySetWoodVariantFromStoredStack(variants, sheathSlot, woodVariantCode, stats.WoodVariantCode, slotAtIndex.Itemstack, stats.InSheathVariantCode);
             CopyStoredShieldTextureVariants(variants, sheathSlot, slotAtIndex.Itemstack, mainHand);
         }
     }
@@ -334,7 +641,7 @@ public class SheathBehavior : ToolBag
 
             TrySetVariantFromStoredStack(variants, sheathSlot, leatherVariantCode, stats.LeatherVariantCode, storedStack, StoredVariantResolver.LeatherVariantSources);
             TrySetVariantFromStoredStack(variants, sheathSlot, metalVariantCode, stats.MetalVariantCode, storedStack, StoredVariantResolver.MetalVariantSources);
-            TrySetVariantFromStoredStack(variants, sheathSlot, woodVariantCode, stats.WoodVariantCode, storedStack, StoredVariantResolver.WoodVariantSources);
+            TrySetWoodVariantFromStoredStack(variants, sheathSlot, woodVariantCode, stats.WoodVariantCode, storedStack, stats.InSheathVariantCode);
             CopyStoredShieldTextureVariants(variants, sheathSlot, storedStack, mainHand: false);
         }
     }
@@ -434,6 +741,100 @@ public class SheathBehavior : ToolBag
 
         string variantValue = StoredVariantResolver.GetStoredMaterialVariant(storedStack, targetVariantCode, sourceVariantCodes) ?? defaultVariantValue;
         SetVariant(variants, sheathStack, targetVariantCode, variantValue);
+    }
+
+    private void TrySetWoodVariantFromStoredStack(Variants variants, ItemSlot sheathSlot, string targetVariantCode, string defaultVariantValue, ItemStack? storedStack, string inSheathVariantCode)
+    {
+        if (StoredVariantResolver.IsProtectedContainerVariantCode(targetVariantCode)) return;
+
+        string variantValue = GetLeatherMappedWoodVariant(variants, sheathSlot.Itemstack, inSheathVariantCode)
+            ?? StoredVariantResolver.GetStoredMaterialVariant(storedStack, targetVariantCode, StoredVariantResolver.WoodVariantSources)
+            ?? defaultVariantValue;
+        SetVariant(variants, sheathSlot, targetVariantCode, variantValue);
+    }
+
+    private void TrySetWoodVariantFromStoredStack(Variants variants, ItemStack sheathStack, string targetVariantCode, string defaultVariantValue, ItemStack? storedStack, string inSheathVariantCode)
+    {
+        if (StoredVariantResolver.IsProtectedContainerVariantCode(targetVariantCode)) return;
+
+        string variantValue = GetLeatherMappedWoodVariant(variants, sheathStack, inSheathVariantCode)
+            ?? StoredVariantResolver.GetStoredMaterialVariant(storedStack, targetVariantCode, StoredVariantResolver.WoodVariantSources)
+            ?? defaultVariantValue;
+        SetVariant(variants, sheathStack, targetVariantCode, variantValue);
+    }
+
+    private static string? GetLeatherMappedWoodVariant(Variants variants, ItemStack? sheathStack, string inSheathVariantCode)
+    {
+        if (!LeatherMappedWoodSheathVariants.Contains(inSheathVariantCode)) return null;
+
+        string leather = GetContainerLeatherVariant(variants, sheathStack);
+        return IsDefaultLeatherVariant(leather) ? DefaultLeatherWoodVariant : null;
+    }
+
+    private static bool IsDefaultLeatherVariant(string leather)
+    {
+        return leather.Equals("plain", StringComparison.OrdinalIgnoreCase)
+            || leather.Equals("default", StringComparison.OrdinalIgnoreCase)
+            || leather.Equals("normal", StringComparison.OrdinalIgnoreCase)
+            || leather.Equals("sturdy", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static string GetContainerLeatherVariant(Variants variants, ItemStack? sheathStack)
+    {
+        string? leather =
+            GetStackTypeAttribute(sheathStack, "leather")
+            ?? variants.Get("leather")
+            ?? GetStackTypeAttribute(sheathStack, "color")
+            ?? variants.Get("color")
+            ?? GetStackAttribute(sheathStack, "leather")
+            ?? GetStackAttribute(sheathStack, "color")
+            ?? GetCollectibleVariant(sheathStack, "leather")
+            ?? GetCollectibleVariant(sheathStack, "color");
+
+        return NormalizeLeatherVariant(leather);
+    }
+
+    private static string? GetStackTypeAttribute(ItemStack? stack, string key)
+    {
+        string? value = stack?.Attributes.GetTreeAttribute("types")?.GetString(key);
+        return string.IsNullOrWhiteSpace(value) ? null : value;
+    }
+
+    private static string? GetStackAttribute(ItemStack? stack, string key)
+    {
+        string? value = stack?.Attributes.GetString(key);
+        return string.IsNullOrWhiteSpace(value) ? null : value;
+    }
+
+    private static string? GetCollectibleVariant(ItemStack? stack, string key)
+    {
+        return stack?.Collectible?.Variant?.TryGetValue(key, out string? value) == true && !string.IsNullOrWhiteSpace(value)
+            ? value
+            : null;
+    }
+
+    private static string NormalizeLeatherVariant(string? leather)
+    {
+        if (string.IsNullOrWhiteSpace(leather)) return "plain";
+
+        string normalized = leather.Trim().ToLowerInvariant().Replace('\\', '/');
+        int slashIndex = normalized.LastIndexOf('/');
+        if (slashIndex >= 0) normalized = normalized[(slashIndex + 1)..];
+
+        int domainIndex = normalized.LastIndexOf(':');
+        if (domainIndex >= 0) normalized = normalized[(domainIndex + 1)..];
+
+        const string normalLeatherPrefix = "leather-normal-";
+        const string sturdyLeatherPrefix = "leather-sturdy-";
+        const string normalPrefix = "normal-";
+        const string sturdyPrefix = "sturdy-";
+
+        if (normalized.StartsWith(normalLeatherPrefix, StringComparison.Ordinal)) normalized = normalized[normalLeatherPrefix.Length..];
+        if (normalized.StartsWith(sturdyLeatherPrefix, StringComparison.Ordinal)) normalized = normalized[sturdyLeatherPrefix.Length..];
+        if (normalized.StartsWith(normalPrefix, StringComparison.Ordinal)) normalized = normalized[normalPrefix.Length..];
+        if (normalized.StartsWith(sturdyPrefix, StringComparison.Ordinal)) normalized = normalized[sturdyPrefix.Length..];
+
+        return normalized;
     }
 
     private static string? GetStoredStackVariant(ItemStack? storedStack, string targetVariantCode, params string[] sourceVariantCodes)
@@ -619,8 +1020,8 @@ public class SheathBehavior : ToolBag
     private bool IsDualDaggerSlotActionable(ItemSlotBagContentWithWildcardMatch slot)
     {
         ItemSlot? handSlot = slot.MainHand ? ClientApi?.World?.Player?.Entity?.RightHandItemSlot : ClientApi?.World?.Player?.Entity?.LeftHandItemSlot;
-        bool handHasItem = handSlot?.Itemstack != null;
-        bool slotHasItem = slot.Itemstack != null;
+        bool handHasItem = IsValidActionableStack(handSlot?.Itemstack);
+        bool slotHasItem = IsValidActionableStack(slot.Itemstack);
 
         if (handHasItem && handSlot != null && slot.CanHold(handSlot))
         {
@@ -628,6 +1029,11 @@ public class SheathBehavior : ToolBag
         }
 
         return !handHasItem && slotHasItem;
+    }
+
+    private static bool IsValidActionableStack(ItemStack? stack)
+    {
+        return stack != null && stack.StackSize > 0 && stack.Collectible != null;
     }
 
     private static bool TryReadSlotBagData(ItemSlot slot, out bool handleHotkey, out bool mainHand, out string? slotVariant, out Item? sourceBagItem)

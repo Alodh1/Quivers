@@ -1,0 +1,33 @@
+[
+  {
+    "dependsOn": [{ "modid": "toolsmith" }],
+    "file": "quiversandsheaths:itemtypes/beltbags/tool-holster",
+    "op": "addMerge",
+    "path": "/behaviors/1/properties/transformByStoredItem",
+    "value": {
+      "*:hammer-*": {
+        "applyStoredItemTranslation": false,
+        "applyStoredItemRotation": false,
+        "applyStoredItemScale": false,
+        "transform": {
+          "translation": {
+            "x": 0.332,
+            "y": -0.003,
+            "z": -1.524
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "origin": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "scale": 0.85
+        }
+      }
+    }
+  }
+]

@@ -37,9 +37,33 @@
       "properties": {
         "addOverlayPrefix": false,
         "shape": {
+          "arrow_slot_state-*::right_slot-dynamicbow::right_slot_state-*": {
+            "base": "quiversandsheaths:saydak-shoulder/belt",
+            "overlays": [{ "base": "quiversandsheaths:saydak-shoulder/{arrow_slot_state}/quiver_arrows" }, { "base": "quiversandsheaths:saydak-shoulder/empty/quiver_default" }]
+          },
+          "arrow_slot_state-*::right_slot-default::right_slot_state-full": {
+            "base": "quiversandsheaths:saydak-shoulder/belt",
+            "overlays": [{ "base": "quiversandsheaths:saydak-shoulder/{arrow_slot_state}/quiver_arrows" }, { "base": "quiversandsheaths:saydak-shoulder/full/quiver_long_bow" }]
+          },
+          "arrow_slot_state-*::right_slot-default::right_slot_state-empty": {
+            "base": "quiversandsheaths:saydak-shoulder/belt",
+            "overlays": [{ "base": "quiversandsheaths:saydak-shoulder/{arrow_slot_state}/quiver_arrows" }, { "base": "quiversandsheaths:saydak-shoulder/empty/quiver_default" }]
+          },
           "arrow_slot_state-*::right_slot-*::right_slot_state-*": {
             "base": "quiversandsheaths:saydak-shoulder/belt",
             "overlays": [{ "base": "quiversandsheaths:saydak-shoulder/{arrow_slot_state}/quiver_arrows" }, { "base": "quiversandsheaths:saydak-shoulder/{right_slot_state}/quiver_{right_slot}_bow" }]
+          },
+          "right_slot-dynamicbow::right_slot_state-*": {
+            "base": "quiversandsheaths:saydak-shoulder/belt",
+            "overlays": [{ "base": "quiversandsheaths:saydak-shoulder/empty/quiver_arrows" }, { "base": "quiversandsheaths:saydak-shoulder/empty/quiver_default" }]
+          },
+          "right_slot-default::right_slot_state-full": {
+            "base": "quiversandsheaths:saydak-shoulder/belt",
+            "overlays": [{ "base": "quiversandsheaths:saydak-shoulder/empty/quiver_arrows" }, { "base": "quiversandsheaths:saydak-shoulder/full/quiver_long_bow" }]
+          },
+          "right_slot-default::right_slot_state-empty": {
+            "base": "quiversandsheaths:saydak-shoulder/belt",
+            "overlays": [{ "base": "quiversandsheaths:saydak-shoulder/empty/quiver_arrows" }, { "base": "quiversandsheaths:saydak-shoulder/empty/quiver_default" }]
           },
           "right_slot-*::right_slot_state-*": {
             "base": "quiversandsheaths:saydak-shoulder/belt",
@@ -60,6 +84,26 @@
         "renderTargets": ["Gui", "HandTp", "HandTpOff", "Ground"],
         "shape": { "*": { "base": "quiversandsheaths:gui/saydak-shoulder" } },
         "textures": { "metal-*::leather-*": { "shoulderbag-right-material": { "base": "game:block/leather/{leather}" }, "shoulderbag-right-metal": { "base": "game:block/metal/plate/{metal}" } } }
+      }
+    },
+    {
+      "name": "QuiversAndSheaths:BackSlingRenderConfig",
+      "properties": {
+        "slotIndex": 0,
+        "attachmentPart": "UpperTorso",
+        "renderTarget": "HandTp",
+        "renderStoredItemWildcards": ["mitsuyoninja:bow", "mitsuyoninja:bow-*"],
+        "renderAttachmentVariantWildcards": ["right_slot-dynamicbow::right_slot_state-full"],
+        "applyStoredItemTranslation": false,
+        "applyStoredItemRotation": false,
+        "applyStoredItemScale": false,
+        "fallbackToFirstFilledSlot": false,
+        "transform": {
+          "translation": { "x": 7.342, "y": 3.975, "z": -6.392 },
+          "rotation": { "x": 158.861, "y": 177.015, "z": 80.229 },
+          "origin": { "x": 0, "y": 0, "z": 0 },
+          "scale": 0.586
+        }
       }
     },
     { "name": "CombatOverhaul:GoesIntoSlotsInfo" }

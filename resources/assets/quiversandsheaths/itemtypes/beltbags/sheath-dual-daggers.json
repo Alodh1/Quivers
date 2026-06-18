@@ -44,6 +44,9 @@
           "canHoldWildcards": [
             "armory:dagger-*",
             "*:dagger-*",
+            "mitsuyoninja:tachi-*",
+            "mitsuyoninja:katana-*",
+            "mitsuyoninja:tsurugi-*",
             "armory:sword-*",
             "*:sword-*",
             "*:estoc",
@@ -57,6 +60,9 @@
             ],
             [
               "sword"
+            ],
+            [
+              "weapon-sword"
             ],
             [
               "estoc"
@@ -95,10 +101,129 @@
       }
     },
     {
+      "name": "QuiversAndSheaths:BackSlingRenderConfig",
+      "properties": {
+        "configs": [
+          {
+            "slotIndex": 0,
+            "attachmentPart": "LowerTorso",
+            "renderTarget": "HandTp",
+            "renderStoredItemWildcards": [
+              "mitsuyoninja:tachi-*",
+              "mitsuyoninja:katana-*",
+              "mitsuyoninja:tsurugi-*"
+            ],
+            "applyStoredItemTranslation": false,
+            "applyStoredItemRotation": false,
+            "applyStoredItemScale": false,
+            "fallbackToFirstFilledSlot": false,
+            "transformByStoredItem": {
+              "mitsuyoninja:tachi-*": {
+                "applyStoredItemTranslation": false,
+                "applyStoredItemRotation": false,
+                "applyStoredItemScale": false,
+                "transform": {
+                  "translation": {
+                    "x": -9.565,
+                    "y": 2.933,
+                    "z": 8.233
+                  },
+                  "rotation": {
+                    "x": -86.351,
+                    "y": 49.324,
+                    "z": -9.252
+                  },
+                  "origin": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "scale": 0.523
+                }
+              },
+              "mitsuyoninja:katana-*": {
+                "applyStoredItemTranslation": false,
+                "applyStoredItemRotation": false,
+                "applyStoredItemScale": false,
+                "transform": {
+                  "translation": {
+                    "x": -9.565,
+                    "y": 2.933,
+                    "z": 8.233
+                  },
+                  "rotation": {
+                    "x": -86.351,
+                    "y": 49.324,
+                    "z": -9.252
+                  },
+                  "origin": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "scale": 0.523
+                }
+              },
+              "mitsuyoninja:tsurugi-*": {
+                "applyStoredItemTranslation": false,
+                "applyStoredItemRotation": false,
+                "applyStoredItemScale": false,
+                "transform": {
+                  "translation": {
+                    "x": -10.09,
+                    "y": 0.738,
+                    "z": 8.422
+                  },
+                  "rotation": {
+                    "x": -96.522,
+                    "y": 46.812,
+                    "z": -2.733
+                  },
+                  "origin": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "scale": 0.739
+                }
+              }
+            },
+            "transform": {
+              "translation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "origin": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "scale": 1
+            }
+          }
+        ]
+      }
+    },
+    {
       "name": "QuiversAndSheaths:ShapeTexturesFromAttributes",
       "properties": {
         "addOverlayPrefix": false,
         "shape": {
+          "right_slot-tachi::right_slot_state-*": {
+            "base": "quiversandsheaths:sheaths/empty/default"
+          },
+          "right_slot-katana::right_slot_state-*": {
+            "base": "quiversandsheaths:sheaths/empty/default"
+          },
+          "right_slot-tsurugi::right_slot_state-*": {
+            "base": "quiversandsheaths:sheaths/empty/default"
+          },
           "right_slot-*::right_slot_state-full": {
             "base": "quiversandsheaths:sheaths/full/default"
           },
@@ -145,6 +270,32 @@
             "belt-waist-plain-metal": {
               "base": "game:block/metal/plate/{metal}"
             }
+          },
+          "leather-*::right_slot-tachi::right_metal-*::right_leather-*::right_wood-*": {
+            "belt-waist-plain-right-leather": {
+              "base": "game:block/leather/{leather}"
+            }
+          },
+          "leather-plain::right_slot-tachi::right_metal-*::right_leather-*::right_wood-*": {
+            "belt-waist-plain-material": {
+              "base": "game:block/wood/debarked/{right_wood}"
+            },
+            "belt-waist-plain-right-leather": {
+              "base": "game:block/wood/debarked/{right_wood}"
+            }
+          },
+          "leather-*::right_slot-katana::right_metal-*::right_leather-*::right_wood-*": {
+            "belt-waist-plain-right-leather": {
+              "base": "game:block/leather/{leather}"
+            }
+          },
+          "leather-plain::right_slot-katana::right_metal-*::right_leather-*::right_wood-*": {
+            "belt-waist-plain-material": {
+              "base": "game:block/wood/debarked/{right_wood}"
+            },
+            "belt-waist-plain-right-leather": {
+              "base": "game:block/wood/debarked/{right_wood}"
+            }
           }
         }
       }
@@ -189,6 +340,13 @@
     "handbook": {
       "groupBy": [
         "beltbag-{category}-{subtype}-{type}"
+      ],
+      "ignoreCreativeInvStacks": true,
+      "extraSections": [
+        {
+          "Title": "quiversandsheaths:handbook-craftingappearance-title",
+          "Text": "quiversandsheaths:handbook-craftingappearance-text"
+        }
       ]
     }
   },

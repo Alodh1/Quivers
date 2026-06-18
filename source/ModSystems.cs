@@ -16,6 +16,7 @@ public sealed class QuiversAndSheathsSystem : ModSystem
 
     private ICoreClientAPI? _clientApi;
     private BackSlingStoredWeaponRenderer? _backSlingRenderer;
+    private QsOverlayGizmoRenderer? _qsOverlayGizmoRenderer;
 
     public override void Start(ICoreAPI api)
     {
@@ -36,6 +37,7 @@ public sealed class QuiversAndSheathsSystem : ModSystem
     {
         _clientApi = api;
         _backSlingRenderer = new(api);
+        _qsOverlayGizmoRenderer = new(api);
         api.Event.RegisterRenderer(_backSlingRenderer, EnumRenderStage.Opaque, "quiversandsheaths-back-sling-stored-weapon");
         BackSlingTransformTuningCommands.Register(api);
     }
@@ -48,7 +50,9 @@ public sealed class QuiversAndSheathsSystem : ModSystem
         }
 
         _backSlingRenderer?.Dispose();
+        _qsOverlayGizmoRenderer?.Dispose();
         _backSlingRenderer = null;
+        _qsOverlayGizmoRenderer = null;
         _clientApi = null;
     }
 

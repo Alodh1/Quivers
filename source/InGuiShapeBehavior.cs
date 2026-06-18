@@ -139,4 +139,9 @@ public class ShapeReplacement : CollectibleBehavior, IContainedMeshSource, IShap
     {
         return $"{itemstack.Collectible.Code}-{Variants.FromStack(itemstack)}-gui";
     }
+
+    public bool HandlesRenderTarget(EnumItemRenderTarget target)
+    {
+        return Targets.Contains(target);
+    }
 }

@@ -1,530 +1,603 @@
 [
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/quiver-javelins",
-    "op": "replace",
-    "path": "/0/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/quiver-javelins",
-    "op": "replace",
-    "path": "/1/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/sling-shields",
-    "op": "replace",
-    "path": "/0/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/sling-shields",
-    "op": "replace",
-    "path": "/1/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "firearmsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/sheath-pistol",
-    "op": "replace",
-    "path": "/0/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "firearmsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/sheath-pistol",
-    "op": "replace",
-    "path": "/1/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "firearmsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/sheath-pistol",
-    "op": "replace",
-    "path": "/2/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "firearmsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/sheath-pistol",
-    "op": "replace",
-    "path": "/3/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "firearmsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/sheath-pistol-front",
-    "op": "replace",
-    "path": "/0/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "firearmsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/sheath-pistol-front",
-    "op": "replace",
-    "path": "/1/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "firearmsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/pouch-bullet",
-    "op": "replace",
-    "path": "/0/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "firearmsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/pouch-bullet",
-    "op": "replace",
-    "path": "/1/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "firearmsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/pouch-bullet",
-    "op": "replace",
-    "path": "/2/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "firearmsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/pouch-bullet",
-    "op": "replace",
-    "path": "/3/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "firearmsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/pouch-bullet",
-    "op": "replace",
-    "path": "/4/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "firearmsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/pouch-bullet",
-    "op": "replace",
-    "path": "/5/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "firearmsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/bandolier",
-    "op": "replace",
-    "path": "/0/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "firearmsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/bandolier",
-    "op": "replace",
-    "path": "/1/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "crossbowsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/quiver-bolts",
-    "op": "replace",
-    "path": "/0/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "crossbowsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/quiver-bolts",
-    "op": "replace",
-    "path": "/1/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "combatoverhaulfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/pouch-sling",
-    "op": "replace",
-    "path": "/2/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "combatoverhaulfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/pouch-sling",
-    "op": "replace",
-    "path": "/3/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "firearmsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/sling-firearms",
-    "op": "replace",
-    "path": "/0/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "firearmsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/sling-firearms",
-    "op": "replace",
-    "path": "/1/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "crossbowsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/sling-firearms",
-    "op": "replace",
-    "path": "/2/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "crossbowsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/sling-firearms",
-    "op": "replace",
-    "path": "/3/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "extrafirearms"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/compat/extrafirearms",
-    "op": "replace",
-    "path": "/0/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "extrafirearms"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/compat/extrafirearms",
-    "op": "replace",
-    "path": "/1/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "morearrowsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/quiver-arrows",
-    "op": "replace",
-    "path": "/2/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "morearrowsfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/quiver-arrows",
-    "op": "replace",
-    "path": "/3/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/bandolier-daggers",
-    "op": "replace",
-    "path": "/0/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/bandolier-daggers",
-    "op": "replace",
-    "path": "/1/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/sheath-dual-daggers",
-    "op": "replace",
-    "path": "/0/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/sheath-dual-daggers",
-    "op": "replace",
-    "path": "/1/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/back-sling",
-    "op": "replace",
-    "path": "/0/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/back-sling",
-    "op": "replace",
-    "path": "/1/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/back-sling",
-    "op": "replace",
-    "path": "/2/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/back-sling",
-    "op": "replace",
-    "path": "/3/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/back-sling",
-    "op": "replace",
-    "path": "/4/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/back-sling",
-    "op": "replace",
-    "path": "/5/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/back-sling",
-    "op": "replace",
-    "path": "/6/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/back-sling",
-    "op": "replace",
-    "path": "/7/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/back-sling",
-    "op": "replace",
-    "path": "/8/enabled",
-    "value": true
-  },
-  {
-    "side": "Server",
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ],
-    "file": "quiversandsheaths:recipes/grid/back-sling",
-    "op": "replace",
-    "path": "/9/enabled",
-    "value": true
-  }
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/quiver-javelins",
+        "op":  "replace",
+        "path":  "/0/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/quiver-javelins",
+        "op":  "replace",
+        "path":  "/1/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/sling-shields",
+        "op":  "replace",
+        "path":  "/0/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/sling-shields",
+        "op":  "replace",
+        "path":  "/1/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/sheath-pistol",
+        "op":  "replace",
+        "path":  "/0/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/sheath-pistol",
+        "op":  "replace",
+        "path":  "/1/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/sheath-pistol",
+        "op":  "replace",
+        "path":  "/2/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/sheath-pistol",
+        "op":  "replace",
+        "path":  "/3/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/sheath-pistol-front",
+        "op":  "replace",
+        "path":  "/0/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/sheath-pistol-front",
+        "op":  "replace",
+        "path":  "/1/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/pouch-bullet",
+        "op":  "replace",
+        "path":  "/0/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/pouch-bullet",
+        "op":  "replace",
+        "path":  "/1/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/pouch-bullet",
+        "op":  "replace",
+        "path":  "/2/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/pouch-bullet",
+        "op":  "replace",
+        "path":  "/3/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/pouch-bullet",
+        "op":  "replace",
+        "path":  "/4/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/pouch-bullet",
+        "op":  "replace",
+        "path":  "/5/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/bandolier",
+        "op":  "replace",
+        "path":  "/0/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/bandolier",
+        "op":  "replace",
+        "path":  "/1/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "crossbowsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/quiver-bolts",
+        "op":  "replace",
+        "path":  "/0/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "crossbowsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/quiver-bolts",
+        "op":  "replace",
+        "path":  "/1/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "combatoverhaulfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/pouch-sling",
+        "op":  "replace",
+        "path":  "/2/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "combatoverhaulfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/pouch-sling",
+        "op":  "replace",
+        "path":  "/3/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/sling-firearms",
+        "op":  "replace",
+        "path":  "/0/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/sling-firearms",
+        "op":  "replace",
+        "path":  "/1/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "crossbowsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/sling-firearms",
+        "op":  "replace",
+        "path":  "/2/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "crossbowsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/sling-firearms",
+        "op":  "replace",
+        "path":  "/3/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "extrafirearms"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/compat/extrafirearms",
+        "op":  "replace",
+        "path":  "/0/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "extrafirearms"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/compat/extrafirearms",
+        "op":  "replace",
+        "path":  "/1/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "morearrowsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/quiver-arrows",
+        "op":  "replace",
+        "path":  "/2/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "morearrowsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/quiver-arrows",
+        "op":  "replace",
+        "path":  "/3/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/bandolier-daggers",
+        "op":  "replace",
+        "path":  "/0/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/bandolier-daggers",
+        "op":  "replace",
+        "path":  "/1/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/sheath-dual-daggers",
+        "op":  "replace",
+        "path":  "/0/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/sheath-dual-daggers",
+        "op":  "replace",
+        "path":  "/1/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/back-sling",
+        "op":  "replace",
+        "path":  "/0/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/back-sling",
+        "op":  "replace",
+        "path":  "/1/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/back-sling",
+        "op":  "replace",
+        "path":  "/2/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/back-sling",
+        "op":  "replace",
+        "path":  "/3/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/back-sling",
+        "op":  "replace",
+        "path":  "/4/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/back-sling",
+        "op":  "replace",
+        "path":  "/5/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/back-sling",
+        "op":  "replace",
+        "path":  "/6/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/back-sling",
+        "op":  "replace",
+        "path":  "/7/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/back-sling",
+        "op":  "replace",
+        "path":  "/8/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/back-sling",
+        "op":  "replace",
+        "path":  "/9/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/sheath-pistol-front",
+        "op":  "replace",
+        "path":  "/2/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/sheath-pistol-front",
+        "op":  "replace",
+        "path":  "/3/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/bandolier",
+        "op":  "replace",
+        "path":  "/2/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "firearmsfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/bandolier",
+        "op":  "replace",
+        "path":  "/3/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/bandolier-daggers",
+        "op":  "replace",
+        "path":  "/2/enabled",
+        "value":  true
+    },
+    {
+        "side":  "Server",
+        "dependsOn":  [
+                          {
+                              "modid":  "armoryfork"
+                          }
+                      ],
+        "file":  "quiversandsheaths:recipes/grid/bandolier-daggers",
+        "op":  "replace",
+        "path":  "/3/enabled",
+        "value":  true
+    }
 ]
+

@@ -33,6 +33,11 @@
   },
   {
     "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "combatoverhaulfork"
+      }
+    ],
     "file": "game:itemtypes/combatoverhaul/sword",
     "op": "add",
     "path": "/attributes/InSheathVariantCodeByType",
@@ -47,6 +52,11 @@
   },
   {
     "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "combatoverhaulfork"
+      }
+    ],
     "file": "game:itemtypes/combatoverhaul/sword",
     "op": "add",
     "path": "/attributes/MetalVariantCodeByType",

@@ -1,0 +1,2610 @@
+{
+  "textureWidth": 16,
+  "textureHeight": 16,
+  "textures": {
+    "frontbag-0-material": "game:block/leather/plain",
+    "frontbag-0-metal": "game:block/metal/plate/iron"
+  },
+  "elements": [
+    {
+      "name": "LowerTorso",
+      "from": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "to": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "stepParentName": "LowerTorso"
+    },
+    {
+      "name": "UpperTorso",
+      "from": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "to": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "stepParentName": "UpperTorso"
+    },
+    {
+      "name": "Front",
+      "from": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "to": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "stepParentName": "UpperTorso",
+      "children": [
+        {
+          "name": "front_1",
+          "from": [
+            -0.4,
+            5.4,
+            0.0
+          ],
+          "to": [
+            0.0,
+            11.2,
+            1.5
+          ],
+          "rotationOrigin": [
+            -0.4,
+            5.4,
+            0.0
+          ],
+          "rotationZ": -90.0,
+          "faces": {
+            "north": {
+              "texture": "#frontbag-0-material",
+              "uv": [
+                0.0,
+                0.0,
+                0.5,
+                5.5
+              ]
+            },
+            "east": {
+              "texture": "#frontbag-0-material",
+              "uv": [
+                0.0,
+                0.0,
+                1.5,
+                5.5
+              ]
+            },
+            "south": {
+              "texture": "#frontbag-0-material",
+              "uv": [
+                0.0,
+                0.0,
+                0.5,
+                5.5
+              ]
+            },
+            "west": {
+              "texture": "#frontbag-0-material",
+              "uv": [
+                0.0,
+                0.0,
+                1.5,
+                5.5
+              ]
+            },
+            "up": {
+              "texture": "#frontbag-0-material",
+              "uv": [
+                0.0,
+                0.0,
+                0.5,
+                1.5
+              ]
+            },
+            "down": {
+              "texture": "#frontbag-0-material",
+              "uv": [
+                0.0,
+                0.0,
+                0.5,
+                1.5
+              ]
+            }
+          },
+          "children": [
+            {
+              "name": "back_0",
+              "from": [
+                0.4,
+                5.4,
+                0.3
+              ],
+              "to": [
+                8.8,
+                5.8,
+                0.8
+              ],
+              "rotationOrigin": [
+                0.4,
+                5.4,
+                0.3
+              ],
+              "rotationY": -45.0,
+              "faces": {
+                "north": {
+                  "texture": "#frontbag-0-material",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    8.0,
+                    0.5
+                  ]
+                },
+                "east": {
+                  "texture": "#frontbag-0-material",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.5,
+                    0.5
+                  ]
+                },
+                "south": {
+                  "texture": "#frontbag-0-material",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    8.0,
+                    0.5
+                  ]
+                },
+                "west": {
+                  "texture": "#frontbag-0-material",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.5,
+                    0.5
+                  ]
+                },
+                "up": {
+                  "texture": "#frontbag-0-material",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    8.0,
+                    0.5
+                  ]
+                },
+                "down": {
+                  "texture": "#frontbag-0-material",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    8.0,
+                    0.5
+                  ]
+                }
+              },
+              "children": [
+                {
+                  "name": "back_1",
+                  "from": [
+                    8.0,
+                    0.0,
+                    0.0
+                  ],
+                  "to": [
+                    13.2,
+                    0.4,
+                    0.5
+                  ],
+                  "rotationOrigin": [
+                    8.0,
+                    0.0,
+                    0.0
+                  ],
+                  "rotationX": 8.0,
+                  "rotationZ": -85.0,
+                  "faces": {
+                    "north": {
+                      "texture": "#frontbag-0-material",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        5.0,
+                        0.5
+                      ]
+                    },
+                    "east": {
+                      "texture": "#frontbag-0-material",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.5,
+                        0.5
+                      ]
+                    },
+                    "south": {
+                      "texture": "#frontbag-0-material",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        5.0,
+                        0.5
+                      ]
+                    },
+                    "west": {
+                      "texture": "#frontbag-0-material",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.5,
+                        0.5
+                      ]
+                    },
+                    "up": {
+                      "texture": "#frontbag-0-material",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        5.0,
+                        0.5
+                      ]
+                    },
+                    "down": {
+                      "texture": "#frontbag-0-material",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        5.0,
+                        0.5
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "front_2",
+              "from": [
+                1.4,
+                0.0,
+                0.0
+              ],
+              "to": [
+                1.8,
+                1.0,
+                1.5
+              ],
+              "rotationOrigin": [
+                1.4,
+                0.0,
+                0.0
+              ],
+              "rotationZ": 90.0,
+              "faces": {
+                "north": {
+                  "texture": "#frontbag-0-material",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.5,
+                    1.0
+                  ]
+                },
+                "east": {
+                  "texture": "#frontbag-0-material",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    1.5,
+                    1.0
+                  ]
+                },
+                "south": {
+                  "texture": "#frontbag-0-material",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.5,
+                    1.0
+                  ]
+                },
+                "west": {
+                  "texture": "#frontbag-0-material",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    1.5,
+                    1.0
+                  ]
+                },
+                "up": {
+                  "texture": "#frontbag-0-material",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.5,
+                    1.5
+                  ]
+                },
+                "down": {
+                  "texture": "#frontbag-0-material",
+                  "uv": [
+                    0.0,
+                    0.0,
+                    0.5,
+                    1.5
+                  ]
+                }
+              },
+              "children": [
+                {
+                  "name": "front_0",
+                  "from": [
+                    -0.01,
+                    -5.6568,
+                    5.6569
+                  ],
+                  "to": [
+                    0.39,
+                    2.3432,
+                    7.1569
+                  ],
+                  "rotationOrigin": [
+                    -0.01,
+                    -5.6568,
+                    5.6569
+                  ],
+                  "rotationX": -45.0,
+                  "faces": {
+                    "north": {
+                      "texture": "#frontbag-0-material",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.5,
+                        8.0
+                      ]
+                    },
+                    "east": {
+                      "texture": "#frontbag-0-material",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        1.5,
+                        8.0
+                      ]
+                    },
+                    "south": {
+                      "texture": "#frontbag-0-material",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.5,
+                        8.0
+                      ]
+                    },
+                    "west": {
+                      "texture": "#frontbag-0-material",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        1.5,
+                        8.0
+                      ]
+                    },
+                    "up": {
+                      "texture": "#frontbag-0-material",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.5,
+                        1.5
+                      ]
+                    },
+                    "down": {
+                      "texture": "#frontbag-0-material",
+                      "uv": [
+                        0.0,
+                        0.0,
+                        0.5,
+                        1.5
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "name": "buckle_0",
+                      "from": [
+                        -0.1,
+                        -0.5,
+                        0.2
+                      ],
+                      "to": [
+                        0.5,
+                        0.5,
+                        1.2
+                      ],
+                      "rotationOrigin": [
+                        -0.1,
+                        -0.5,
+                        0.2
+                      ],
+                      "faces": {
+                        "north": {
+                          "texture": "#frontbag-0-metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            0.5,
+                            1.0
+                          ]
+                        },
+                        "east": {
+                          "texture": "#frontbag-0-metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            1.0,
+                            1.0
+                          ]
+                        },
+                        "south": {
+                          "texture": "#frontbag-0-metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            0.5,
+                            1.0
+                          ]
+                        },
+                        "west": {
+                          "texture": "#frontbag-0-metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            1.0,
+                            1.0
+                          ]
+                        },
+                        "up": {
+                          "texture": "#frontbag-0-metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            0.5,
+                            1.0
+                          ]
+                        },
+                        "down": {
+                          "texture": "#frontbag-0-metal",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            0.5,
+                            1.0
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "name": "front_0Child",
+                      "from": [
+                        -0.5256356596946716,
+                        6.5,
+                        0.5
+                      ],
+                      "to": [
+                        0.0,
+                        6.699999809265137,
+                        1.0
+                      ],
+                      "faces": {
+                        "north": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "east": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "south": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "west": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "up": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "down": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        }
+                      },
+                      "children": [
+                        {
+                          "name": "front_0ChildChild",
+                          "from": [
+                            -0.08542836457490921,
+                            -0.3499999940395355,
+                            0.0
+                          ],
+                          "to": [
+                            0.2645716443657875,
+                            -0.19999998807907104,
+                            0.5
+                          ],
+                          "rotationOrigin": [
+                            -0.18542835861444473,
+                            -0.25,
+                            0.75
+                          ],
+                          "rotationZ": 60.0,
+                          "faces": {
+                            "north": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "east": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "south": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "west": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "up": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "down": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            }
+                          },
+                          "children": [
+                            {
+                              "name": "front_0ChildChildChild",
+                              "from": [
+                                -0.07116006314754486,
+                                -0.09399999992456287,
+                                0.0
+                              ],
+                              "to": [
+                                0.2421230673789978,
+                                0.10384078009519726,
+                                0.5
+                              ],
+                              "rotationOrigin": [
+                                -0.007876932621002197,
+                                -0.14615921990480274,
+                                0.75
+                              ],
+                              "rotationZ": 30.0,
+                              "faces": {
+                                "north": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "east": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "south": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "west": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "up": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "down": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                }
+                              },
+                              "children": [
+                                {
+                                  "name": "front_0ChildChildChildChild",
+                                  "from": [
+                                    -0.11335913836956024,
+                                    0.0839022547006607,
+                                    0.14301271736621857
+                                  ],
+                                  "to": [
+                                    0.16374428570270538,
+                                    0.36783041059970856,
+                                    0.44653983414173126
+                                  ],
+                                  "faces": {
+                                    "north": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.27710342,
+                                        0.28392816
+                                      ]
+                                    },
+                                    "east": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.8035271,
+                                        0.28392816
+                                      ]
+                                    },
+                                    "south": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.27710342,
+                                        0.28392816
+                                      ]
+                                    },
+                                    "west": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.8035271,
+                                        0.28392816
+                                      ]
+                                    },
+                                    "up": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.27710342,
+                                        0.8035271
+                                      ]
+                                    },
+                                    "down": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "front_0Child2",
+                          "from": [
+                            0.0,
+                            -0.899091,
+                            -1.0
+                          ],
+                          "to": [
+                            0.525636,
+                            -0.699092,
+                            -0.4999990000000001
+                          ],
+                          "rotationOrigin": [
+                            0.262818,
+                            -0.799092,
+                            -0.25
+                          ],
+                          "rotationX": -179.99998528720704,
+                          "faces": {
+                            "north": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "east": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "south": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "west": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "up": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "down": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            }
+                          },
+                          "children": [
+                            {
+                              "name": "front_0ChildChild",
+                              "from": [
+                                -0.08653285272885114,
+                                -0.3499999940395355,
+                                0.0
+                              ],
+                              "to": [
+                                0.2645716443657875,
+                                -0.19999998807907104,
+                                0.5
+                              ],
+                              "rotationOrigin": [
+                                -0.18542835861444473,
+                                -0.25,
+                                0.75
+                              ],
+                              "rotationZ": 60.0,
+                              "faces": {
+                                "north": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "east": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "south": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "west": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "up": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "down": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                }
+                              },
+                              "children": [
+                                {
+                                  "name": "front_0ChildChildChild",
+                                  "from": [
+                                    -0.0822889655828476,
+                                    -0.09590284526348114,
+                                    0.0
+                                  ],
+                                  "to": [
+                                    0.2421230673789978,
+                                    0.10193793475627899,
+                                    0.5
+                                  ],
+                                  "rotationOrigin": [
+                                    -0.007876932621002197,
+                                    -0.148062065243721,
+                                    -0.25
+                                  ],
+                                  "rotationZ": 30.0,
+                                  "faces": {
+                                    "north": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "east": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "south": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "west": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "up": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "down": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "front_0Child3",
+                      "from": [
+                        -0.5256356596946716,
+                        5.0,
+                        0.5
+                      ],
+                      "to": [
+                        0.0,
+                        5.199999809265137,
+                        1.0
+                      ],
+                      "faces": {
+                        "north": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "east": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "south": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "west": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "up": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "down": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        }
+                      },
+                      "children": [
+                        {
+                          "name": "front_0ChildChild",
+                          "from": [
+                            -0.08542836457490921,
+                            -0.3499999940395355,
+                            0.0
+                          ],
+                          "to": [
+                            0.2645716443657875,
+                            -0.19999998807907104,
+                            0.5
+                          ],
+                          "rotationOrigin": [
+                            -0.18542835861444473,
+                            -0.25,
+                            0.75
+                          ],
+                          "rotationZ": 60.0,
+                          "faces": {
+                            "north": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "east": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "south": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "west": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "up": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "down": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            }
+                          },
+                          "children": [
+                            {
+                              "name": "front_0ChildChildChild",
+                              "from": [
+                                -0.07116006314754486,
+                                -0.09399999992456287,
+                                0.0
+                              ],
+                              "to": [
+                                0.2421230673789978,
+                                0.10384078009519726,
+                                0.5
+                              ],
+                              "rotationOrigin": [
+                                -0.007876932621002197,
+                                -0.14615921990480274,
+                                0.75
+                              ],
+                              "rotationZ": 30.0,
+                              "faces": {
+                                "north": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "east": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "south": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "west": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "up": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "down": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                }
+                              },
+                              "children": [
+                                {
+                                  "name": "front_0ChildChildChildChild",
+                                  "from": [
+                                    -0.11335913836956024,
+                                    0.0839022547006607,
+                                    0.14301271736621857
+                                  ],
+                                  "to": [
+                                    0.16374428570270538,
+                                    0.36783041059970856,
+                                    0.44653983414173126
+                                  ],
+                                  "faces": {
+                                    "north": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.27710342,
+                                        0.28392816
+                                      ]
+                                    },
+                                    "east": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.8035271,
+                                        0.28392816
+                                      ]
+                                    },
+                                    "south": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.27710342,
+                                        0.28392816
+                                      ]
+                                    },
+                                    "west": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.8035271,
+                                        0.28392816
+                                      ]
+                                    },
+                                    "up": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.27710342,
+                                        0.8035271
+                                      ]
+                                    },
+                                    "down": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "front_0Child2",
+                          "from": [
+                            0.0,
+                            -0.899091,
+                            -1.0
+                          ],
+                          "to": [
+                            0.525636,
+                            -0.699092,
+                            -0.4999990000000001
+                          ],
+                          "rotationOrigin": [
+                            0.262818,
+                            -0.799092,
+                            -0.25
+                          ],
+                          "rotationX": -179.99998528720704,
+                          "faces": {
+                            "north": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "east": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "south": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "west": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "up": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "down": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            }
+                          },
+                          "children": [
+                            {
+                              "name": "front_0ChildChild",
+                              "from": [
+                                -0.08653285272885114,
+                                -0.3499999940395355,
+                                0.0
+                              ],
+                              "to": [
+                                0.2645716443657875,
+                                -0.19999998807907104,
+                                0.5
+                              ],
+                              "rotationOrigin": [
+                                -0.18542835861444473,
+                                -0.25,
+                                0.75
+                              ],
+                              "rotationZ": 60.0,
+                              "faces": {
+                                "north": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "east": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "south": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "west": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "up": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "down": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                }
+                              },
+                              "children": [
+                                {
+                                  "name": "front_0ChildChildChild",
+                                  "from": [
+                                    -0.0822889655828476,
+                                    -0.09590284526348114,
+                                    0.0
+                                  ],
+                                  "to": [
+                                    0.2421230673789978,
+                                    0.10193793475627899,
+                                    0.5
+                                  ],
+                                  "rotationOrigin": [
+                                    -0.007876932621002197,
+                                    -0.148062065243721,
+                                    -0.25
+                                  ],
+                                  "rotationZ": 30.0,
+                                  "faces": {
+                                    "north": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "east": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "south": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "west": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "up": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "down": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "front_0Child32",
+                      "from": [
+                        -0.5256356596946716,
+                        3.5,
+                        0.5
+                      ],
+                      "to": [
+                        0.0,
+                        3.6999998092651367,
+                        1.0
+                      ],
+                      "faces": {
+                        "north": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "east": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "south": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "west": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "up": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "down": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        }
+                      },
+                      "children": [
+                        {
+                          "name": "front_0ChildChild",
+                          "from": [
+                            -0.08542836457490921,
+                            -0.3499999940395355,
+                            0.0
+                          ],
+                          "to": [
+                            0.2645716443657875,
+                            -0.19999998807907104,
+                            0.5
+                          ],
+                          "rotationOrigin": [
+                            -0.18542835861444473,
+                            -0.25,
+                            0.75
+                          ],
+                          "rotationZ": 60.0,
+                          "faces": {
+                            "north": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "east": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "south": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "west": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "up": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "down": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            }
+                          },
+                          "children": [
+                            {
+                              "name": "front_0ChildChildChild",
+                              "from": [
+                                -0.07116006314754486,
+                                -0.09399999992456287,
+                                0.0
+                              ],
+                              "to": [
+                                0.2421230673789978,
+                                0.10384078009519726,
+                                0.5
+                              ],
+                              "rotationOrigin": [
+                                -0.007876932621002197,
+                                -0.14615921990480274,
+                                0.75
+                              ],
+                              "rotationZ": 30.0,
+                              "faces": {
+                                "north": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "east": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "south": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "west": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "up": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "down": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                }
+                              },
+                              "children": [
+                                {
+                                  "name": "front_0ChildChildChildChild",
+                                  "from": [
+                                    -0.11335913836956024,
+                                    0.0839022547006607,
+                                    0.14301271736621857
+                                  ],
+                                  "to": [
+                                    0.16374428570270538,
+                                    0.36783041059970856,
+                                    0.44653983414173126
+                                  ],
+                                  "faces": {
+                                    "north": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.27710342,
+                                        0.28392816
+                                      ]
+                                    },
+                                    "east": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.8035271,
+                                        0.28392816
+                                      ]
+                                    },
+                                    "south": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.27710342,
+                                        0.28392816
+                                      ]
+                                    },
+                                    "west": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.8035271,
+                                        0.28392816
+                                      ]
+                                    },
+                                    "up": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.27710342,
+                                        0.8035271
+                                      ]
+                                    },
+                                    "down": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "front_0Child2",
+                          "from": [
+                            0.0,
+                            -0.899091,
+                            -1.0
+                          ],
+                          "to": [
+                            0.525636,
+                            -0.699092,
+                            -0.4999990000000001
+                          ],
+                          "rotationOrigin": [
+                            0.262818,
+                            -0.799092,
+                            -0.25
+                          ],
+                          "rotationX": -179.99998528720704,
+                          "faces": {
+                            "north": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "east": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "south": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "west": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "up": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "down": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            }
+                          },
+                          "children": [
+                            {
+                              "name": "front_0ChildChild",
+                              "from": [
+                                -0.08653285272885114,
+                                -0.3499999940395355,
+                                0.0
+                              ],
+                              "to": [
+                                0.2645716443657875,
+                                -0.19999998807907104,
+                                0.5
+                              ],
+                              "rotationOrigin": [
+                                -0.18542835861444473,
+                                -0.25,
+                                0.75
+                              ],
+                              "rotationZ": 60.0,
+                              "faces": {
+                                "north": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "east": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "south": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "west": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "up": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "down": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                }
+                              },
+                              "children": [
+                                {
+                                  "name": "front_0ChildChildChild",
+                                  "from": [
+                                    -0.0822889655828476,
+                                    -0.09590284526348114,
+                                    0.0
+                                  ],
+                                  "to": [
+                                    0.2421230673789978,
+                                    0.10193793475627899,
+                                    0.5
+                                  ],
+                                  "rotationOrigin": [
+                                    -0.007876932621002197,
+                                    -0.148062065243721,
+                                    -0.25
+                                  ],
+                                  "rotationZ": 30.0,
+                                  "faces": {
+                                    "north": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "east": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "south": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "west": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "up": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "down": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "front_0Child322",
+                      "from": [
+                        -0.5256356596946716,
+                        2.0,
+                        0.5
+                      ],
+                      "to": [
+                        0.0,
+                        2.1999998092651367,
+                        1.0
+                      ],
+                      "faces": {
+                        "north": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "east": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "south": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "west": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "up": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        },
+                        "down": {
+                          "texture": "#frontbag-0-material",
+                          "uv": [
+                            0.0,
+                            0.0,
+                            4.0,
+                            4.0
+                          ]
+                        }
+                      },
+                      "children": [
+                        {
+                          "name": "front_0ChildChild",
+                          "from": [
+                            -0.08542836457490921,
+                            -0.3499999940395355,
+                            0.0
+                          ],
+                          "to": [
+                            0.2645716443657875,
+                            -0.19999998807907104,
+                            0.5
+                          ],
+                          "rotationOrigin": [
+                            -0.18542835861444473,
+                            -0.25,
+                            0.75
+                          ],
+                          "rotationZ": 60.0,
+                          "faces": {
+                            "north": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "east": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "south": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "west": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "up": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "down": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            }
+                          },
+                          "children": [
+                            {
+                              "name": "front_0ChildChildChild",
+                              "from": [
+                                -0.07116006314754486,
+                                -0.09399999992456287,
+                                0.0
+                              ],
+                              "to": [
+                                0.2421230673789978,
+                                0.10384078009519726,
+                                0.5
+                              ],
+                              "rotationOrigin": [
+                                -0.007876932621002197,
+                                -0.14615921990480274,
+                                0.75
+                              ],
+                              "rotationZ": 30.0,
+                              "faces": {
+                                "north": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "east": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "south": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "west": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "up": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "down": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                }
+                              },
+                              "children": [
+                                {
+                                  "name": "front_0ChildChildChildChild",
+                                  "from": [
+                                    -0.11335913836956024,
+                                    0.0839022547006607,
+                                    0.14301271736621857
+                                  ],
+                                  "to": [
+                                    0.16374428570270538,
+                                    0.36783041059970856,
+                                    0.44653983414173126
+                                  ],
+                                  "faces": {
+                                    "north": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.27710342,
+                                        0.28392816
+                                      ]
+                                    },
+                                    "east": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.8035271,
+                                        0.28392816
+                                      ]
+                                    },
+                                    "south": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.27710342,
+                                        0.28392816
+                                      ]
+                                    },
+                                    "west": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.8035271,
+                                        0.28392816
+                                      ]
+                                    },
+                                    "up": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        0.27710342,
+                                        0.8035271
+                                      ]
+                                    },
+                                    "down": {
+                                      "texture": "#frontbag-0-metal",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "front_0Child2",
+                          "from": [
+                            0.0,
+                            -0.899091,
+                            -1.0
+                          ],
+                          "to": [
+                            0.525636,
+                            -0.699092,
+                            -0.4999990000000001
+                          ],
+                          "rotationOrigin": [
+                            0.262818,
+                            -0.799092,
+                            -0.25
+                          ],
+                          "rotationX": -179.99998528720704,
+                          "faces": {
+                            "north": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "east": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "south": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "west": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "up": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            },
+                            "down": {
+                              "texture": "#frontbag-0-material",
+                              "uv": [
+                                0.0,
+                                0.0,
+                                4.0,
+                                4.0
+                              ]
+                            }
+                          },
+                          "children": [
+                            {
+                              "name": "front_0ChildChild",
+                              "from": [
+                                -0.08653285272885114,
+                                -0.3499999940395355,
+                                0.0
+                              ],
+                              "to": [
+                                0.2645716443657875,
+                                -0.19999998807907104,
+                                0.5
+                              ],
+                              "rotationOrigin": [
+                                -0.18542835861444473,
+                                -0.25,
+                                0.75
+                              ],
+                              "rotationZ": 60.0,
+                              "faces": {
+                                "north": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "east": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "south": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "west": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "up": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                },
+                                "down": {
+                                  "texture": "#frontbag-0-material",
+                                  "uv": [
+                                    0.0,
+                                    0.0,
+                                    4.0,
+                                    4.0
+                                  ]
+                                }
+                              },
+                              "children": [
+                                {
+                                  "name": "front_0ChildChildChild",
+                                  "from": [
+                                    -0.0822889655828476,
+                                    -0.09590284526348114,
+                                    0.0
+                                  ],
+                                  "to": [
+                                    0.2421230673789978,
+                                    0.10193793475627899,
+                                    0.5
+                                  ],
+                                  "rotationOrigin": [
+                                    -0.007876932621002197,
+                                    -0.148062065243721,
+                                    -0.25
+                                  ],
+                                  "rotationZ": 30.0,
+                                  "faces": {
+                                    "north": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "east": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "south": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "west": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "up": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    },
+                                    "down": {
+                                      "texture": "#frontbag-0-material",
+                                      "uv": [
+                                        0.0,
+                                        0.0,
+                                        4.0,
+                                        4.0
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "editor": {
+    "backDropShape": "E:/Programs/VSModelCreator/seraph-hairless",
+    "collapsedPaths": "Root/Waist,Root/Front/front_1/front_2/front_0/pouch_0,Root/Waist-Quiver/Belt,Root/Waist-Quiver/Quiver/arrow_5,Root/Waist-Quiver/Quiver/arrow_4,Root/Waist-Quiver/Quiver/arrow_3,Root/Waist-Quiver/Quiver/arrow_2,Root/Waist-Quiver/Quiver/arrow_1,Root/Waist/buckle-bottom,Root/Waist-Quiver/Quiver/arrow_0,Root/Front/back_0,Root/Front/front_0,Root/Front/front_1/back_0,Root/Front/front_1/front_2/front_0/pouch_4",
+    "allAngles": false,
+    "entityTextureMode": false
+  }
+}

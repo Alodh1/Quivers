@@ -34,6 +34,9 @@
       "quiversandsheaths:itemtypes/beltbags/sheath-dual-daggers.json": {
         "behaviors/0/properties/hotkey": "sheath_sword_hotkey"
       },
+      "quiversandsheaths:itemtypes/beltbags/tool-holster.json": {
+        "behaviors/0/properties/hotkey": "tool_holster_hotkey"
+      },
       "quiversandsheaths:itemtypes/shoulder/back-scabbard.json": {
         "behaviors/0/properties/hotkey": "sheath_back_scabbard_hotkey"
       },
@@ -46,8 +49,14 @@
       "quiversandsheaths:itemtypes/beltbags/sheath-pistol-offhand.json": {
         "behaviors/0/properties/hotkey": "sheath_pistol_offhand_hotkey"
       },
-      "quiversandsheaths:recipes/grid/sheath-knife-pouch.json": {
-        "-/requiresTrait": "(class_exclusive_recipes) ? value : null"
+      "quiversandsheaths:itemtypes/front/bandolier.json": {
+        "behaviors/0/properties/hotkey": "bandolier_hotkey"
+      },
+      "quiversandsheaths:itemtypes/front/bandolier-daggers.json": {
+        "behaviors/0/properties/hotkey": "bandolier_hotkey"
+      },
+      "quiversandsheaths:itemtypes/front/bandolier-potions.json": {
+        "behaviors/0/properties/hotkey": "bandolier_hotkey"
       },
       "@quiversandsheaths:itemtypes/*/*.json": {
         "/creativeinventoryStacks": "(hide_colored_variants) ? empty : value"
@@ -227,6 +236,49 @@
       }
     },
     {
+      "code": "tool_holster_hotkey",
+      "type": "other",
+      "ingui": "quiversandsheaths:setting-tool_holster_hotkey",
+      "default": "Tool holster",
+      "mapping": {
+        "Tool holster": {
+          "hotkeyCode": "quiversandsheaths-swap-tool-holster",
+          "hotkeyName": "(CO) Swap tool holster",
+          "hotkeyKey": "R"
+        },
+        "Ranged (main hand)": {
+          "hotkeyCode": "quiversandsheaths-swap-weapon-right-ranged",
+          "hotkeyName": "(CO) Swap ranged weapon (main hand)",
+          "hotkeyKey": "R"
+        },
+        "Ranged (off hand)": {
+          "hotkeyCode": "quiversandsheaths-swap-weapon-left-ranged",
+          "hotkeyName": "(CO) Swap ranged weapon (off hand)",
+          "hotkeyKey": "R"
+        },
+        "Melee (main hand)": {
+          "hotkeyCode": "quiversandsheaths-swap-weapon-right-melee",
+          "hotkeyName": "(CO) Swap melee weapon (main hand)",
+          "hotkeyKey": "R"
+        },
+        "Melee (off hand)": {
+          "hotkeyCode": "quiversandsheaths-swap-weapon-left-melee",
+          "hotkeyName": "(CO) Swap melee weapon (off hand)",
+          "hotkeyKey": "R"
+        },
+        "Tool": {
+          "hotkeyCode": "quiversandsheaths-swap-tool",
+          "hotkeyName": "(CO) Swap tool",
+          "hotkeyKey": "R"
+        },
+        "Additional": {
+          "hotkeyCode": "quiversandsheaths-swap-additional",
+          "hotkeyName": "(CO) Additional swap hotkey",
+          "hotkeyKey": "R"
+        }
+      }
+    },
+    {
       "code": "sheath_back_scabbard_hotkey",
       "type": "other",
       "ingui": "quiversandsheaths:setting-sheath_back_scabbard_hotkey",
@@ -331,6 +383,39 @@
       }
     },
     {
+      "code": "bandolier_hotkey",
+      "type": "other",
+      "ingui": "quiversandsheaths:setting-bandolier_hotkey",
+      "default": "Bandolier",
+      "mapping": {
+        "Bandolier": {
+          "hotkeyCode": "quiversandsheaths-swap-bandolier",
+          "hotkeyName": "(CO) Swap bandolier item",
+          "hotkeyKey": "R"
+        },
+        "Ranged (main hand)": {
+          "hotkeyCode": "quiversandsheaths-swap-weapon-right-ranged",
+          "hotkeyName": "(CO) Swap ranged weapon (main hand)",
+          "hotkeyKey": "R"
+        },
+        "Melee (main hand)": {
+          "hotkeyCode": "quiversandsheaths-swap-weapon-right-melee",
+          "hotkeyName": "(CO) Swap melee weapon (main hand)",
+          "hotkeyKey": "R"
+        },
+        "Tool": {
+          "hotkeyCode": "quiversandsheaths-swap-tool",
+          "hotkeyName": "(CO) Swap tool",
+          "hotkeyKey": "R"
+        },
+        "Additional": {
+          "hotkeyCode": "quiversandsheaths-swap-additional",
+          "hotkeyName": "(CO) Additional swap hotkey",
+          "hotkeyKey": "R"
+        }
+      }
+    },
+    {
       "type": "separator",
       "title": "quiversandsheaths:setting-title-capacities",
       "collapsible": true
@@ -387,17 +472,6 @@
       "comment": "quiversandsheaths:setting-comment-allow_stones_in_sling_pouch",
       "default": false,
       "clientSide": true
-    },
-    {
-      "type": "separator",
-      "title": "quiversandsheaths:setting-title-recipes",
-      "collapsible": true
-    },
-    {
-      "code": "class_exclusive_recipes",
-      "type": "boolean",
-      "ingui": "quiversandsheaths:setting-class_exclusive_recipes",
-      "default": true
     }
   ]
 }

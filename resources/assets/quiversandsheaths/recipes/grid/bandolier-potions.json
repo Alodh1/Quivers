@@ -1,0 +1,78 @@
+[
+  {
+    "enabled": false,
+    "ingredientPattern": "LLL,N_N,LSL",
+    "recipeGroup": 1,
+    "ingredients": {
+      "N": {
+        "type": "item",
+        "code": "part-buckle-iron",
+        "quantity": 2
+      },
+      "L": {
+        "type": "item",
+        "code": "game:leather-normal-plain",
+        "quantity": 4
+      },
+      "S": {
+        "type": "item",
+        "code": "game:sewingkit"
+      }
+    },
+    "width": 3,
+    "height": 3,
+    "name": "",
+    "output": {
+      "type": "item",
+      "code": "quiversandsheaths:frontbag-front-bandolier-potions"
+    }
+  },
+  {
+    "enabled": false,
+    "ingredientPattern": "LLL,N_N,LSL",
+    "recipeGroup": 2,
+    "ingredients": {
+      "N": {
+        "type": "item",
+        "code": "part-buckle-{metal}",
+        "quantity": 2
+      },
+      "L": {
+        "type": "item",
+        "code": "game:leather-normal-{leather}",
+        "quantity": 4
+      },
+      "S": {
+        "type": "item",
+        "code": "game:sewingkit"
+      }
+    },
+    "allowedVariants": {
+      "metal": [
+        "brass",
+        "copper",
+        "tinbronze",
+        "bismuthbronze",
+        "blackbronze",
+        "gold",
+        "silver",
+        "iron",
+        "meteoriciron",
+        "steel"
+      ]
+    },
+    "width": 3,
+    "height": 3,
+    "name": "",
+    "output": {
+      "type": "item",
+      "code": "quiversandsheaths:frontbag-front-bandolier-potions",
+      "attributes": {
+        "types": {
+          "leather": "{leather}",
+          "metal": "{metal}"
+        }
+      }
+    }
+  }
+]

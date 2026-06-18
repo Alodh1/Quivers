@@ -14,7 +14,9 @@ public static class BackSlingTransformTuningCommands
 {
     private static readonly Dictionary<string, ModelTransform> OriginalTransforms = [];
     private static string? selectedCode;
-    private static bool editStoredItemTransform;
+    private static QsOverlayEditMode editMode = QsOverlayEditMode.Base;
+
+    internal static QsOverlayGizmoMode GizmoMode { get; private set; } = QsOverlayGizmoMode.Off;
 
     public static void Register(ICoreClientAPI api)
     {
@@ -36,8 +38,10 @@ public static class BackSlingTransformTuningCommands
             return command switch
             {
                 "help" => Success(Help()),
-                "base" => SetEditMode(storedItem: false),
-                "item" => SetEditMode(storedItem: true),
+                "base" => SetEditMode(QsOverlayEditMode.Base),
+                "item" => SetEditMode(QsOverlayEditMode.SharedItem),
+                "slotitem" or "slot-item" or "localitem" or "local-item" => SetEditMode(QsOverlayEditMode.SlotItem),
+                "gizmo" or "gizmos" => SetGizmoMode(parts),
                 "list" => Success(ListTargets(api)),
                 "select" => SelectTarget(api, parts),
                 "status" => WithTarget(api, target => Success(TargetStatus(target))),
@@ -57,23 +61,26 @@ public static class BackSlingTransformTuningCommands
         }
     }
 
-    private static TextCommandResult SetEditMode(bool storedItem)
+    private static TextCommandResult SetEditMode(QsOverlayEditMode mode)
     {
-        editStoredItemTransform = storedItem;
-        return Success(storedItem
-            ? "Editing stored item transform overrides. Put the tool you want to tune in the holster first."
-            : "Editing base overlay transform.");
+        editMode = mode;
+        return Success(mode switch
+        {
+            QsOverlayEditMode.SharedItem => "Editing shared stored item transform overrides. Put the item you want to tune in any rendered slot.",
+            QsOverlayEditMode.SlotItem => "Editing slot-specific stored item transform overrides. Put the item you want to tune in the selected slot.",
+            _ => "Editing base overlay transform."
+        });
     }
 
     private static TextCommandResult SelectTarget(ICoreClientAPI api, string[] parts)
     {
         if (parts.Length < 2) return Success(ListTargets(api));
 
-        List<OverlayTarget> targets = FindTargets(api);
+        List<QsOverlayTarget> targets = FindTargets(api);
         if (targets.Count == 0) return TextCommandResult.Error("No equipped Quivers overlay item found.", string.Empty);
 
         string selector = parts[1];
-        OverlayTarget? selected = null;
+        QsOverlayTarget? selected = null;
 
         if (int.TryParse(selector, NumberStyles.Integer, CultureInfo.InvariantCulture, out int index) &&
             index >= 0 &&
@@ -97,9 +104,36 @@ public static class BackSlingTransformTuningCommands
         return Success($"Selected {selected.Code}\n{FormatTransform(selected.Transform)}");
     }
 
-    private static TextCommandResult WithTarget(ICoreClientAPI api, System.Func<OverlayTarget, TextCommandResult> action)
+    private static TextCommandResult SetGizmoMode(string[] parts)
     {
-        OverlayTarget? target = ResolveTarget(api);
+        if (parts.Length < 2)
+        {
+            GizmoMode = GizmoMode == QsOverlayGizmoMode.Off ? QsOverlayGizmoMode.Move : QsOverlayGizmoMode.Off;
+            return Success($"qsoverlay gizmo: {FormatGizmoMode(GizmoMode)}");
+        }
+
+        string mode = parts[1].ToLowerInvariant();
+        GizmoMode = mode switch
+        {
+            "on" => GizmoMode == QsOverlayGizmoMode.Off ? QsOverlayGizmoMode.Move : GizmoMode,
+            "move" or "translate" or "translation" => QsOverlayGizmoMode.Move,
+            "rot" or "rotate" or "rotation" => QsOverlayGizmoMode.Rotate,
+            "scale" => QsOverlayGizmoMode.Scale,
+            "off" or "hide" or "none" => QsOverlayGizmoMode.Off,
+            _ => GizmoMode
+        };
+
+        if (mode is not ("on" or "move" or "translate" or "translation" or "rot" or "rotate" or "rotation" or "scale" or "off" or "hide" or "none"))
+        {
+            return TextCommandResult.Error("Usage: .qsoverlay gizmo [move|rotate|scale|off]", string.Empty);
+        }
+
+        return Success($"qsoverlay gizmo: {FormatGizmoMode(GizmoMode)}");
+    }
+
+    private static TextCommandResult WithTarget(ICoreClientAPI api, System.Func<QsOverlayTarget, TextCommandResult> action)
+    {
+        QsOverlayTarget? target = ResolveTarget(api);
         if (target == null)
         {
             return TextCommandResult.Error("No equipped Quivers overlay item found. Use .qsoverlay list after equipping one.", string.Empty);
@@ -109,14 +143,27 @@ public static class BackSlingTransformTuningCommands
         return action(target);
     }
 
-    private static OverlayTarget? ResolveTarget(ICoreClientAPI api)
+    internal static bool TryResolveTarget(ICoreClientAPI api, out QsOverlayTarget target)
     {
-        List<OverlayTarget> targets = FindTargets(api);
+        QsOverlayTarget? resolved = ResolveTarget(api);
+        if (resolved == null)
+        {
+            target = default!;
+            return false;
+        }
+
+        target = resolved;
+        return true;
+    }
+
+    private static QsOverlayTarget? ResolveTarget(ICoreClientAPI api)
+    {
+        List<QsOverlayTarget> targets = FindTargets(api);
         if (targets.Count == 0) return null;
 
         if (!string.IsNullOrWhiteSpace(selectedCode))
         {
-            OverlayTarget? selected = targets.FirstOrDefault(target => target.Code == selectedCode);
+            QsOverlayTarget? selected = targets.FirstOrDefault(target => target.Code == selectedCode);
             if (selected != null) return selected;
         }
 
@@ -125,9 +172,9 @@ public static class BackSlingTransformTuningCommands
                targets[0];
     }
 
-    private static List<OverlayTarget> FindTargets(ICoreClientAPI api)
+    private static List<QsOverlayTarget> FindTargets(ICoreClientAPI api)
     {
-        List<OverlayTarget> targets = [];
+        List<QsOverlayTarget> targets = [];
         InventoryBase? gearInventory = api.World.Player?.Entity?.GetBehavior<EntityBehaviorPlayerInventory>()?.Inventory;
         if (gearInventory == null) return targets;
 
@@ -140,23 +187,38 @@ public static class BackSlingTransformTuningCommands
             BackSlingRenderConfigBehavior? behavior = stack?.Collectible?.GetBehavior<BackSlingRenderConfigBehavior>();
             if (stack?.Collectible?.Code == null || behavior == null) continue;
 
-            ItemStack? storedStack = GetStoredStack(api, stack, behavior.Config);
-            targets.Add(BuildTarget(index, stack.Collectible.Code.ToString(), behavior.Config, storedStack));
+            foreach (BackSlingStoredWeaponRenderConfig config in behavior.Configs)
+            {
+                ItemStack? storedStack = GetStoredStack(api, stack, config);
+                string code = behavior.Configs.Length > 1
+                    ? $"{stack.Collectible.Code} slot-{config.SlotIndex}"
+                    : stack.Collectible.Code.ToString();
+                targets.Add(BuildTarget(index, code, stack, behavior, config, storedStack));
+            }
         }
 
         return targets;
     }
 
-    private static OverlayTarget BuildTarget(int slotIndex, string code, BackSlingStoredWeaponRenderConfig config, ItemStack? storedStack)
+    private static QsOverlayTarget BuildTarget(int slotIndex, string code, ItemStack attachmentStack, BackSlingRenderConfigBehavior behavior, BackSlingStoredWeaponRenderConfig config, ItemStack? storedStack)
     {
-        if (editStoredItemTransform && storedStack?.Collectible?.Code != null)
+        if (editMode == QsOverlayEditMode.SharedItem && storedStack?.Collectible?.Code != null)
         {
             string storedCode = storedStack.Collectible.Code.ToString();
-            BackSlingStoredWeaponItemTransform itemTransform = ResolveOrCreateStoredItemTransform(config, storedCode, out string pattern);
-            return new OverlayTarget(slotIndex, code, itemTransform.Transform, "stored item", pattern, storedCode);
+            BackSlingStoredWeaponItemTransform itemTransform = ResolveOrCreateStoredItemTransform(behavior.TransformByStoredItem, storedCode, out string pattern);
+            return new QsOverlayTarget(slotIndex, code, attachmentStack, config, itemTransform.Transform, "shared item", pattern, storedCode, storedStack, null, itemTransform);
         }
 
-        return new OverlayTarget(slotIndex, code, config.Transform, "base", null, storedStack?.Collectible?.Code?.ToString());
+        if (editMode == QsOverlayEditMode.SlotItem && storedStack?.Collectible?.Code != null)
+        {
+            string storedCode = storedStack.Collectible.Code.ToString();
+            config.TransformByStoredItem ??= [];
+            BackSlingStoredWeaponItemTransform itemTransform = ResolveOrCreateStoredItemTransform(config.TransformByStoredItem, storedCode, out string pattern);
+            BackSlingStoredWeaponItemTransform? sharedItemTransform = ResolveStoredItemTransform(behavior.TransformByStoredItem, storedCode);
+            return new QsOverlayTarget(slotIndex, code, attachmentStack, config, itemTransform.Transform, "slot item", pattern, storedCode, storedStack, sharedItemTransform?.Transform, itemTransform);
+        }
+
+        return new QsOverlayTarget(slotIndex, code, attachmentStack, config, config.Transform, "base", null, storedStack?.Collectible?.Code?.ToString(), storedStack, null, null);
     }
 
     private static ItemStack? GetStoredStack(ICoreClientAPI api, ItemStack slingStack, BackSlingStoredWeaponRenderConfig config)
@@ -170,6 +232,8 @@ public static class BackSlingTransformTuningCommands
         {
             return preferred;
         }
+
+        if (!config.FallbackToFirstFilledSlot) return null;
 
         foreach ((_, IAttribute attribute) in slotsTree.SortedCopy())
         {
@@ -195,17 +259,37 @@ public static class BackSlingTransformTuningCommands
     }
 
     private static BackSlingStoredWeaponItemTransform ResolveOrCreateStoredItemTransform(
-        BackSlingStoredWeaponRenderConfig config,
+        Dictionary<string, BackSlingStoredWeaponItemTransform> transforms,
         string storedCode,
         out string pattern)
     {
-        config.TransformByStoredItem ??= [];
+        BackSlingStoredWeaponItemTransform? bestTransform = ResolveStoredItemTransform(transforms, storedCode, out string? bestPattern);
+        if (bestTransform != null && bestPattern != null)
+        {
+            pattern = bestPattern;
+            return bestTransform;
+        }
+
+        pattern = storedCode;
+        BackSlingStoredWeaponItemTransform created = new();
+        transforms[pattern] = created;
+        return created;
+    }
+
+    private static BackSlingStoredWeaponItemTransform? ResolveStoredItemTransform(Dictionary<string, BackSlingStoredWeaponItemTransform>? transforms, string storedCode)
+    {
+        return ResolveStoredItemTransform(transforms, storedCode, out _);
+    }
+
+    private static BackSlingStoredWeaponItemTransform? ResolveStoredItemTransform(Dictionary<string, BackSlingStoredWeaponItemTransform>? transforms, string storedCode, out string? bestPattern)
+    {
+        bestPattern = null;
+        if (transforms == null || transforms.Count == 0) return null;
 
         BackSlingStoredWeaponItemTransform? bestTransform = null;
-        string? bestPattern = null;
         int bestSpecificity = -1;
 
-        foreach ((string existingPattern, BackSlingStoredWeaponItemTransform transform) in config.TransformByStoredItem)
+        foreach ((string existingPattern, BackSlingStoredWeaponItemTransform transform) in transforms)
         {
             if (!MatchesWildcard(existingPattern, storedCode)) continue;
 
@@ -217,16 +301,7 @@ public static class BackSlingTransformTuningCommands
             bestSpecificity = specificity;
         }
 
-        if (bestTransform != null && bestPattern != null)
-        {
-            pattern = bestPattern;
-            return bestTransform;
-        }
-
-        pattern = storedCode;
-        BackSlingStoredWeaponItemTransform created = new();
-        config.TransformByStoredItem[pattern] = created;
-        return created;
+        return bestTransform;
     }
 
     private static bool MatchesWildcard(string pattern, string value)
@@ -254,14 +329,14 @@ public static class BackSlingTransformTuningCommands
 
     private static string ListTargets(ICoreClientAPI api)
     {
-        List<OverlayTarget> targets = FindTargets(api);
+        List<QsOverlayTarget> targets = FindTargets(api);
         if (targets.Count == 0) return "No equipped Quivers overlay item found.";
 
         StringBuilder builder = new();
-        builder.AppendLine("Quivers overlay targets:");
+        builder.AppendLine($"Quivers overlay targets (gizmo: {FormatGizmoMode(GizmoMode)}):");
         for (int index = 0; index < targets.Count; index++)
         {
-            OverlayTarget target = targets[index];
+            QsOverlayTarget target = targets[index];
             string marker = target.Code == selectedCode ? " *" : string.Empty;
             builder.AppendLine($"{index}: slot {target.SlotIndex} {target.Code}{marker}");
             if (!string.IsNullOrWhiteSpace(target.StoredCode)) builder.AppendLine($"   stored: {target.StoredCode}");
@@ -272,7 +347,7 @@ public static class BackSlingTransformTuningCommands
         return builder.ToString().TrimEnd();
     }
 
-    private static TextCommandResult SetTranslation(OverlayTarget target, string[] parts)
+    private static TextCommandResult SetTranslation(QsOverlayTarget target, string[] parts)
     {
         if (!TryReadVec(parts, 1, out Vec3f values, out string error)) return TextCommandResult.Error(error, string.Empty);
 
@@ -282,7 +357,7 @@ public static class BackSlingTransformTuningCommands
         return Success($"Set translation for {target.Code}\n{FormatTransform(target.Transform)}");
     }
 
-    private static TextCommandResult NudgeTranslation(OverlayTarget target, string[] parts)
+    private static TextCommandResult NudgeTranslation(QsOverlayTarget target, string[] parts)
     {
         if (!TryReadVec(parts, 1, out Vec3f values, out string error)) return TextCommandResult.Error(error, string.Empty);
 
@@ -292,7 +367,7 @@ public static class BackSlingTransformTuningCommands
         return Success($"Nudged translation for {target.Code}\n{FormatTransform(target.Transform)}");
     }
 
-    private static TextCommandResult SetRotation(OverlayTarget target, string[] parts)
+    private static TextCommandResult SetRotation(QsOverlayTarget target, string[] parts)
     {
         if (!TryReadVec(parts, 1, out Vec3f values, out string error)) return TextCommandResult.Error(error, string.Empty);
 
@@ -302,7 +377,7 @@ public static class BackSlingTransformTuningCommands
         return Success($"Set rotation for {target.Code}\n{FormatTransform(target.Transform)}");
     }
 
-    private static TextCommandResult NudgeRotation(OverlayTarget target, string[] parts)
+    private static TextCommandResult NudgeRotation(QsOverlayTarget target, string[] parts)
     {
         if (!TryReadVec(parts, 1, out Vec3f values, out string error)) return TextCommandResult.Error(error, string.Empty);
 
@@ -312,7 +387,7 @@ public static class BackSlingTransformTuningCommands
         return Success($"Nudged rotation for {target.Code}\n{FormatTransform(target.Transform)}");
     }
 
-    private static TextCommandResult SetScale(OverlayTarget target, string[] parts)
+    private static TextCommandResult SetScale(QsOverlayTarget target, string[] parts)
     {
         if (parts.Length < 2 || !TryReadFloat(parts[1], out float scale))
         {
@@ -323,7 +398,7 @@ public static class BackSlingTransformTuningCommands
         return Success($"Set scale for {target.Code}\n{FormatTransform(target.Transform)}");
     }
 
-    private static TextCommandResult Reset(OverlayTarget target)
+    private static TextCommandResult Reset(QsOverlayTarget target)
     {
         string key = TargetKey(target);
         if (!OriginalTransforms.TryGetValue(key, out ModelTransform? original))
@@ -335,9 +410,11 @@ public static class BackSlingTransformTuningCommands
         return Success($"Reset {target.Code}\n{FormatTransform(target.Transform)}");
     }
 
-    private static TextCommandResult CopyTransform(ICoreClientAPI api, OverlayTarget target)
+    private static TextCommandResult CopyTransform(ICoreClientAPI api, QsOverlayTarget target)
     {
-        string json = ToJsonSnippet(target.Transform);
+        string json = target.ItemTransform == null
+            ? ToJsonSnippet(target.Transform)
+            : ToJsonSnippet(target.ItemTransform);
         if (target.Pattern != null)
         {
             json = $"\"{target.Pattern}\": {{\n{Indent(json)}\n}}";
@@ -347,14 +424,14 @@ public static class BackSlingTransformTuningCommands
         return Success($"Copied transform JSON for {target.Code} to clipboard:\n{json}");
     }
 
-    private static string TargetStatus(OverlayTarget target)
+    private static string TargetStatus(QsOverlayTarget target)
     {
         string stored = string.IsNullOrWhiteSpace(target.StoredCode) ? string.Empty : $"\nstored: {target.StoredCode}";
         string pattern = string.IsNullOrWhiteSpace(target.Pattern) ? string.Empty : $"\npattern: {target.Pattern}";
-        return $"{target.Code}{stored}\nediting: {target.EditMode}{pattern}\n{FormatTransform(target.Transform)}";
+        return $"{target.Code}{stored}\nediting: {target.EditMode}{pattern}\ngizmo: {FormatGizmoMode(GizmoMode)}\n{FormatTransform(target.Transform)}";
     }
 
-    private static void CaptureOriginal(OverlayTarget target)
+    private static void CaptureOriginal(QsOverlayTarget target)
     {
         string key = TargetKey(target);
         if (!OriginalTransforms.ContainsKey(key))
@@ -363,7 +440,7 @@ public static class BackSlingTransformTuningCommands
         }
     }
 
-    private static string TargetKey(OverlayTarget target)
+    private static string TargetKey(QsOverlayTarget target)
     {
         return $"{target.Code}|{target.EditMode}|{target.Pattern ?? "base"}";
     }
@@ -449,6 +526,26 @@ public static class BackSlingTransformTuningCommands
                "}";
     }
 
+    private static string ToJsonSnippet(BackSlingStoredWeaponItemTransform itemTransform)
+    {
+        List<string> lines = [];
+        if (itemTransform.ApplyStoredItemTranslation.HasValue)
+        {
+            lines.Add($"\"applyStoredItemTranslation\": {B(itemTransform.ApplyStoredItemTranslation.Value)},");
+        }
+        if (itemTransform.ApplyStoredItemRotation.HasValue)
+        {
+            lines.Add($"\"applyStoredItemRotation\": {B(itemTransform.ApplyStoredItemRotation.Value)},");
+        }
+        if (itemTransform.ApplyStoredItemScale.HasValue)
+        {
+            lines.Add($"\"applyStoredItemScale\": {B(itemTransform.ApplyStoredItemScale.Value)},");
+        }
+
+        lines.Add(ToJsonSnippet(itemTransform.Transform));
+        return string.Join("\n", lines);
+    }
+
     private static string Indent(string text)
     {
         return string.Join("\n", text.Split('\n').Select(line => $"  {line}"));
@@ -456,11 +553,23 @@ public static class BackSlingTransformTuningCommands
 
     private static string F(double value) => value.ToString("0.###", CultureInfo.InvariantCulture);
 
+    private static string B(bool value) => value ? "true" : "false";
+
+    private static string FormatGizmoMode(QsOverlayGizmoMode mode) => mode switch
+    {
+        QsOverlayGizmoMode.Move => "move",
+        QsOverlayGizmoMode.Rotate => "rotate",
+        QsOverlayGizmoMode.Scale => "scale",
+        _ => "off"
+    };
+
     private static string Help()
     {
         return "Quivers overlay live tuning:\n" +
                ".qsoverlay base             edit shared/base transform\n" +
-               ".qsoverlay item             edit transform override for the stored item\n" +
+               ".qsoverlay item             edit shared transform override for the stored item\n" +
+               ".qsoverlay slotitem         edit slot-specific transform override for the stored item\n" +
+               ".qsoverlay gizmo [mode]     toggle or set gizmo mode: move, rotate, scale, off\n" +
                ".qsoverlay list\n" +
                ".qsoverlay select <index|code-part>\n" +
                ".qsoverlay status\n" +
@@ -478,11 +587,32 @@ public static class BackSlingTransformTuningCommands
         return TextCommandResult.Success(message, null);
     }
 
-    private sealed record OverlayTarget(
-        int SlotIndex,
-        string Code,
-        ModelTransform Transform,
-        string EditMode,
-        string? Pattern,
-        string? StoredCode);
 }
+
+internal enum QsOverlayGizmoMode
+{
+    Off,
+    Move,
+    Rotate,
+    Scale
+}
+
+internal enum QsOverlayEditMode
+{
+    Base,
+    SharedItem,
+    SlotItem
+}
+
+internal sealed record QsOverlayTarget(
+    int SlotIndex,
+    string Code,
+    ItemStack AttachmentStack,
+    BackSlingStoredWeaponRenderConfig Config,
+    ModelTransform Transform,
+    string EditMode,
+    string? Pattern,
+    string? StoredCode,
+    ItemStack? StoredStack,
+    ModelTransform? ParentItemTransform,
+    BackSlingStoredWeaponItemTransform? ItemTransform);

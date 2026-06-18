@@ -10,7 +10,7 @@
     {
       "name": "QuiversAndSheaths:Sheath",
       "properties": {
-        "toolSlot": { "slotColor": "#61c8ff", "canHoldItemTagsCondition": [["knife"], ["tool-knife"]], "slotsIcon": "quiversandsheaths:knife", "SlotBackpackCategory": "weapon-tool", "HandleHotkey": true },
+        "toolSlot": { "slotColor": "#61c8ff", "canHoldWildcards": [], "canHoldItemTagsCondition": [["knife"], ["tool-knife"]], "slotsIcon": "quiversandsheaths:knife", "SlotBackpackCategory": "weapon-tool", "HandleHotkey": true },
         "slots": [
           {
             "canHoldWildcards": ["*gear-rusty", "*gear-temporal"],

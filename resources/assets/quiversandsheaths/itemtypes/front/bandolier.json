@@ -38,9 +38,16 @@
             "slotColor": "#cf9059",
             "slotsNumber": 4,
             "slotsIcon": "quiversandsheaths:bullets",
-            "SlotBackpackCategory": "ammunition"
+            "SlotBackpackCategory": "ammunition",
+            "DisplayInToolDialog": true,
+            "HandleHotkey": true
           }
         ],
+        "hotkey": {
+          "hotkeyCode": "quiversandsheaths-swap-bandolier",
+          "hotkeyName": "(CO) Swap bandolier item",
+          "hotkeyKey": "R"
+        },
         "takeOutColor": "#999999",
         "takeOutSlotIcon": "quiversandsheaths:takeout"
       }

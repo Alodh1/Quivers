@@ -22,5 +22,21 @@
     "op": "add",
     "path": "/attributes/InSheathVariantCodeByType",
     "value": { "*-crude": "crude", "*-simple": "simple", "*-long": "long", "*-recurve": "recurve", "*": "recurve" }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }],
+    "file": "mitsuyoninja:itemtypes/tool/yumi",
+    "op": "addMerge",
+    "path": "/tags",
+    "value": ["bow"]
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }],
+    "file": "mitsuyoninja:itemtypes/tool/yumi",
+    "op": "add",
+    "path": "/attributes/InSheathVariantCodeByType",
+    "value": { "*": "dynamicbow" }
   }
 ]

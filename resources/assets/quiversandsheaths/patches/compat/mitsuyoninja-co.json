@@ -1,0 +1,755 @@
+[
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/yari",
+    "op": "add",
+    "path": "/class",
+    "value": "CombatOverhaul:MeleeWeapon"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/yari",
+    "op": "replace",
+    "path": "/tool",
+    "value": "pike"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/yari",
+    "op": "replace",
+    "path": "/tags",
+    "value": ["weapon", "weapon-melee", "pike", "polearm", "spear", "twohanded"]
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/yari",
+    "op": "remove",
+    "path": "/behaviors/2"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/yari",
+    "op": "addMerge",
+    "path": "/attributes",
+    "value": {
+      "ProficiencyStats": ["meleeProficiency", "polearmsProficiency", "spearsProficiency"],
+      "RenderingOffset": false,
+      "OneHandedStance": {
+        "CanAttack": false,
+        "CanParry": false,
+        "CanBlock": false,
+        "CanSprint": true,
+        "CanThrow": false,
+        "SpeedPenalty": 0,
+        "ReadyAnimation": "armory:pike-idle-1h",
+        "IdleAnimation": "armory:pike-idle-1h"
+      },
+      "TwoHandedStance": {
+        "CanAttack": true,
+        "CanParry": false,
+        "CanBlock": false,
+        "CanSprint": true,
+        "CanThrow": false,
+        "SpeedPenalty": 0,
+        "AttackCooldownMs": 500,
+        "BlockCooldownMs": 750,
+        "GripLengthFactor": 4,
+        "GripMinLength": 0,
+        "GripMaxLength": 36,
+        "Attack": {
+          "StopOnTerrainHit": true,
+          "StopOnEntityHit": false,
+          "CollideWithTerrain": true,
+          "HitOnlyOneEntity": true,
+          "MaxReach": 15,
+          "Impale": {
+            "Enabled": true,
+            "TargetFilter": "HostileOnly",
+            "MaxTargetVolume": 3,
+            "HoldOffset": [0, 0, 1.75],
+            "TargetOffset": [0, -0.6, 0],
+            "ThrowVelocity": 14,
+            "ThrowUpBias": 0.15
+          },
+          "DamageTypesByType": {
+            "*-*bronze": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 3, "Damage": 8 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0, 0, 0.5, 1.2, 0, 0.5] }],
+            "*-iron": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 4, "Damage": 8 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0, 0, 0.5, 1.2, 0, 0.5] }],
+            "*-meteoriciron": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 5, "Damage": 8 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0, 0, 0.5, 1.2, 0, 0.5] }],
+            "*-steel": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 6, "Damage": 8 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0, 0, 0.5, 1.2, 0, 0.5] }]
+          }
+        },
+        "HandleAttack": {
+          "StopOnTerrainHit": true,
+          "StopOnEntityHit": false,
+          "CollideWithTerrain": true,
+          "MaxReach": 9,
+          "DamageTypes": [{ "Damage": { "DamageType": "BluntAttack", "Tier": 1, "Damage": 1 }, "Knockback": 2, "DurabilityDamage": 0, "Collider": [-4.3, 0, 0.5, 0.4, 0, 0.5] }]
+        },
+        "AttackHitSound": "game:sounds/thud",
+        "HandleHitSound": "game:sounds/held/shieldblock-wood-light",
+        "AttackDirectionsType": "TopBottom",
+        "AttackAnimation": {
+          "Top": ["armory:pike-thrust-2h-top"],
+          "Bottom": ["armory:pike-thrust-2h-bottom"]
+        },
+        "TpAttackAnimation": {
+          "Top": "combatoverhaul-spear-hit",
+          "Bottom": "combatoverhaul-spear-hit"
+        },
+        "ReadyAnimation": "armory:pike-ready-2h",
+        "IdleAnimation": "armory:pike-idle-1h",
+        "AttackTpAnimation": "spearhit"
+      }
+    }
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/yari",
+    "op": "addMerge",
+    "path": "/attributesByType",
+    "value": {
+      "*-*bronze": { "quenchBuffKind": "weapon" },
+      "*-iron": { "quenchBuffKind": "weapon" },
+      "*-meteoriciron": { "quenchBuffKind": "weapon" },
+      "*-steel": { "quenchBuffKind": "weapon" }
+    }
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/naginata",
+    "op": "replace",
+    "path": "/class",
+    "value": "CombatOverhaul:MeleeWeapon"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/naginata",
+    "op": "replace",
+    "path": "/tool",
+    "value": "halberd"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/naginata",
+    "op": "replace",
+    "path": "/tags",
+    "value": ["weapon", "weapon-melee", "halberd", "polearm", "twohanded"]
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/naginata",
+    "op": "remove",
+    "path": "/behaviors/1"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/naginata",
+    "op": "addMerge",
+    "path": "/attributes",
+    "value": {
+      "ProficiencyStats": ["meleeProficiency", "polearmsProficiency", "halberdsProficiency"],
+      "RenderingOffset": false,
+      "OneHandedStance": {
+        "CanAttack": false,
+        "CanParry": false,
+        "CanBlock": false,
+        "CanSprint": true,
+        "CanThrow": false,
+        "SpeedPenalty": 0,
+        "ReadyAnimation": "armory:halberd-idle-1h",
+        "IdleAnimation": "armory:halberd-idle-1h"
+      },
+      "TwoHandedStance": {
+        "CanAttack": true,
+        "CanParry": false,
+        "CanBlock": false,
+        "CanSprint": true,
+        "CanThrow": false,
+        "SpeedPenalty": 0,
+        "BlockCooldownMs": 750,
+        "GripLengthFactor": 4,
+        "GripMinLength": 8,
+        "GripMaxLength": 32,
+        "DirectionalAttacks": {
+          "Top": {
+            "StopOnTerrainHit": true,
+            "StopOnEntityHit": false,
+            "CollideWithTerrain": true,
+            "HitOnlyOneEntity": false,
+            "MaxReach": 15,
+            "DamageTypes": [
+              { "DamageByType": { "*-iron": { "DamageType": "SlashingAttack", "Tier": 4, "Damage": 8 }, "*-meteoriciron": { "DamageType": "SlashingAttack", "Tier": 5, "Damage": 8 }, "*-steel": { "DamageType": "SlashingAttack", "Tier": 6, "Damage": 8 } }, "Knockback": 0.5, "DurabilityDamage": 1, "Collider": [0, -0.27, 0.5, 0.6, -0.37, 0.5] },
+              { "DamageByType": { "*-iron": { "DamageType": "SlashingAttack", "Tier": 4, "Damage": 6 }, "*-meteoriciron": { "DamageType": "SlashingAttack", "Tier": 5, "Damage": 6 }, "*-steel": { "DamageType": "SlashingAttack", "Tier": 6, "Damage": 6 } }, "Knockback": 0, "DurabilityDamage": 1, "Collider": [0, 0, 0.5, 1.3, 0, 0.5] }
+            ]
+          },
+          "Left": {
+            "StopOnTerrainHit": true,
+            "StopOnEntityHit": false,
+            "CollideWithTerrain": true,
+            "HitOnlyOneEntity": false,
+            "MaxReach": 15,
+            "DamageTypes": [
+              { "DamageByType": { "*-iron": { "DamageType": "SlashingAttack", "Tier": 4, "Damage": 8 }, "*-meteoriciron": { "DamageType": "SlashingAttack", "Tier": 5, "Damage": 8 }, "*-steel": { "DamageType": "SlashingAttack", "Tier": 6, "Damage": 8 } }, "Knockback": 0.5, "DurabilityDamage": 1, "Collider": [0, -0.27, 0.5, 0.6, -0.37, 0.5] },
+              { "DamageByType": { "*-iron": { "DamageType": "SlashingAttack", "Tier": 4, "Damage": 6 }, "*-meteoriciron": { "DamageType": "SlashingAttack", "Tier": 5, "Damage": 6 }, "*-steel": { "DamageType": "SlashingAttack", "Tier": 6, "Damage": 6 } }, "Knockback": 0, "DurabilityDamage": 1, "Collider": [0, 0, 0.5, 1.3, 0, 0.5] }
+            ]
+          },
+          "Right": {
+            "StopOnTerrainHit": true,
+            "StopOnEntityHit": false,
+            "CollideWithTerrain": true,
+            "HitOnlyOneEntity": false,
+            "MaxReach": 15,
+            "DamageTypes": [
+              { "DamageByType": { "*-iron": { "DamageType": "SlashingAttack", "Tier": 4, "Damage": 8 }, "*-meteoriciron": { "DamageType": "SlashingAttack", "Tier": 5, "Damage": 8 }, "*-steel": { "DamageType": "SlashingAttack", "Tier": 6, "Damage": 8 } }, "Knockback": 0.5, "DurabilityDamage": 1, "Collider": [0, -0.27, 0.5, 0.6, -0.37, 0.5] },
+              { "DamageByType": { "*-iron": { "DamageType": "SlashingAttack", "Tier": 4, "Damage": 6 }, "*-meteoriciron": { "DamageType": "SlashingAttack", "Tier": 5, "Damage": 6 }, "*-steel": { "DamageType": "SlashingAttack", "Tier": 6, "Damage": 6 } }, "Knockback": 0, "DurabilityDamage": 1, "Collider": [0, 0, 0.5, 1.3, 0, 0.5] }
+            ]
+          },
+          "Bottom": {
+            "StopOnTerrainHit": true,
+            "StopOnEntityHit": false,
+            "CollideWithTerrain": true,
+            "HitOnlyOneEntity": true,
+            "MaxReach": 15,
+            "DamageTypes": [{ "DamageByType": { "*-iron": { "DamageType": "PiercingAttack", "Tier": 4, "Damage": 6 }, "*-meteoriciron": { "DamageType": "PiercingAttack", "Tier": 5, "Damage": 6 }, "*-steel": { "DamageType": "PiercingAttack", "Tier": 6, "Damage": 6 } }, "Knockback": 2, "DurabilityDamage": 1, "Collider": [0, 0, 0.5, 1.3, 0, 0.5] }]
+          }
+        },
+        "HandleAttack": {
+          "StopOnTerrainHit": true,
+          "StopOnEntityHit": false,
+          "CollideWithTerrain": true,
+          "MaxReach": 9,
+          "DamageTypes": [{ "Damage": { "DamageType": "BluntAttack", "Tier": 1, "Damage": 1 }, "Knockback": 1, "DurabilityDamage": 0, "Collider": [-2.5, 0.1, 0.5, 0.5, 0.1, 0.5] }]
+        },
+        "AttackHitSound": "game:sounds/thud",
+        "HandleHitSound": "game:sounds/held/shieldblock-wood-light",
+        "AttackDirectionsType": "Square",
+        "AttackAnimation": {
+          "Top": ["armory:halberd-slash-2h-top"],
+          "Left": ["armory:halberd-slash-2h-left"],
+          "Right": ["armory:halberd-slash-2h-right"],
+          "Bottom": ["armory:halberd-thrust-2h-bottom"]
+        },
+        "TpAttackAnimation": {
+          "Top": "combatoverhaul-falx-slash",
+          "Left": "combatoverhaul-falx-slash",
+          "Right": "combatoverhaul-falx-slash",
+          "Bottom": "combatoverhaul-spear-hit"
+        },
+        "ReadyAnimation": "armory:halberd-ready-2h",
+        "IdleAnimation": "armory:halberd-idle-1h",
+        "AttackTpAnimation": "spearhit"
+      }
+    }
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/naginata",
+    "op": "addMerge",
+    "path": "/attributesByType",
+    "value": {
+      "*-iron": { "quenchBuffKind": "weapon" },
+      "*-meteoriciron": { "quenchBuffKind": "weapon" },
+      "*-steel": { "quenchBuffKind": "weapon" }
+    }
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tetsubou",
+    "op": "replace",
+    "path": "/class",
+    "value": "CombatOverhaul:MeleeWeapon"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tetsubou",
+    "op": "replace",
+    "path": "/tool",
+    "value": "club"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tetsubou",
+    "op": "replace",
+    "path": "/tags",
+    "value": ["weapon", "weapon-melee", "club", "twohanded", "onehanded"]
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tetsubou",
+    "op": "remove",
+    "path": "/behaviors/1"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tetsubou",
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": { "name": "Buffable" }
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tetsubou",
+    "op": "addMerge",
+    "path": "/attributes",
+    "value": {
+      "ProficiencyStatsByType": {
+        "*": ["meleeProficiency", "clubsProficiency"]
+      },
+      "RenderingOffset": false,
+      "OneHandedStance": {
+        "CanAttack": true,
+        "CanParry": false,
+        "CanBlock": false,
+        "CanSprint": true,
+        "Attack": {
+          "StopOnTerrainHit": true,
+          "StopOnEntityHit": true,
+          "CollideWithTerrain": true,
+          "MaxReach": 9,
+          "DamageTypesByType": {
+            "*-iron": [{ "Damage": { "DamageType": "BluntAttack", "Tier": 4, "Damage": 4 }, "Knockback": 0, "DurabilityDamage": 1, "Collider": [0, 0, 0.5, 2.6, 0, 0.5] }],
+            "*-meteoriciron": [{ "Damage": { "DamageType": "BluntAttack", "Tier": 5, "Damage": 4 }, "Knockback": 0, "DurabilityDamage": 1, "Collider": [0, 0, 0.5, 2.6, 0, 0.5] }]
+          }
+        },
+        "AttackHitSound": "game:sounds/thud",
+        "AttackAnimation": {
+          "Main": ["armory:club-strike-1h-1", "armory:club-strike-1h-2"]
+        },
+        "TpAttackAnimation": { "Main": "combatoverhaul-falx-slash" },
+        "ReadyAnimation": "armory:club-ready-1h",
+        "IdleAnimation": "armory:club-idle-1h"
+      },
+      "TwoHandedStance": {
+        "CanAttack": true,
+        "CanParry": false,
+        "CanBlock": false,
+        "CanSprint": true,
+        "Attack": {
+          "StopOnTerrainHit": true,
+          "StopOnEntityHit": true,
+          "CollideWithTerrain": true,
+          "MaxReach": 9,
+          "DamageTypesByType": {
+            "*-iron": [{ "Damage": { "DamageType": "BluntAttack", "Tier": 4, "Damage": 6 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0, 0, 0.5, 2.6, 0, 0.5] }],
+            "*-meteoriciron": [{ "Damage": { "DamageType": "BluntAttack", "Tier": 5, "Damage": 6 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0, 0, 0.5, 2.6, 0, 0.5] }]
+          }
+        },
+        "AttackHitSound": "game:sounds/thud",
+        "AttackAnimation": {
+          "Main": ["armory:club-strike-2h-1", "armory:club-strike-2h-2"]
+        },
+        "TpAttackAnimation": { "Main": "combatoverhaul-falx-slash" },
+        "ReadyAnimation": "armory:club-ready-2h",
+        "IdleAnimation": "armory:club-idle-2h"
+      }
+    }
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tetsubou",
+    "op": "addMerge",
+    "path": "/attributesByType",
+    "value": {
+      "*-iron": { "quenchBuffKind": "weapon" },
+      "*-meteoriciron": { "quenchBuffKind": "weapon" }
+    }
+  }
+  ,
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tachi",
+    "op": "add",
+    "path": "/class",
+    "value": "CombatOverhaul:MeleeWeapon"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tachi",
+    "op": "replace",
+    "path": "/tool",
+    "value": "sword"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tachi",
+    "op": "replace",
+    "path": "/tags",
+    "value": ["weapon", "weapon-melee", "weapon-sword", "tool-sword", "sword", "sabre", "onehanded"]
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tachi",
+    "op": "remove",
+    "path": "/behaviors/1"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tachi",
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": { "name": "Buffable" }
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tachi",
+    "op": "addMerge",
+    "path": "/attributes",
+    "value": {
+      "ProficiencyStats": ["meleeProficiency", "knightlyProficiency", "oneHandedSwordsProficiency"],
+      "RenderingOffset": false,
+      "OneHandedStance": {
+        "CanAttack": true,
+        "CanParry": true,
+        "CanBlock": false,
+        "CanSprint": true,
+        "Attack": {
+          "StopOnTerrainHit": true,
+          "StopOnEntityHit": true,
+          "CollideWithTerrain": true,
+          "MaxReach": 9,
+          "DamageTypesByType": {
+            "*-iron": [{ "Damage": { "DamageType": "SlashingAttack", "Tier": 3, "Damage": 6 }, "Knockback": 0, "DurabilityDamage": 1, "Collider": [0.6, -0.3, 0.5, 2.9, 0.3, 0.5] }],
+            "*-meteoriciron": [{ "Damage": { "DamageType": "SlashingAttack", "Tier": 4, "Damage": 6 }, "Knockback": 0, "DurabilityDamage": 1, "Collider": [0.6, -0.3, 0.5, 2.9, 0.3, 0.5] }],
+            "*-steel": [{ "Damage": { "DamageType": "SlashingAttack", "Tier": 5, "Damage": 6 }, "Knockback": 0, "DurabilityDamage": 1, "Collider": [0.6, -0.3, 0.5, 3.1, 0.2, 0.5] }]
+          }
+        },
+        "AttackHitSound": "game:sounds/thud",
+        "AttackAnimation": { "Main": ["armory:sabre-slash-1", "armory:sabre-slash-2"] },
+        "TpAttackAnimation": { "Main": "combatoverhaul-falx-slash" },
+        "SpeedPenalty": 0,
+        "BlockSpeedPenalty": 0,
+        "Parry": {
+          "Zones": ["Head", "Face", "Neck", "Torso", "LeftArm", "RightArm", "LeftHand", "RightHand", "LeftLeg", "RightLeg", "LeftFoot", "RightFoot"],
+          "Directions": [90, 90, 90, 90],
+          "Sound": "game:sounds/held/shieldblock-metal-heavy",
+          "BlockTier": { "BluntAttack": 9, "SlashingAttack": 9, "PiercingAttack": 9 },
+          "CanBlockProjectiles": false
+        },
+        "ParryCooldownMs": 600,
+        "BlockCooldownMs": 0,
+        "BlockAnimation": "armory:sabre-parry",
+        "ReadyAnimation": "armory:sabre-ready",
+        "IdleAnimation": "armory:sabre-idle",
+        "AttackTpAnimation": "falx"
+      }
+    }
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tachi",
+    "op": "addMerge",
+    "path": "/attributesByType",
+    "value": {
+      "*-iron": { "quenchBuffKind": "weapon" },
+      "*-meteoriciron": { "quenchBuffKind": "weapon" },
+      "*-steel": { "quenchBuffKind": "weapon" }
+    }
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tsurugi",
+    "op": "add",
+    "path": "/class",
+    "value": "CombatOverhaul:MeleeWeapon"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tsurugi",
+    "op": "replace",
+    "path": "/tool",
+    "value": "sword"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tsurugi",
+    "op": "replace",
+    "path": "/tags",
+    "value": ["weapon", "weapon-melee", "weapon-sword", "tool-sword", "sword", "onehanded"]
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tsurugi",
+    "op": "remove",
+    "path": "/behaviors/1"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tsurugi",
+    "op": "addMerge",
+    "path": "/attributes",
+    "value": {
+      "ProficiencyStats": ["meleeProficiency", "knightlyProficiency", "oneHandedSwordsProficiency"],
+      "RenderingOffset": false,
+      "OneHandedStance": {
+        "CanAttack": true,
+        "CanParry": true,
+        "CanBlock": false,
+        "CanSprint": true,
+        "Attack": {
+          "StopOnTerrainHit": true,
+          "StopOnEntityHit": true,
+          "CollideWithTerrain": true,
+          "MaxReach": 9,
+          "DamageTypesByType": {
+            "*-*bronze": [{ "Damage": { "DamageType": "SlashingAttack", "Tier": 3, "Damage": 4 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0.6, -0.1, 0.5, 2.45, -0.1, 0.5] }],
+            "*-iron": [{ "Damage": { "DamageType": "SlashingAttack", "Tier": 4, "Damage": 4 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0.6, -0.1, 0.5, 2.6, -0.1, 0.5] }],
+            "*-meteoriciron": [{ "Damage": { "DamageType": "SlashingAttack", "Tier": 5, "Damage": 4 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0.6, -0.1, 0.5, 2.75, -0.1, 0.5] }]
+          }
+        },
+        "AttackHitSound": "game:sounds/thud",
+        "AttackDirectionsType": "Triangle",
+        "AttackAnimation": {
+          "Top": ["armory:sword-short-thrust-4", "armory:sword-short-thrust-5", "armory:sword-short-thrust-6"],
+          "BottomLeft": ["armory:sword-short-slash-1"],
+          "BottomRight": ["armory:sword-short-slash-2"]
+        },
+        "TpAttackAnimation": { "Main": "combatoverhaul-falx-slash" },
+        "SpeedPenalty": 0,
+        "BlockSpeedPenalty": 0,
+        "Parry": {
+          "Zones": ["Head", "Face", "Neck", "Torso", "LeftArm", "RightArm", "LeftHand", "RightHand", "LeftLeg", "RightLeg", "LeftFoot", "RightFoot"],
+          "Directions": [90, 90, 90, 90],
+          "Sound": "game:sounds/held/shieldblock-metal-heavy",
+          "BlockTier": { "BluntAttack": 9, "SlashingAttack": 9, "PiercingAttack": 9 },
+          "CanBlockProjectiles": false
+        },
+        "ParryCooldownMs": 600,
+        "BlockCooldownMs": 0,
+        "BlockAnimation": "armory:sword-short-parry",
+        "ReadyAnimation": "armory:sword-short-ready",
+        "IdleAnimation": "armory:sword-short-idle",
+        "AttackTpAnimation": "falx"
+      }
+    }
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tsurugi",
+    "op": "addMerge",
+    "path": "/attributesByType",
+    "value": {
+      "*-*bronze": { "quenchBuffKind": "weapon" },
+      "*-iron": { "quenchBuffKind": "weapon" },
+      "*-meteoriciron": { "quenchBuffKind": "weapon" }
+    }
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tanto",
+    "op": "replace",
+    "path": "/class",
+    "value": "CombatOverhaul:MeleeWeapon"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tanto",
+    "op": "replace",
+    "path": "/tool",
+    "value": "sword"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tanto",
+    "op": "replace",
+    "path": "/tags",
+    "value": ["weapon", "weapon-melee", "dagger", "twohanded", "onehanded"]
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tanto",
+    "op": "remove",
+    "path": "/behaviors/1"
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tanto",
+    "op": "addMerge",
+    "path": "/attributes",
+    "value": {
+      "isDagger": true,
+      "combatoverhaul:isDagger": true,
+      "ProficiencyStats": ["meleeProficiency", "oneHandedSwordsProficiency"],
+      "RenderingOffset": false,
+      "OneHandedStance": {
+        "CanAttack": true,
+        "CanParry": true,
+        "CanBlock": false,
+        "CanSprint": true,
+        "AttackSpeedMultiplier": 1.1,
+        "Attack": {
+          "StopOnTerrainHit": true,
+          "StopOnEntityHit": true,
+          "CollideWithTerrain": true,
+          "MaxReach": 9,
+          "DamageTypesByType": {
+            "*-iron": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 4, "Damage": 6 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0.6, -0.1, 0.5, 2.25, -0.1, 0.5] }],
+            "*-meteoriciron": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 5, "Damage": 6 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0.6, -0.1, 0.5, 2.4, -0.1, 0.5] }],
+            "*-steel": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 6, "Damage": 6 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0.6, 0, 0.5, 2.6, 0, 0.5] }]
+          }
+        },
+        "AttackHitSound": "game:sounds/thud",
+        "AttackAnimation": { "Main": ["armory:sword-short-thrust-4", "armory:sword-short-thrust-5", "armory:sword-short-thrust-6"] },
+        "TpAttackAnimation": { "Main": "combatoverhaul-falx-slash" },
+        "SpeedPenalty": 0,
+        "BlockSpeedPenalty": 0,
+        "Parry": {
+          "Zones": ["Head", "Face", "Neck", "Torso", "LeftArm", "RightArm", "LeftHand", "RightHand", "LeftLeg", "RightLeg", "LeftFoot", "RightFoot"],
+          "Directions": [90, 90, 90, 90],
+          "Sound": "game:sounds/held/shieldblock-metal-heavy",
+          "BlockTier": { "BluntAttack": 9, "PiercingAttack": 9, "SlashingAttack": 9 },
+          "CanBlockProjectiles": false
+        },
+        "ParryCooldownMs": 600,
+        "BlockCooldownMs": 0,
+        "BlockAnimation": "armory:sword-short-parry",
+        "ReadyAnimation": "armory:sword-short-ready",
+        "IdleAnimation": "armory:sword-short-idle",
+        "AttackTpAnimation": "falx"
+      },
+      "OffHandStance": {
+        "CanAttack": true,
+        "CanParry": false,
+        "CanBlock": false,
+        "CanSprint": true,
+        "AttackSpeedMultiplier": 1.15,
+        "Attack": {
+          "StopOnTerrainHit": true,
+          "StopOnEntityHit": true,
+          "CollideWithTerrain": true,
+          "MaxReach": 9,
+          "DamageTypesByType": {
+            "*-iron": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 4, "Damage": 6 }, "Knockback": 0.6, "DurabilityDamage": 1, "Collider": [0.5, -0.1, 0.5, 2, -0.1, 0.5] }],
+            "*-meteoriciron": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 5, "Damage": 6 }, "Knockback": 0.6, "DurabilityDamage": 1, "Collider": [0.5, -0.1, 0.5, 2.1, -0.1, 0.5] }],
+            "*-steel": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 6, "Damage": 6 }, "Knockback": 0.6, "DurabilityDamage": 1, "Collider": [0.5, 0, 0.5, 2.2, 0, 0.5] }]
+          }
+        },
+        "AttackHitSound": "game:sounds/thud",
+        "AttackAnimation": { "Main": ["armory:dagger-offhand-poke-1", "armory:dagger-offhand-poke-2", "armory:dagger-offhand-poke-3", "armory:dagger-offhand-poke-4", "armory:dagger-offhand-poke-5", "armory:dagger-offhand-poke-6"] },
+        "ReadyAnimation": "armory:dagger-offhand-ready",
+        "IdleAnimation": "armory:dagger-offhand-idle",
+        "SpeedPenalty": 0
+      },
+      "MainHandDualWieldStances": {
+        "mitsuyoninja:tanto-*": {
+          "CanAttack": true,
+          "CanParry": false,
+          "CanBlock": false,
+          "CanSprint": true,
+          "CanThrow": false,
+          "AttackSpeedMultiplier": 1.2,
+          "Attack": {
+            "StopOnTerrainHit": true,
+            "StopOnEntityHit": true,
+            "CollideWithTerrain": true,
+            "MaxReach": 9,
+            "DamageTypesByType": {
+              "*-iron": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 4, "Damage": 6 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0.6, -0.1, 0.5, 2.25, -0.1, 0.5] }],
+              "*-meteoriciron": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 5, "Damage": 6 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0.6, -0.1, 0.5, 2.4, -0.1, 0.5] }],
+              "*-meteoricsteel": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 7, "Damage": 6 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0.6, 0, 0.5, 2.75, 0, 0.5] }],
+              "*-steel": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 6, "Damage": 6 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0.6, 0, 0.5, 2.6, 0, 0.5] }]
+            }
+          },
+          "AttackHitSound": "game:sounds/thud",
+          "AttackDirectionsType": "None",
+          "AttackAnimation": { "Main": ["armory:dagger-dual-mainhand-poke-1", "armory:dagger-dual-mainhand-poke-2", "armory:dagger-dual-mainhand-poke-3"] },
+          "TpAttackAnimation": { "Main": "combatoverhaul-falx-slash" },
+          "SpeedPenalty": 0,
+          "BlockSpeedPenalty": 0,
+          "ReadyAnimation": "armory:sword-short-ready",
+          "IdleAnimation": "armory:sword-short-idle"
+        },
+        "armory:dagger-*": {
+          "CanAttack": true,
+          "CanParry": false,
+          "CanBlock": false,
+          "CanSprint": true,
+          "CanThrow": false,
+          "AttackSpeedMultiplier": 1.2,
+          "Attack": {
+            "StopOnTerrainHit": true,
+            "StopOnEntityHit": true,
+            "CollideWithTerrain": true,
+            "MaxReach": 9,
+            "DamageTypesByType": {
+              "*-iron": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 4, "Damage": 6 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0.6, -0.1, 0.5, 2.25, -0.1, 0.5] }],
+              "*-meteoriciron": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 5, "Damage": 6 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0.6, -0.1, 0.5, 2.4, -0.1, 0.5] }],
+              "*-meteoricsteel": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 7, "Damage": 6 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0.6, 0, 0.5, 2.75, 0, 0.5] }],
+              "*-steel": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 6, "Damage": 6 }, "Knockback": 1, "DurabilityDamage": 1, "Collider": [0.6, 0, 0.5, 2.6, 0, 0.5] }]
+            }
+          },
+          "AttackHitSound": "game:sounds/thud",
+          "AttackDirectionsType": "None",
+          "AttackAnimation": { "Main": ["armory:dagger-dual-mainhand-poke-1", "armory:dagger-dual-mainhand-poke-2", "armory:dagger-dual-mainhand-poke-3"] },
+          "TpAttackAnimation": { "Main": "combatoverhaul-falx-slash" },
+          "SpeedPenalty": 0,
+          "BlockSpeedPenalty": 0,
+          "ReadyAnimation": "armory:sword-short-ready",
+          "IdleAnimation": "armory:sword-short-idle"
+        }
+      },
+      "OffHandDualWieldStances": {
+        "mitsuyoninja:tanto-*": {
+          "CanAttack": true,
+          "CanParry": false,
+          "CanBlock": false,
+          "CanSprint": true,
+          "AttackSpeedMultiplier": 1.15,
+          "Attack": {
+            "StopOnTerrainHit": true,
+            "StopOnEntityHit": true,
+            "CollideWithTerrain": true,
+            "MaxReach": 9,
+            "DamageTypesByType": {
+              "*-iron": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 4, "Damage": 6 }, "Knockback": 0.6, "DurabilityDamage": 1, "Collider": [0.5, -0.1, 0.5, 2, -0.1, 0.5] }],
+              "*-meteoriciron": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 5, "Damage": 6 }, "Knockback": 0.6, "DurabilityDamage": 1, "Collider": [0.5, -0.1, 0.5, 2.1, -0.1, 0.5] }],
+              "*-meteoricsteel": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 7, "Damage": 6 }, "Knockback": 0.6, "DurabilityDamage": 1, "Collider": [0.5, 0, 0.5, 2.3, 0, 0.5] }],
+              "*-steel": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 6, "Damage": 6 }, "Knockback": 0.6, "DurabilityDamage": 1, "Collider": [0.5, 0, 0.5, 2.2, 0, 0.5] }]
+            }
+          },
+          "AttackHitSound": "game:sounds/thud",
+          "AttackDirectionsType": "None",
+          "AttackAnimation": { "Main": ["armory:dagger-dual-poke-1", "armory:dagger-dual-poke-2", "armory:dagger-dual-poke-3"] },
+          "ReadyAnimation": "armory:dagger-offhand-ready",
+          "IdleAnimation": "armory:dagger-offhand-idle",
+          "SpeedPenalty": 0
+        },
+        "armory:dagger-*": {
+          "CanAttack": true,
+          "CanParry": false,
+          "CanBlock": false,
+          "CanSprint": true,
+          "AttackSpeedMultiplier": 1.15,
+          "Attack": {
+            "StopOnTerrainHit": true,
+            "StopOnEntityHit": true,
+            "CollideWithTerrain": true,
+            "MaxReach": 9,
+            "DamageTypesByType": {
+              "*-iron": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 4, "Damage": 6 }, "Knockback": 0.6, "DurabilityDamage": 1, "Collider": [0.5, -0.1, 0.5, 2, -0.1, 0.5] }],
+              "*-meteoriciron": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 5, "Damage": 6 }, "Knockback": 0.6, "DurabilityDamage": 1, "Collider": [0.5, -0.1, 0.5, 2.1, -0.1, 0.5] }],
+              "*-meteoricsteel": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 7, "Damage": 6 }, "Knockback": 0.6, "DurabilityDamage": 1, "Collider": [0.5, 0, 0.5, 2.3, 0, 0.5] }],
+              "*-steel": [{ "Damage": { "DamageType": "PiercingAttack", "Tier": 6, "Damage": 6 }, "Knockback": 0.6, "DurabilityDamage": 1, "Collider": [0.5, 0, 0.5, 2.2, 0, 0.5] }]
+            }
+          },
+          "AttackHitSound": "game:sounds/thud",
+          "AttackDirectionsType": "None",
+          "AttackAnimation": { "Main": ["armory:dagger-dual-poke-1", "armory:dagger-dual-poke-2", "armory:dagger-dual-poke-3"] },
+          "ReadyAnimation": "armory:dagger-offhand-ready",
+          "IdleAnimation": "armory:dagger-offhand-idle",
+          "SpeedPenalty": 0
+        }
+      }
+    }
+  },
+  {
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }, { "modid": "combatoverhaulfork" }, { "modid": "armoryfork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tanto",
+    "op": "addMerge",
+    "path": "/attributesByType",
+    "value": {
+      "*-iron": { "quenchBuffKind": "weapon" },
+      "*-meteoriciron": { "quenchBuffKind": "weapon" },
+      "*-steel": { "quenchBuffKind": "weapon" }
+    }
+  }
+]

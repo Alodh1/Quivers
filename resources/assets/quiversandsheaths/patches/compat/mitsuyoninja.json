@@ -1,0 +1,165 @@
+[
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tachi",
+    "op": "addMerge",
+    "path": "/tags",
+    "value": ["onehanded"]
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tachi",
+    "op": "addMerge",
+    "path": "/attributes",
+    "value": {
+      "InSheathVariantCodeByType": { "*": "tachi" },
+      "MetalVariantCodeByType": {
+        "*-iron": "iron",
+        "*-meteoriciron": "meteoriciron",
+        "*-steel": "steel",
+        "*": "iron"
+      },
+      "WoodVariantCodeByType": { "*": "oak" }
+    }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tsurugi",
+    "op": "addMerge",
+    "path": "/tags",
+    "value": ["onehanded"]
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tsurugi",
+    "op": "addMerge",
+    "path": "/attributes",
+    "value": {
+      "InSheathVariantCodeByType": { "*": "tsurugi" },
+      "MetalVariantCodeByType": {
+        "*-tinbronze": "tinbronze",
+        "*-bismuthbronze": "bismuthbronze",
+        "*-blackbronze": "blackbronze",
+        "*-iron": "iron",
+        "*-meteoriciron": "meteoriciron",
+        "*": "iron"
+      },
+      "WoodVariantCodeByType": { "*": "oak" }
+    }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tanto",
+    "op": "addMerge",
+    "path": "/tags",
+    "value": ["dagger", "twohanded", "onehanded"]
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tanto",
+    "op": "addMerge",
+    "path": "/attributes",
+    "value": {
+      "isDagger": true,
+      "combatoverhaul:isDagger": true,
+      "InSheathVariantCodeByType": { "*": "default" },
+      "MetalVariantCodeByType": {
+        "*-iron": "iron",
+        "*-meteoriciron": "meteoriciron",
+        "*-steel": "steel",
+        "*": "iron"
+      }
+    }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }],
+    "file": "mitsuyoninja:itemtypes/tool/yari",
+    "op": "addMerge",
+    "path": "/tags",
+    "value": ["polearm", "spear"]
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }],
+    "file": "mitsuyoninja:itemtypes/tool/yari",
+    "op": "addMerge",
+    "path": "/attributes",
+    "value": {
+      "InSheathVariantCodeByType": { "*": "yari" },
+      "MetalVariantCodeByType": {
+        "*-tinbronze": "tinbronze",
+        "*-bismuthbronze": "bismuthbronze",
+        "*-blackbronze": "blackbronze",
+        "*-iron": "iron",
+        "*-meteoriciron": "meteoriciron",
+        "*-steel": "steel",
+        "*": "iron"
+      },
+      "WoodVariantCodeByType": { "*": "oak" }
+    }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }],
+    "file": "mitsuyoninja:itemtypes/tool/naginata",
+    "op": "addMerge",
+    "path": "/tags",
+    "value": ["polearm"]
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }],
+    "file": "mitsuyoninja:itemtypes/tool/naginata",
+    "op": "addMerge",
+    "path": "/attributes",
+    "value": {
+      "InSheathVariantCodeByType": { "*": "naginata" },
+      "MetalVariantCodeByType": {
+        "*-iron": "iron",
+        "*-meteoriciron": "meteoriciron",
+        "*-steel": "steel",
+        "*": "iron"
+      },
+      "WoodVariantCodeByType": { "*": "oak" }
+    }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }],
+    "file": "mitsuyoninja:itemtypes/tool/tetsubou",
+    "op": "addMerge",
+    "path": "/attributes",
+    "value": {
+      "InSheathVariantCodeByType": { "*": "tetsubou" },
+      "MetalVariantCodeByType": {
+        "*-iron": "iron",
+        "*-meteoriciron": "meteoriciron",
+        "*": "iron"
+      },
+      "WoodVariantCodeByType": { "*": "oak" }
+    }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "mitsuyoninjafork" }],
+    "file": "mitsuyoninja:itemtypes/tool/shuriken",
+    "op": "addMerge",
+    "path": "/attributes",
+    "value": {
+      "InSheathVariantCodeByType": { "*": "shuriken" },
+      "MetalVariantCodeByType": {
+        "*-iron": "iron",
+        "*-meteoriciron": "meteoriciron",
+        "*-steel": "steel",
+        "*": "iron"
+      }
+    }
+  }
+]

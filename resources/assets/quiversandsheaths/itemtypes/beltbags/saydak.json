@@ -21,6 +21,7 @@
       "properties": {
         "addOverlayPrefix": false,
         "shape": {
+          "right_slot-dynamicbow::right_slot_state-*": { "base": "quiversandsheaths:sheaths/accessories/{right_slot_state}/quiver_long_bow" },
           "right_slot-*::right_slot_state-*": { "base": "quiversandsheaths:sheaths/accessories/{right_slot_state}/quiver_{right_slot}_bow" },
           "*": { "base": "quiversandsheaths:sheaths/accessories/empty/quiver_default_bow" }
         },

@@ -12,7 +12,8 @@
       "properties": {
         "slots": [
           {
-        "canHoldWildcards": ["*:arrow", "*:arrow-*"],
+            "canHoldWildcards": ["*:arrow", "*:arrow-*"],
+            "canHoldItemAttributes": ["isArrow"],
             "canHoldItemTags": ["arrow"],
             "slotColor": "#84b054",
             "slotsNumber": 3,

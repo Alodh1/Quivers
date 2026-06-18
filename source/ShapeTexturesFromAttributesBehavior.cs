@@ -73,6 +73,12 @@ public class ShapeTexturesFromAttributes : CollectibleBehavior, IContainedMeshSo
 
     public override void OnBeforeRender(ICoreClientAPI clientApi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
     {
+        if (TryGetReplacement(target, out _))
+        {
+            base.OnBeforeRender(clientApi, itemstack, target, ref renderinfo);
+            return;
+        }
+
         Dictionary<string, MultiTextureMeshRef> meshRefs = ObjectCacheUtil.GetOrCreate(clientApi, "AttributeRenderingLibrary_BehaviorShapeTexturesFromAttributes_MeshRefs", () => new Dictionary<string, MultiTextureMeshRef>());
 
         string key = GetMeshCacheKey(itemstack);
@@ -162,7 +168,14 @@ public class ShapeTexturesFromAttributes : CollectibleBehavior, IContainedMeshSo
 
     public virtual MeshData GenMesh(ItemSlot itemSlot, ITextureAtlasAPI targetAtlas, BlockPos atBlockPos)
     {
-        return itemSlot.Itemstack == null ? RenderExtensions.GenEmptyMesh() : GetOrCreateMesh(itemSlot.Itemstack, targetAtlas);
+        if (itemSlot.Itemstack == null) return RenderExtensions.GenEmptyMesh();
+
+        if (ReferenceEquals(targetAtlas, _clientApi?.ItemTextureAtlas) && TryGetReplacement(EnumItemRenderTarget.Gui, out ShapeReplacement? replacement))
+        {
+            return replacement!.GenMesh(itemSlot, targetAtlas, atBlockPos);
+        }
+
+        return GetOrCreateMesh(itemSlot.Itemstack, targetAtlas);
     }
 
     public virtual string GetMeshCacheKey(ItemSlot itemSlot)
@@ -173,6 +186,15 @@ public class ShapeTexturesFromAttributes : CollectibleBehavior, IContainedMeshSo
     public virtual string GetMeshCacheKey(ItemStack itemstack)
     {
         return $"{itemstack.Collectible.Code}-{Variants.FromStack(itemstack)}";
+    }
+
+    private bool TryGetReplacement(EnumItemRenderTarget target, out ShapeReplacement? replacement)
+    {
+        replacement = collObj.CollectibleBehaviors?
+            .OfType<ShapeReplacement>()
+            .FirstOrDefault(behavior => behavior.HandlesRenderTarget(target));
+
+        return replacement != null;
     }
 
 
@@ -188,14 +210,14 @@ public class ShapeTexturesFromAttributes : CollectibleBehavior, IContainedMeshSo
             foreach ((string textureCode, AssetLocation textureLocation) in shape.Textures.ToArray())
             {
                 CompositeTexture ctex = VariantTextureMatcher.BakeTexture(_api, variants, new CompositeTexture(textureLocation));
-                AddAttachableTexture(shape, intoDict, texturePrefixCode, textureCode, ctex);
+                AddAttachableTextureAliases(stack, shape, intoDict, texturePrefixCode, textureCode, ctex);
             }
         }
 
         foreach ((string textureCode, CompositeTexture texture) in stack.Item.Textures)
         {
             CompositeTexture ctex = VariantTextureMatcher.BakeTexture(_api, variants, texture);
-            AddAttachableTexture(shape, intoDict, texturePrefixCode, textureCode, ctex);
+            AddAttachableTextureAliases(stack, shape, intoDict, texturePrefixCode, textureCode, ctex);
         }
 
         Dictionary<string, Dictionary<string, CompositeTexture>> texturesByType = new();
@@ -208,25 +230,54 @@ public class ShapeTexturesFromAttributes : CollectibleBehavior, IContainedMeshSo
         foreach ((string textureCode, CompositeTexture texture) in VariantTextureMatcher.GetMatchingTextures(variants, texturesByType))
         {
             CompositeTexture ctex = VariantTextureMatcher.BakeTexture(_api, variants, texture);
-            AddAttachableTexture(shape, intoDict, texturePrefixCode, textureCode, ctex);
+            AddAttachableTextureAliases(stack, shape, intoDict, texturePrefixCode, textureCode, ctex);
         }
 
     }
 
-    private static void AddAttachableTexture(Shape shape, Dictionary<string, CompositeTexture> intoDict, string texturePrefixCode, string textureCode, CompositeTexture ctex, string? targetTextureCode = null)
+    private void AddAttachableTextureAliases(ItemStack stack, Shape shape, Dictionary<string, CompositeTexture> intoDict, string texturePrefixCode, string textureCode, CompositeTexture ctex, string? targetTextureCode = null)
     {
         string shapeTextureCode = targetTextureCode ?? textureCode;
-        string prefixedTextureCode = shapeTextureCode.StartsWith(texturePrefixCode, StringComparison.Ordinal)
-            ? shapeTextureCode
-            : texturePrefixCode + shapeTextureCode;
+        string stackPrefix = GetMeshCacheKey(stack);
 
-        intoDict[prefixedTextureCode] = ctex;
+        HashSet<string> prefixes = new(StringComparer.Ordinal)
+        {
+            texturePrefixCode ?? "",
+            stackPrefix
+        };
+
+        HashSet<string> textureKeys = new(StringComparer.Ordinal)
+        {
+            shapeTextureCode
+        };
+
+        foreach (string prefix in prefixes.Where(prefix => !string.IsNullOrEmpty(prefix)))
+        {
+            textureKeys.Add(prefix + shapeTextureCode);
+        }
+
+        foreach (string outerPrefix in prefixes.Where(prefix => !string.IsNullOrEmpty(prefix)))
+        {
+            foreach (string innerPrefix in prefixes.Where(prefix => !string.IsNullOrEmpty(prefix)))
+            {
+                textureKeys.Add(outerPrefix + innerPrefix + shapeTextureCode);
+            }
+        }
+
+        foreach (string textureKey in textureKeys)
+        {
+            AddAttachableTexture(shape, intoDict, textureKey, ctex);
+        }
+    }
+
+    private static void AddAttachableTexture(Shape shape, Dictionary<string, CompositeTexture> intoDict, string textureCode, CompositeTexture ctex)
+    {
+        intoDict[textureCode] = ctex;
 
         shape.Textures ??= new Dictionary<string, AssetLocation>();
         if (ctex.Baked?.BakedName != null)
         {
-            shape.Textures[prefixedTextureCode] = ctex.Baked.BakedName;
-            shape.Textures[shapeTextureCode] = ctex.Baked.BakedName;
+            shape.Textures[textureCode] = ctex.Baked.BakedName;
         }
     }
 

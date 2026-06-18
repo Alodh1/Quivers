@@ -1,0 +1,107 @@
+[
+  {
+    "dependsOn": [
+      {
+        "modid": "alchemy"
+      }
+    ],
+    "file": "quiversandsheaths:itemtypes/front/bandolier-potions",
+    "op": "replace",
+    "path": "/enabled",
+    "value": true
+  },
+  {
+    "dependsOn": [
+      {
+        "modid": "aculinaryartillery"
+      }
+    ],
+    "file": "quiversandsheaths:itemtypes/front/bandolier-potions",
+    "op": "replace",
+    "path": "/enabled",
+    "value": true
+  },
+  {
+    "dependsOn": [
+      {
+        "modid": "rustyshellfork"
+      }
+    ],
+    "file": "quiversandsheaths:itemtypes/front/bandolier-potions",
+    "op": "replace",
+    "path": "/enabled",
+    "value": true
+  },
+  {
+    "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "alchemy"
+      }
+    ],
+    "file": "quiversandsheaths:recipes/grid/bandolier-potions",
+    "op": "replace",
+    "path": "/0/enabled",
+    "value": true
+  },
+  {
+    "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "alchemy"
+      }
+    ],
+    "file": "quiversandsheaths:recipes/grid/bandolier-potions",
+    "op": "replace",
+    "path": "/1/enabled",
+    "value": true
+  },
+  {
+    "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "aculinaryartillery"
+      }
+    ],
+    "file": "quiversandsheaths:recipes/grid/bandolier-potions",
+    "op": "replace",
+    "path": "/0/enabled",
+    "value": true
+  },
+  {
+    "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "aculinaryartillery"
+      }
+    ],
+    "file": "quiversandsheaths:recipes/grid/bandolier-potions",
+    "op": "replace",
+    "path": "/1/enabled",
+    "value": true
+  },
+  {
+    "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "rustyshellfork"
+      }
+    ],
+    "file": "quiversandsheaths:recipes/grid/bandolier-potions",
+    "op": "replace",
+    "path": "/0/enabled",
+    "value": true
+  },
+  {
+    "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "rustyshellfork"
+      }
+    ],
+    "file": "quiversandsheaths:recipes/grid/bandolier-potions",
+    "op": "replace",
+    "path": "/1/enabled",
+    "value": true
+  }
+]

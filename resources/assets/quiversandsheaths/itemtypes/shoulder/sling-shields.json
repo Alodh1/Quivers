@@ -208,6 +208,13 @@
     "handbook": {
       "groupBy": [
         "shoulderbag-{category}-{subtype}-{type}"
+      ],
+      "ignoreCreativeInvStacks": true,
+      "extraSections": [
+        {
+          "Title": "quiversandsheaths:handbook-craftingappearance-title",
+          "Text": "quiversandsheaths:handbook-craftingappearance-text"
+        }
       ]
     }
   },
