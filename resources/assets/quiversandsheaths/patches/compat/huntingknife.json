@@ -1,0 +1,27 @@
+[
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "huntingknife" }],
+    "file": "huntingknife:itemtypes/tool/huntingknife",
+    "op": "addMerge",
+    "path": "/tags",
+    "value": ["knife"]
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "huntingknife" }],
+    "file": "huntingknife:itemtypes/tool/huntingknife",
+    "op": "addMerge",
+    "path": "/attributes/InSheathVariantCodeByType",
+    "value":  {
+        "*-copper": "huntingknife",
+		"*-bismuthbronze": "huntingknife",
+		"*-tinbronze": "huntingknife",
+		"*-blackbronze": "huntingknife",
+		"*-iron": "huntingknife",
+		"*-meteoriciron": "huntingknife",
+		"*-steel": "huntingknife",
+		"*-titanium": "huntingknife"
+    }
+  }
+]
